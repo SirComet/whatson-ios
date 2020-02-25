@@ -33,6 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func configureAppUI() {
         UITabBar.appearance().barTintColor = .darkGrey600
         UITabBar.appearance().tintColor = .white
+
+        UINavigationBar.appearance().barTintColor = .darkGrey900
+        UINavigationBar.appearance().prefersLargeTitles = true
+        UINavigationBar.appearance().barStyle = .black
+        UINavigationBar.appearance().tintColor = .white
     }
 
 }

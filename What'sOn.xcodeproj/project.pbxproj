@@ -16,6 +16,9 @@
 		52985A692401368D00719530 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52985A682401368D00719530 /* AppCoordinator.swift */; };
 		52B4789D24054A85007D578E /* UIColor+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4789C24054A85007D578E /* UIColor+App.swift */; };
 		52B4789F24054B0E007D578E /* MoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4789E24054B0E007D578E /* MoviesView.swift */; };
+		52B478A524054DB8007D578E /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 52B478A424054DB8007D578E /* RxRelay */; };
+		52B478A724054DB8007D578E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 52B478A624054DB8007D578E /* RxSwift */; };
+		52B478A924054DB8007D578E /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 52B478A824054DB8007D578E /* RxCocoa */; };
 		52E194F62401418D00407344 /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E194F52401418D00407344 /* MoviesViewModel.swift */; };
 		52E194F8240141AD00407344 /* MoviesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E194F7240141AD00407344 /* MoviesCoordinator.swift */; };
 		52E194FA240141C000407344 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E194F9240141C000407344 /* MoviesViewController.swift */; };
@@ -53,8 +56,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52B478A924054DB8007D578E /* RxCocoa in Frameworks */,
 				523A2106240545FF00C17124 /* Rswift in Frameworks */,
 				52E1950624014C5A00407344 /* XCoordinator in Frameworks */,
+				52B478A724054DB8007D578E /* RxSwift in Frameworks */,
+				52B478A524054DB8007D578E /* RxRelay in Frameworks */,
 				52E1950424014C5A00407344 /* XCoordinatorRx in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,6 +161,9 @@
 				52E1950324014C5A00407344 /* XCoordinatorRx */,
 				52E1950524014C5A00407344 /* XCoordinator */,
 				523A2105240545FF00C17124 /* Rswift */,
+				52B478A424054DB8007D578E /* RxRelay */,
+				52B478A624054DB8007D578E /* RxSwift */,
+				52B478A824054DB8007D578E /* RxCocoa */,
 			);
 			productName = Netflix;
 			productReference = 526B571523FDDBE800E28658 /* What'sOn.app */;
@@ -188,6 +197,7 @@
 			packageReferences = (
 				52E1950224014C5A00407344 /* XCRemoteSwiftPackageReference "XCoordinator" */,
 				523A2104240545FF00C17124 /* XCRemoteSwiftPackageReference "R.swift" */,
+				52B478A324054DB8007D578E /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 526B571623FDDBE800E28658 /* Products */;
 			projectDirPath = "";
@@ -500,6 +510,14 @@
 				minimumVersion = 5.1.0;
 			};
 		};
+		52B478A324054DB8007D578E /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 		52E1950224014C5A00407344 /* XCRemoteSwiftPackageReference "XCoordinator" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/quickbirdstudios/XCoordinator";
@@ -515,6 +533,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 523A2104240545FF00C17124 /* XCRemoteSwiftPackageReference "R.swift" */;
 			productName = Rswift;
+		};
+		52B478A424054DB8007D578E /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52B478A324054DB8007D578E /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		52B478A624054DB8007D578E /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52B478A324054DB8007D578E /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		52B478A824054DB8007D578E /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52B478A324054DB8007D578E /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
 		};
 		52E1950324014C5A00407344 /* XCoordinatorRx */ = {
 			isa = XCSwiftPackageProductDependency;

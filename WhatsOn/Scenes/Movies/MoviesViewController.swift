@@ -33,7 +33,7 @@ final class MoviesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        //        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     // MARK: - Methods
@@ -42,7 +42,7 @@ final class MoviesViewController: UIViewController {
     }
 
     private func setupViews() {
-
+        title = R.string.localizable.tab_bar_movies()
     }
 
     private func bindViews() {
