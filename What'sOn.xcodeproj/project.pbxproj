@@ -10,6 +10,7 @@
 		523A2106240545FF00C17124 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = 523A2105240545FF00C17124 /* Rswift */; };
 		523A2109240547B100C17124 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523A2108240547B100C17124 /* R.generated.swift */; };
 		523A210F2405499900C17124 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 523A21112405499900C17124 /* Localizable.strings */; };
+		5256A70D2405505500183686 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5256A70C2405505500183686 /* SnapKit */; };
 		526B571923FDDBE800E28658 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B571823FDDBE800E28658 /* AppDelegate.swift */; };
 		526B572223FDDBE900E28658 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 526B572123FDDBE900E28658 /* Assets.xcassets */; };
 		526B572523FDDBE900E28658 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526B572323FDDBE900E28658 /* LaunchScreen.storyboard */; };
@@ -59,6 +60,7 @@
 				52B478A924054DB8007D578E /* RxCocoa in Frameworks */,
 				523A2106240545FF00C17124 /* Rswift in Frameworks */,
 				52E1950624014C5A00407344 /* XCoordinator in Frameworks */,
+				5256A70D2405505500183686 /* SnapKit in Frameworks */,
 				52B478A724054DB8007D578E /* RxSwift in Frameworks */,
 				52B478A524054DB8007D578E /* RxRelay in Frameworks */,
 				52E1950424014C5A00407344 /* XCoordinatorRx in Frameworks */,
@@ -164,6 +166,7 @@
 				52B478A424054DB8007D578E /* RxRelay */,
 				52B478A624054DB8007D578E /* RxSwift */,
 				52B478A824054DB8007D578E /* RxCocoa */,
+				5256A70C2405505500183686 /* SnapKit */,
 			);
 			productName = Netflix;
 			productReference = 526B571523FDDBE800E28658 /* What'sOn.app */;
@@ -198,6 +201,7 @@
 				52E1950224014C5A00407344 /* XCRemoteSwiftPackageReference "XCoordinator" */,
 				523A2104240545FF00C17124 /* XCRemoteSwiftPackageReference "R.swift" */,
 				52B478A324054DB8007D578E /* XCRemoteSwiftPackageReference "RxSwift" */,
+				5256A70B2405505500183686 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 526B571623FDDBE800E28658 /* Products */;
 			projectDirPath = "";
@@ -510,6 +514,14 @@
 				minimumVersion = 5.1.0;
 			};
 		};
+		5256A70B2405505500183686 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 		52B478A324054DB8007D578E /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -533,6 +545,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 523A2104240545FF00C17124 /* XCRemoteSwiftPackageReference "R.swift" */;
 			productName = Rswift;
+		};
+		5256A70C2405505500183686 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5256A70B2405505500183686 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 		52B478A424054DB8007D578E /* RxRelay */ = {
 			isa = XCSwiftPackageProductDependency;

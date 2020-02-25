@@ -6,9 +6,20 @@
 //  Copyright © 2020 Maxime Maheo. All rights reserved.
 //
 
+import SnapKit
 import UIKit
 
 final class MoviesView: UIView {
+
+    // MARK: - Outlets
+    public private(set) lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .darkGrey900
+        tableView.separatorStyle = .none
+        tableView.tableFooterView = UIView()
+
+        return tableView
+    }()
 
     // MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -24,6 +35,11 @@ final class MoviesView: UIView {
     // MARK: - Methods
     private func build() {
         backgroundColor = .darkGrey900
+
+        addSubview(tableView)
+        tableView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
     }
 
 }
