@@ -11,6 +11,7 @@ excluded:
 disabled_rules:
   - opening_brace
   - colon
+  - trailing_comma
 
 # Enable rules
 opt_in_rules:
@@ -46,3 +47,4 @@ type_name:
 identifier_name:
   excluded: # excluded via string array
     - id
+    - h2

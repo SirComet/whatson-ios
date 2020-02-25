@@ -17,6 +17,7 @@ final class MoviesView: UIView {
         tableView.backgroundColor = .darkGrey900
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
+        tableView.register(SectionCell.self, forCellReuseIdentifier: "\(SectionCell.self)")
 
         return tableView
     }()

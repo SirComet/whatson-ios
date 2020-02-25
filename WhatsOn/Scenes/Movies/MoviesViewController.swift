@@ -6,12 +6,16 @@
 //  Copyright © 2020 Maxime Maheo. All rights reserved.
 //
 
+import RxCocoa
+import RxSwift
 import UIKit
 
 final class MoviesViewController: UIViewController {
 
     // MARK: - Properties
     private var viewModel: MoviesViewModelContract?
+
+    private let disposeBag = DisposeBag()
 
     private var customView: MoviesView {
         // swiftlint:disable:next force_cast
@@ -28,12 +32,8 @@ final class MoviesViewController: UIViewController {
 
         setupViews()
         bindViews()
-    }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        //        navigationController?.setNavigationBarHidden(true, animated: false)
+        viewModel?.loadSections()
     }
 
     // MARK: - Methods
@@ -46,6 +46,31 @@ final class MoviesViewController: UIViewController {
     }
 
     private func bindViews() {
+        bindTableView()
+    }
 
+    private func bindTableView() {
+        viewModel?.sections
+            .asDriver()
+            .drive(
+                customView.tableView.rx.items(
+                    cellIdentifier: "\(SectionCell.self)",
+                    cellType: SectionCell.self
+                )
+            )
+        { (_, section, cell) in
+            cell.display(title: section.title)
+        }
+            .disposed(by: disposeBag)
+
+        customView.tableView.rx
+            .setDelegate(self)
+            .disposed(by: disposeBag)
+    }
+}
+
+extension MoviesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        150
     }
 }
