@@ -13,13 +13,39 @@ final class MoviesViewController: UIViewController {
     // MARK: - Properties
     private var viewModel: MoviesViewModelContract?
 
+    private var customView: MoviesView {
+        // swiftlint:disable:next force_cast
+        return view as! MoviesView
+    }
+
     // MARK: - Lifecycle
+    override func loadView() {
+        self.view = MoviesView()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setupViews()
+        bindViews()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     // MARK: - Methods
     func bind(to viewModel: MoviesViewModelContract) {
         self.viewModel = viewModel
+    }
+
+    private func setupViews() {
+
+    }
+
+    private func bindViews() {
+
     }
 }

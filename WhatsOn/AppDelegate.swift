@@ -23,9 +23,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
 
+        configureAppUI()
+
         router.setRoot(for: mainWindow)
 
         return true
+    }
+
+    private func configureAppUI() {
+        UITabBar.appearance().barTintColor = .darkGrey600
+        UITabBar.appearance().tintColor = .white
     }
 
 }

@@ -14,6 +14,8 @@
 		526B572223FDDBE900E28658 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 526B572123FDDBE900E28658 /* Assets.xcassets */; };
 		526B572523FDDBE900E28658 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526B572323FDDBE900E28658 /* LaunchScreen.storyboard */; };
 		52985A692401368D00719530 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52985A682401368D00719530 /* AppCoordinator.swift */; };
+		52B4789D24054A85007D578E /* UIColor+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4789C24054A85007D578E /* UIColor+App.swift */; };
+		52B4789F24054B0E007D578E /* MoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4789E24054B0E007D578E /* MoviesView.swift */; };
 		52E194F62401418D00407344 /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E194F52401418D00407344 /* MoviesViewModel.swift */; };
 		52E194F8240141AD00407344 /* MoviesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E194F7240141AD00407344 /* MoviesCoordinator.swift */; };
 		52E194FA240141C000407344 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E194F9240141C000407344 /* MoviesViewController.swift */; };
@@ -36,6 +38,8 @@
 		526B572423FDDBE900E28658 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		526B572623FDDBE900E28658 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52985A682401368D00719530 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		52B4789C24054A85007D578E /* UIColor+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+App.swift"; sourceTree = "<group>"; };
+		52B4789E24054B0E007D578E /* MoviesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesView.swift; sourceTree = "<group>"; };
 		52E194F52401418D00407344 /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
 		52E194F7240141AD00407344 /* MoviesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesCoordinator.swift; sourceTree = "<group>"; };
 		52E194F9240141C000407344 /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 				52E194F52401418D00407344 /* MoviesViewModel.swift */,
 				52E194F7240141AD00407344 /* MoviesCoordinator.swift */,
 				52E194F9240141C000407344 /* MoviesViewController.swift */,
+				52B4789E24054B0E007D578E /* MoviesView.swift */,
 			);
 			path = Movies;
 			sourceTree = "<group>";
@@ -122,6 +127,7 @@
 			children = (
 				52E1950824014C7E00407344 /* Transition+presentFullScreen.swift */,
 				52E1950A24014CB800407344 /* Animation+fade.swift */,
+				52B4789C24054A85007D578E /* UIColor+App.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -271,11 +277,13 @@
 			files = (
 				52985A692401368D00719530 /* AppCoordinator.swift in Sources */,
 				52E194FA240141C000407344 /* MoviesViewController.swift in Sources */,
+				52B4789F24054B0E007D578E /* MoviesView.swift in Sources */,
 				523A2109240547B100C17124 /* R.generated.swift in Sources */,
 				52E1950B24014CB800407344 /* Animation+fade.swift in Sources */,
 				52E1950924014C7E00407344 /* Transition+presentFullScreen.swift in Sources */,
 				52E194F8240141AD00407344 /* MoviesCoordinator.swift in Sources */,
 				52E194FE240148CA00407344 /* MainTabBarCoordinator.swift in Sources */,
+				52B4789D24054A85007D578E /* UIColor+App.swift in Sources */,
 				52E194F62401418D00407344 /* MoviesViewModel.swift in Sources */,
 				526B571923FDDBE800E28658 /* AppDelegate.swift in Sources */,
 			);
