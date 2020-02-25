@@ -22,8 +22,9 @@ final class MainTabBarCoordinator: TabBarCoordinator<MainTabBarRoute> {
     convenience init() {
         let moviesCoordinator = MoviesCoordinator()
         moviesCoordinator.rootViewController.tabBarItem = UITabBarItem(
-            tabBarSystemItem: .topRated,
-            tag: 0
+            title: "Movies",
+            image: R.image.icons_tab_bar_movies(),
+            selectedImage: R.image.icons_tab_bar_movies_selected()
         )
 
         self.init(moviesRouter: moviesCoordinator.strongRouter)

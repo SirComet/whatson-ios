@@ -5,6 +5,7 @@ included:
   - WhatsOn
 
 excluded:
+  - WhatsOn/Resources/R.generated.swift
 
 # Disable some of them:
 disabled_rules:
