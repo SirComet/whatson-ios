@@ -6,9 +6,9 @@
 //  Copyright © 2020 Maxime Maheo. All rights reserved.
 //
 
-struct MovieList: Decodable {
+struct PopularMovieList: Decodable {
     let page: Int
-    let results: [Movie]
+    let results: [PopularMovie]
     let totalResults: Int
     let totalPages: Int
     
@@ -19,7 +19,7 @@ struct MovieList: Decodable {
     }
 }
 
-struct Movie: Codable {
+struct PopularMovie: Codable {
     
     let posterPath: String?
     let isForAdult: Bool

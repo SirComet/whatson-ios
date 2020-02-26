@@ -11,7 +11,7 @@ import Foundation
 final class PopularMoviesEndpoint: ApiEndpoint {
     
     typealias RequestDataType = Void
-    typealias ResponseDataType = [Movie]
+    typealias ResponseDataType = [PopularMovie]
     
     // MARK: - Methods
     func buildRequest(parameters: PopularMoviesEndpoint.RequestDataType) throws -> Request {
@@ -27,7 +27,7 @@ final class PopularMoviesEndpoint: ApiEndpoint {
     }
     
     func parseResponse(data: Data) throws -> PopularMoviesEndpoint.ResponseDataType {
-        let response = try JSONDecoder().decode(MovieList.self, from: data)
+        let response = try JSONDecoder().decode(PopularMovieList.self, from: data)
         
         return response.results
     }

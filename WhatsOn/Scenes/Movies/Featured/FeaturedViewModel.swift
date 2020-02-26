@@ -15,13 +15,13 @@ protocol FeaturedViewModelContract {
     
     // MARK: - Properties
     var sectionContentType: SectionContentType { get }
-    var popularMovies: BehaviorRelay<[Movie]> { get }
+    var popularMovies: BehaviorRelay<[PopularMovie]> { get }
     var error: PublishRelay<AppError> { get }
     var isLoading: BehaviorRelay<Bool> { get }
 
     // MARK: - Methods
     func fetchPopularMovies()
-    func fetchPoster(for movie: Movie) -> Single<UIImage>
+    func fetchPoster(for movie: PopularMovie) -> Single<UIImage>
     
 }
 
@@ -37,7 +37,7 @@ final class FeaturedViewModel: FeaturedViewModelContract {
     private let disposeBag = DisposeBag()
     
     var sectionContentType: SectionContentType
-    var popularMovies: BehaviorRelay<[Movie]> = .init(value: [])
+    var popularMovies: BehaviorRelay<[PopularMovie]> = .init(value: [])
     var error: PublishRelay<AppError> = .init()
     var isLoading: BehaviorRelay<Bool> = .init(value: false)
     
@@ -73,7 +73,7 @@ final class FeaturedViewModel: FeaturedViewModelContract {
             .disposed(by: disposeBag)
     }
     
-    func fetchPoster(for movie: Movie) -> Single<UIImage> {
+    func fetchPoster(for movie: PopularMovie) -> Single<UIImage> {
         imagesService.fetchImage(for: movie)
     }
 
