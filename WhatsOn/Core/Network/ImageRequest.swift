@@ -13,7 +13,7 @@ final class ImageRequest: Request {
     // MARK: - Properties
     private var request: URLRequest
     
-    public var urlRequest: URLRequest {
+    var urlRequest: URLRequest {
         request.addHttpHeadersFields(parameters: [
             "Content-Type": "application/json; charset=utf-8",
             "Accept-Encoding": "gzip"
@@ -23,7 +23,7 @@ final class ImageRequest: Request {
     }
     
     // MARK: - Lifecycle
-    public init?(baseStringUrl: String) {
+    init?(baseStringUrl: String) {
         guard let url = URL(string: baseStringUrl) else { return nil }
         
         self.request = URLRequest(url: url)

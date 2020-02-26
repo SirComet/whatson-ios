@@ -65,7 +65,7 @@ final class MoviesViewController: UIViewController {
 
 extension MoviesViewController: UITableViewDelegate {
     func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
-        24 + 8 + UIScreen.width(percent: 40)
+        16 + 24 + 8 + UIScreen.width(percent: 40)
     }
 
     func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

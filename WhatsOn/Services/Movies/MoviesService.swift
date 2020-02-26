@@ -19,8 +19,12 @@ final class MoviesService: MoviesServiceContract {
     }
     
     // MARK: - Methods
-    func popular() -> Single<[PopularMovie]> {
+    func popular() -> Single<[Movie]> {
         apiRequester.fetch(PopularMoviesEndpoint(), with: ())
+    }
+    
+    func discover() -> Single<[Movie]> {
+        apiRequester.fetch(DiscoverMoviesEndpoint(), with: ())
     }
     
 }

@@ -15,13 +15,14 @@ protocol FeaturedViewModelContract {
     
     // MARK: - Properties
     var sectionContentType: SectionContentType { get }
-    var popularMovies: BehaviorRelay<[PopularMovie]> { get }
+    var movies: BehaviorRelay<[Movie]> { get }
     var error: PublishRelay<AppError> { get }
     var isLoading: BehaviorRelay<Bool> { get }
 
     // MARK: - Methods
     func fetchPopularMovies()
-    func fetchPoster(for movie: PopularMovie) -> Single<UIImage>
+    func fetchDiscoverMovies()
+    func fetchPoster(for movie: Movie) -> Single<UIImage>
     
 }
 
@@ -37,7 +38,7 @@ final class FeaturedViewModel: FeaturedViewModelContract {
     private let disposeBag = DisposeBag()
     
     var sectionContentType: SectionContentType
-    var popularMovies: BehaviorRelay<[PopularMovie]> = .init(value: [])
+    var movies: BehaviorRelay<[Movie]> = .init(value: [])
     var error: PublishRelay<AppError> = .init()
     var isLoading: BehaviorRelay<Bool> = .init(value: false)
     
@@ -64,7 +65,7 @@ final class FeaturedViewModel: FeaturedViewModelContract {
             .subscribe(onSuccess: { [weak self] (movies) in
                 self?.isLoading.accept(false)
                 
-                self?.popularMovies.accept(movies)
+                self?.movies.accept(movies)
             }, onError: { [weak self] (error) in
                 self?.isLoading.accept(false)
                 
@@ -73,7 +74,24 @@ final class FeaturedViewModel: FeaturedViewModelContract {
             .disposed(by: disposeBag)
     }
     
-    func fetchPoster(for movie: PopularMovie) -> Single<UIImage> {
+    func fetchDiscoverMovies() {
+        isLoading.accept(true)
+        
+        moviesService
+            .discover()
+            .subscribe(onSuccess: { [weak self] (movies) in
+                self?.isLoading.accept(false)
+                
+                self?.movies.accept(movies)
+            }, onError: { [weak self] (error) in
+                self?.isLoading.accept(false)
+                
+                self?.error.accept(AppError(error: error))
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func fetchPoster(for movie: Movie) -> Single<UIImage> {
         imagesService.fetchImage(for: movie)
     }
 

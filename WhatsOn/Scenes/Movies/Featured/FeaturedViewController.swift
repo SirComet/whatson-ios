@@ -35,6 +35,8 @@ final class FeaturedViewController: UIViewController {
         switch viewModel?.sectionContentType {
         case .popularMovies:
             viewModel?.fetchPopularMovies()
+        case .discoverMovies:
+            viewModel?.fetchDiscoverMovies()
         case .none:
             break
         }
@@ -70,7 +72,7 @@ final class FeaturedViewController: UIViewController {
     }
     
     private func bindCollectionView() {
-        viewModel?.popularMovies
+        viewModel?.movies
             .asDriver()
             .drive(customView.collectionView.rx.items(cellIdentifier: "\(FeaturedCell.self)", cellType: FeaturedCell.self)) { [weak self] (_, movie, cell) in
                 guard

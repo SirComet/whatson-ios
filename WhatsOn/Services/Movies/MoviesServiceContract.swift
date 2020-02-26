@@ -10,6 +10,7 @@ import RxSwift
 
 protocol MoviesServiceContract: Service {
 
-    func popular() -> Single<[PopularMovie]>
-    
+    func popular() -> Single<[Movie]>
+    func discover() -> Single<[Movie]>
+        
 }

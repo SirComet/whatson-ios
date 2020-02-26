@@ -53,7 +53,7 @@ final class SectionCell: UITableViewCell {
 
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(16)
             make.leading.trailing.equalToSuperview().inset(20)
         }
 

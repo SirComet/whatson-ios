@@ -6,7 +6,7 @@
 //  Copyright © 2020 Maxime Maheo. All rights reserved.
 //
 
-extension PopularMovie: FetchableImage {
+extension Movie: FetchableImage {
 
     func imageStringUrl(from host: String) -> String? {
         guard let posterPath = posterPath else { return nil }

@@ -7,6 +7,7 @@
 */
 "tab_bar_movies" = "Films";
 "section_popular" = "Populaire";
+"section_discover" = "Découvrir";
 "error_description_generic" = "Une erreur est survenue.";
 "error_description_network_unavailable" = "Une erreur réseau est survenue.";
 "error_failure_reason_generic" = "Il s\'est passé quelque chose d\'inhabituel.";

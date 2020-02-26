@@ -24,6 +24,7 @@ public protocol Request {
 }
 
 extension URLRequest {
+    
     mutating func addQueryParameters(parameters: [String: String]) {
         guard
             !parameters.isEmpty,
@@ -51,4 +52,5 @@ extension URLRequest {
 
         httpBody = data
     }
+    
 }
