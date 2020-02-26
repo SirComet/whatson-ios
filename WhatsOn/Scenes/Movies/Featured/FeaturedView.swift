@@ -11,6 +11,28 @@ import UIKit
 
 final class FeaturedView: UIView {
 
+    // MARK: - Outlets
+    public private(set) lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 16
+        layout.minimumInteritemSpacing = 16
+        layout.scrollDirection = .horizontal
+               
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .darkGrey900
+        collectionView.register(FeaturedCell.self, forCellWithReuseIdentifier: "\(FeaturedCell.self)")
+        
+        return collectionView
+    }()
+    
+    public private(set) lazy var activityIndicatorView: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.color = .white
+        
+        return view
+    }()
+    
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,6 +46,14 @@ final class FeaturedView: UIView {
 
     // MARK: - Methods
     private func build() {
-        backgroundColor = .red
+        addSubview(collectionView)
+        collectionView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+        
+        addSubview(activityIndicatorView)
+        activityIndicatorView.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+        }
     }
 }

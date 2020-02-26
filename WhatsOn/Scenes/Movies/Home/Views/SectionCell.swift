@@ -43,7 +43,6 @@ final class SectionCell: UITableViewCell {
     }
 
     // MARK: - Methods
-
     func display(title: String) {
         titleLabel.text = title
     }

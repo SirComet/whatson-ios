@@ -32,6 +32,8 @@
 		5274EA042406A9EB004F2A99 /* PopularMoviesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5274EA032406A9EB004F2A99 /* PopularMoviesEndpoint.swift */; };
 		5274EA062406AD20004F2A99 /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5274EA052406AD20004F2A99 /* MovieDetails.swift */; };
 		5274EA082406AE72004F2A99 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5274EA072406AE72004F2A99 /* ApiKey.swift */; };
+		5275C4822407183E00EDE0EF /* FeaturedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275C4812407183E00EDE0EF /* FeaturedCell.swift */; };
+		5275C4842407196E00EDE0EF /* UIScreen+Proportional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275C4832407196E00EDE0EF /* UIScreen+Proportional.swift */; };
 		5297A8E52406744B00FC528A /* ApiEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5297A8E42406744B00FC528A /* ApiEndpoint.swift */; };
 		5297A8E72406746800FC528A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5297A8E62406746800FC528A /* Request.swift */; };
 		5297A8E9240674BB00FC528A /* ApiRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5297A8E8240674BB00FC528A /* ApiRequester.swift */; };
@@ -84,6 +86,8 @@
 		5274EA032406A9EB004F2A99 /* PopularMoviesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesEndpoint.swift; sourceTree = "<group>"; };
 		5274EA052406AD20004F2A99 /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 		5274EA072406AE72004F2A99 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
+		5275C4812407183E00EDE0EF /* FeaturedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedCell.swift; sourceTree = "<group>"; };
+		5275C4832407196E00EDE0EF /* UIScreen+Proportional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Proportional.swift"; sourceTree = "<group>"; };
 		5297A8E42406744B00FC528A /* ApiEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEndpoint.swift; sourceTree = "<group>"; };
 		5297A8E62406746800FC528A /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		5297A8E8240674BB00FC528A /* ApiRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequester.swift; sourceTree = "<group>"; };
@@ -234,6 +238,7 @@
 		526FDDC52405DDB100272AD5 /* Featured */ = {
 			isa = PBXGroup;
 			children = (
+				5275C4802407182400EDE0EF /* Views */,
 				526FDDCA2405DDD800272AD5 /* FeaturedViewModel.swift */,
 				526FDDC62405DDC200272AD5 /* FeaturedViewController.swift */,
 				526FDDC82405DDCB00272AD5 /* FeaturedView.swift */,
@@ -247,6 +252,14 @@
 				5274EA032406A9EB004F2A99 /* PopularMoviesEndpoint.swift */,
 			);
 			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		5275C4802407182400EDE0EF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5275C4812407183E00EDE0EF /* FeaturedCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		5297A8E22406741D00FC528A /* Core */ = {
@@ -307,6 +320,7 @@
 				52B4789C24054A85007D578E /* UIColor+App.swift */,
 				52AA8C582405572500752DDB /* UIFont+App.swift */,
 				5274E9FE2406A6FD004F2A99 /* UIViewController+PresentAlertView.swift */,
+				5275C4832407196E00EDE0EF /* UIScreen+Proportional.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -463,10 +477,12 @@
 				526FDDCB2405DDD800272AD5 /* FeaturedViewModel.swift in Sources */,
 				52AA8C572405530500752DDB /* Section.swift in Sources */,
 				52E194FE240148CA00407344 /* MainTabBarCoordinator.swift in Sources */,
+				5275C4842407196E00EDE0EF /* UIScreen+Proportional.swift in Sources */,
 				5274EA062406AD20004F2A99 /* MovieDetails.swift in Sources */,
 				5297A8E72406746800FC528A /* Request.swift in Sources */,
 				5211441E24069F79009A5D19 /* ProductionCountry.swift in Sources */,
 				5297A8EB2406756300FC528A /* Reachability.swift in Sources */,
+				5275C4822407183E00EDE0EF /* FeaturedCell.swift in Sources */,
 				52B4789D24054A85007D578E /* UIColor+App.swift in Sources */,
 				52AA8C542405521600752DDB /* SectionCell.swift in Sources */,
 				52E194F62401418D00407344 /* MoviesViewModel.swift in Sources */,

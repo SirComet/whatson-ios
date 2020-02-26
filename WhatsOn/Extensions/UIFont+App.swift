@@ -14,4 +14,12 @@ extension UIFont {
         UIFont.boldSystemFont(ofSize: 20)
     }
     
+    static var p2: UIFont {
+        UIFont.boldSystemFont(ofSize: 14)
+    }
+    
+    static var p3: UIFont {
+        UIFont.systemFont(ofSize: 14)
+    }
+    
 }

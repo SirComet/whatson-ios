@@ -46,3 +46,5 @@ identifier_name:
   excluded: # excluded via string array
     - id
     - h2
+    - p2
+    - p3

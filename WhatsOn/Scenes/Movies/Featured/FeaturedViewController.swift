@@ -50,6 +50,8 @@ final class FeaturedViewController: UIViewController {
 
     private func bindViews() {
         bindError()
+        bindIsLoading()
+        bindCollectionView()
     }
     
     private func bindError() {
@@ -59,6 +61,37 @@ final class FeaturedViewController: UIViewController {
                 self?.presentAlertView(with: error)
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func bindIsLoading() {
+        viewModel?.isLoading
+            .bind(to: customView.activityIndicatorView.rx.isAnimating)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindCollectionView() {
+        viewModel?.popularMovies
+            .asDriver()
+            .drive(customView.collectionView.rx.items(cellIdentifier: "\(FeaturedCell.self)", cellType: FeaturedCell.self)) { (_, movie, cell) in
+                cell.display(title: movie.title, overview: movie.overview)
+            }
+            .disposed(by: disposeBag)
+        
+        customView.collectionView.rx
+            .setDelegate(self)
+            .disposed(by: disposeBag)
+    }
+    
+}
+
+extension FeaturedViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let margins = 20 + 16 + 20 + 20
+        let width = Int(UIScreen.width) - margins
+        
+        return CGSize(width: width, height: Int(UIScreen.width(percent: 40)))
     }
     
 }
