@@ -21,6 +21,10 @@ final class SectionCell: UITableViewCell {
         return label
     }()
 
+    public private(set) lazy var containerView: UIView = {
+        UIView()
+    }()
+
     // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -51,6 +55,13 @@ final class SectionCell: UITableViewCell {
         titleLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(20)
+        }
+
+        addSubview(containerView)
+        containerView.snp.makeConstraints { (make) in
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.leading.trailing.equalTo(titleLabel)
+            make.bottom.equalToSuperview()
         }
     }
 

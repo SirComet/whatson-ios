@@ -6,6 +6,11 @@
 //  Copyright © 2020 Maxime Maheo. All rights reserved.
 //
 
+enum SectionDisplayType {
+    case featured
+}
+
 struct Section {
     let title: String
+    let displayType: SectionDisplayType
 }

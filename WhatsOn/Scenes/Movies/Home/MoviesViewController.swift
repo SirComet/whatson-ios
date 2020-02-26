@@ -70,7 +70,29 @@ final class MoviesViewController: UIViewController {
 }
 
 extension MoviesViewController: UITableViewDelegate {
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         150
     }
+
+    func tableView(
+        _ tableView: UITableView,
+        willDisplay cell: UITableViewCell,
+        forRowAt indexPath: IndexPath
+    ) {
+        guard let cell = cell as? SectionCell else { return }
+
+        viewModel?.showSection(at: indexPath.row, in: cell.containerView)
+    }
+
+    func tableView(
+        _ tableView: UITableView,
+        didEndDisplaying cell: UITableViewCell,
+        forRowAt indexPath: IndexPath
+    ) {
+        if !cell.isKind(of: SectionCell.self) { return }
+
+        viewModel?.hideSection(at: indexPath.row)
+    }
+
 }
