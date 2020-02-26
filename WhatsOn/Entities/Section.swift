@@ -10,7 +10,12 @@ enum SectionDisplayType {
     case featured
 }
 
+enum SectionContentType {
+    case popularMovies
+}
+
 struct Section {
     let title: String
     let displayType: SectionDisplayType
+    let content: SectionContentType
 }

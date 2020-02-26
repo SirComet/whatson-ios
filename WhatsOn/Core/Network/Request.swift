@@ -23,30 +23,6 @@ public protocol Request {
     var urlRequest: URLRequest { get }
 }
 
-public class BaseRequest: Request {
-    
-    // MARK: - Properties
-    private var request: URLRequest
-
-    public var urlRequest: URLRequest {
-        request.addHttpHeadersFields(
-            parameters: [
-                "Content-Type": "application/json; charset=utf-8",
-                "Accept-Encoding": "gzip"
-            ]
-        )
-
-        return request
-    }
-
-    // MARK: - Lifecycle
-    public init?(baseStringUrl: String) {
-        guard let url = URL(string: baseStringUrl) else { return nil }
-
-        request = URLRequest(url: url)
-    }
-}
-
 extension URLRequest {
     mutating func addQueryParameters(parameters: [String: String]) {
         guard

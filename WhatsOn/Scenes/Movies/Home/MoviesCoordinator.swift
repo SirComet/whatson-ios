@@ -12,7 +12,7 @@ import XCoordinator
 enum MoviesRoute: Route {
     case home
     case removeSections
-    case createFeaturedSection(childId: String)
+    case createFeaturedSection(childId: String, content: SectionContentType)
     case showSection(childId: String, container: Container)
     case hideSection(childId: String)
 }
@@ -20,10 +20,14 @@ enum MoviesRoute: Route {
 final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
     
     // MARK: - Properties
+    private let servicesContainer: DependenciesContainer
+    
     private var sections: [String: Presentable] = [:]
 
     // MARK: - Lifecycle
-    init() {
+    init(servicesContainer: DependenciesContainer) {
+        self.servicesContainer = servicesContainer
+        
         super.init(initialRoute: .home)
     }
 
@@ -32,7 +36,7 @@ final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
         switch route {
         case .home:
             let viewController = MoviesViewController()
-            let viewModel = MoviesViewModel(router: unownedRouter)
+            let viewModel = MoviesViewModel(router: unownedRouter, servicesContainer: servicesContainer)
             viewController.bind(to: viewModel)
 
             return .push(viewController)
@@ -40,9 +44,9 @@ final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
             sections.removeAll()
 
             return .none()
-        case let .createFeaturedSection(childId):
+        case let .createFeaturedSection(childId, content):
             let viewController = FeaturedViewController()
-            let viewModel = FeaturedViewModel(router: unownedRouter)
+            let viewModel = FeaturedViewModel(router: unownedRouter, servicesContainer: servicesContainer, sectionContentType: content)
             viewController.bind(to: viewModel)
 
             sections[childId] = viewController

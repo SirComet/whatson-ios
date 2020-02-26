@@ -14,6 +14,9 @@ enum AppRoute: Route {
 
 class AppCoordinator: NavigationCoordinator<AppRoute> {
     
+    // MARK: - Properties
+    private let servicesContainer = DependenciesContainer()
+    
     // MARK: - Lifecycle
     init() {
         super.init(initialRoute: .home)
@@ -21,9 +24,26 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
 
     // MARK: - Methods
     override func prepareTransition(for route: AppRoute) -> NavigationTransition {
+        registerServices()
+        
         switch route {
         case .home:
-            return .presentFullScreen(MainTabBarCoordinator(), animation: .fade)
+            return .presentFullScreen(MainTabBarCoordinator(servicesContainer: servicesContainer), animation: .fade)
+        }
+    }
+    
+    // MARK: - Private methods
+    private func registerServices() {
+        registerMoviesService()
+    }
+    
+    private func registerMoviesService() {
+        do {
+            let service = try MoviesService(parameters: nil)
+            
+            servicesContainer.register(MoviesServiceContract.self, factory: { service })
+        } catch {
+            print("Error while ceating movies service : \(error)")
         }
     }
 }

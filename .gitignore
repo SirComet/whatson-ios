@@ -47,3 +47,4 @@ Preview.html
 
 # R.swift
 *.generated.swift
+/WhatsOn/Core/Network/ApiKey.swift

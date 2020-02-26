@@ -7,3 +7,10 @@
 */
 "tab_bar_movies" = "Movies";
 "section_popular" = "Popular";
+"error_description_generic" = "Error occurred.";
+"error_description_network_unavailable" = "Network error occurred.";
+"error_failure_reason_generic" = "Something went wrong here.";
+"error_failure_reason_network_unavailable" = "Looks like you\'ve lost internet connection.";
+"error_recovery_suggestion_generic" = "Please try again later.";
+"error_recovery_suggestion_network_unavailable" = "Please enable WiFi or check your settings.";
+"error_action" = "Got it !";

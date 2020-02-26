@@ -16,18 +16,20 @@ final class MainTabBarCoordinator: TabBarCoordinator<MainTabBarRoute> {
     
     // MARK: - Properties
     private let moviesRouter: StrongRouter<MoviesRoute>
+    private let servicesContainer: DependenciesContainer
 
     // MARK: - Lifecycle
-    convenience init() {
-        let moviesCoordinator = MoviesCoordinator()
+    convenience init(servicesContainer: DependenciesContainer) {
+        let moviesCoordinator = MoviesCoordinator(servicesContainer: servicesContainer)
         moviesCoordinator.rootViewController.tabBarItem = UITabBarItem(title: R.string.localizable.tab_bar_movies(),
                                                                        image: R.image.icons_tab_bar_movies(),
                                                                        selectedImage: R.image.icons_tab_bar_movies_selected())
 
-        self.init(moviesRouter: moviesCoordinator.strongRouter)
+        self.init(servicesContainer: servicesContainer, moviesRouter: moviesCoordinator.strongRouter)
     }
 
-    init(moviesRouter: StrongRouter<MoviesRoute>) {
+    private init(servicesContainer: DependenciesContainer, moviesRouter: StrongRouter<MoviesRoute>) {
+        self.servicesContainer = servicesContainer
         self.moviesRouter = moviesRouter
 
         super.init(tabs: [moviesRouter], select: moviesRouter)

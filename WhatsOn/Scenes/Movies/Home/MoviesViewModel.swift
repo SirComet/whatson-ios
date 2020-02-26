@@ -28,14 +28,16 @@ final class MoviesViewModel: MoviesViewModelContract {
     
     // MARK: - Properties
     private let router: UnownedRouter<MoviesRoute>
-
+    private let servicesContainer: DependenciesContainer
+    
     private let disposeBag = DisposeBag()
 
     var sections: BehaviorRelay<[Section]> = .init(value: [])
 
     // MARK: - Lifecycle
-    init(router: UnownedRouter<MoviesRoute>) {
+    init(router: UnownedRouter<MoviesRoute>, servicesContainer: DependenciesContainer) {
         self.router = router
+        self.servicesContainer = servicesContainer
 
         bindSections()
     }
@@ -44,7 +46,7 @@ final class MoviesViewModel: MoviesViewModelContract {
     func loadSections() {
         sections.accept(
             [
-                Section(title: R.string.localizable.section_popular(), displayType: .featured)
+                Section(title: R.string.localizable.section_popular(), displayType: .featured, content: .popularMovies)
             ]
         )
     }
@@ -75,7 +77,7 @@ final class MoviesViewModel: MoviesViewModelContract {
 
                         switch section.displayType {
                         case .featured:
-                            self.router.trigger(.createFeaturedSection(childId: childId))
+                            self.router.trigger(.createFeaturedSection(childId: childId, content: section.content))
                         }
                     }
             })
