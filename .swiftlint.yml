@@ -6,6 +6,7 @@ included:
 
 excluded:
   - WhatsOn/Resources/R.generated.swift
+  - WhatsOn/Core/Network/Reachability.swift
 
 # Disable some of them:
 disabled_rules:
