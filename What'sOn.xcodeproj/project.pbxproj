@@ -358,7 +358,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swift-format --recursive WhatsOn/ --configuration .swift-format.json --in-place\n";
+			shellScript = "swiftformat WhatsOn/ --config .swiftformat\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

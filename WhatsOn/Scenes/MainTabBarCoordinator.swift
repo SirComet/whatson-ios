@@ -13,19 +13,16 @@ enum MainTabBarRoute: Route {
 }
 
 final class MainTabBarCoordinator: TabBarCoordinator<MainTabBarRoute> {
+    
     // MARK: - Properties
-
     private let moviesRouter: StrongRouter<MoviesRoute>
 
     // MARK: - Lifecycle
-
     convenience init() {
         let moviesCoordinator = MoviesCoordinator()
-        moviesCoordinator.rootViewController.tabBarItem = UITabBarItem(
-            title: R.string.localizable.tab_bar_movies(),
-            image: R.image.icons_tab_bar_movies(),
-            selectedImage: R.image.icons_tab_bar_movies_selected()
-        )
+        moviesCoordinator.rootViewController.tabBarItem = UITabBarItem(title: R.string.localizable.tab_bar_movies(),
+                                                                       image: R.image.icons_tab_bar_movies(),
+                                                                       selectedImage: R.image.icons_tab_bar_movies_selected())
 
         self.init(moviesRouter: moviesCoordinator.strongRouter)
     }
@@ -38,9 +35,7 @@ final class MainTabBarCoordinator: TabBarCoordinator<MainTabBarRoute> {
 
     // MARK: - Methods
 
-    override func prepareTransition(for route: MainTabBarRoute)
-        -> TabBarTransition
-    {
+    override func prepareTransition(for route: MainTabBarRoute) -> TabBarTransition {
         switch route {
         case .movies:
             return .select(moviesRouter)

@@ -11,8 +11,6 @@ import UIKit
 
 final class FeaturedView: UIView {
 
-    // MARK: - Outlets
-
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,7 +18,7 @@ final class FeaturedView: UIView {
         build()
     }
 
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -28,5 +26,4 @@ final class FeaturedView: UIView {
     private func build() {
         backgroundColor = .red
     }
-
 }

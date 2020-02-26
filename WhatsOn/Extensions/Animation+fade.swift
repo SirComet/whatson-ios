@@ -10,15 +10,12 @@ import UIKit
 import XCoordinator
 
 extension Animation {
-    static let fade = Animation(
-        presentation: InteractiveTransitionAnimation.fade,
-        dismissal: InteractiveTransitionAnimation.fade
-    )
+    static let fade = Animation(presentation: InteractiveTransitionAnimation.fade,
+                                dismissal: InteractiveTransitionAnimation.fade)
 }
 
 extension InteractiveTransitionAnimation {
-    fileprivate static let fade = InteractiveTransitionAnimation(duration: 0.2)
-    { transitionContext in
+    fileprivate static let fade = InteractiveTransitionAnimation(duration: 0.2) { transitionContext in
         let containerView = transitionContext.containerView
         let toView = transitionContext.view(forKey: .to)!
 
@@ -33,9 +30,7 @@ extension InteractiveTransitionAnimation {
                 toView.alpha = 1.0
             },
             completion: { _ in
-                transitionContext.completeTransition(
-                    !transitionContext.transitionWasCancelled
-                )
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         )
     }

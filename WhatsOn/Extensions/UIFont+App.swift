@@ -9,9 +9,9 @@
 import UIKit
 
 extension UIFont {
-
+    
     static var h2: UIFont {
         UIFont.boldSystemFont(ofSize: 20)
     }
-
+    
 }

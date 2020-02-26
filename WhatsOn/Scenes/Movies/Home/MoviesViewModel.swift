@@ -12,11 +12,12 @@ import UIKit
 import XCoordinator
 
 protocol MoviesViewModelContract {
-
     // MARK: - Properties
+
     var sections: BehaviorRelay<[Section]> { get }
 
     // MARK: - Methods
+
     func loadSections()
 
     func showSection(at row: Int, in container: UIView)
@@ -24,7 +25,7 @@ protocol MoviesViewModelContract {
 }
 
 final class MoviesViewModel: MoviesViewModelContract {
-
+    
     // MARK: - Properties
     private let router: UnownedRouter<MoviesRoute>
 
@@ -59,16 +60,14 @@ final class MoviesViewModel: MoviesViewModelContract {
     // MARK: - Private Methods
     private func bindSections() {
         sections
-            .subscribe(
-                onNext: { [weak self] (sections) in
-                    guard let self = self else { return }
+            .subscribe(onNext: { [weak self] sections in
+                guard let self = self else { return }
 
-                    self.router.trigger(.removeSections)
+                self.router.trigger(.removeSections)
 
-                    sections
-                        .enumerated()
-                        .forEach
-                    { [weak self] (args) in
+                sections
+                    .enumerated()
+                    .forEach { [weak self] args in
                         guard let self = self else { return }
 
                         let (index, section) = args
@@ -79,13 +78,11 @@ final class MoviesViewModel: MoviesViewModelContract {
                             self.router.trigger(.createFeaturedSection(childId: childId))
                         }
                     }
-                }
-            )
+            })
             .disposed(by: disposeBag)
     }
 
     private func getChildId(at row: Int) -> String {
         "\(row)"
     }
-
 }

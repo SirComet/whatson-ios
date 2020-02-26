@@ -8,12 +8,10 @@
 
 import XCoordinator
 
-protocol FeaturedViewModelContract {
-
-}
+protocol FeaturedViewModelContract {}
 
 final class FeaturedViewModel: FeaturedViewModelContract {
-
+    
     // MARK: - Properties
     private let router: UnownedRouter<MoviesRoute>
 
@@ -21,7 +19,5 @@ final class FeaturedViewModel: FeaturedViewModelContract {
     init(router: UnownedRouter<MoviesRoute>) {
         self.router = router
     }
-
-    // MARK: - Methods
 
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 final class SectionCell: UITableViewCell {
-
+    
     // MARK: - Outlets
     public private(set) lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -32,7 +32,7 @@ final class SectionCell: UITableViewCell {
         setupViews()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -43,6 +43,7 @@ final class SectionCell: UITableViewCell {
     }
 
     // MARK: - Methods
+
     func display(title: String) {
         titleLabel.text = title
     }
@@ -52,17 +53,16 @@ final class SectionCell: UITableViewCell {
         selectionStyle = .none
 
         addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { (make) in
+        titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(20)
         }
 
         addSubview(containerView)
-        containerView.snp.makeConstraints { (make) in
+        containerView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
             make.leading.trailing.equalTo(titleLabel)
             make.bottom.equalToSuperview()
         }
     }
-
 }

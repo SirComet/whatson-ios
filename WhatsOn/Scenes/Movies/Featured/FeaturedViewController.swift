@@ -9,7 +9,7 @@
 import UIKit
 
 final class FeaturedViewController: UIViewController {
-
+    
     // MARK: - Properties
     private var viewModel: FeaturedViewModelContract?
 
@@ -20,7 +20,7 @@ final class FeaturedViewController: UIViewController {
 
     // MARK: - Lifecycle
     override func loadView() {
-        self.view = FeaturedView()
+        view = FeaturedView()
     }
 
     override func viewDidLoad() {
@@ -35,12 +35,7 @@ final class FeaturedViewController: UIViewController {
         self.viewModel = viewModel
     }
 
-    private func setupViews() {
+    private func setupViews() {}
 
-    }
-
-    private func bindViews() {
-
-    }
-
+    private func bindViews() {}
 }

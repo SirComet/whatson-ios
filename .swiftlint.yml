@@ -33,7 +33,7 @@ opt_in_rules:
 # Customize:
 trailing_whitespace:
   ignores_empty_lines: true
-line_length: 180
+line_length: 100
 type_body_length:
   - 600 # warning
   - 600 # error

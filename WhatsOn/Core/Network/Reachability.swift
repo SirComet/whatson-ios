@@ -38,7 +38,6 @@ extension Notification.Name {
 }
 
 public class Reachability {
-
     public typealias NetworkReachable = (Reachability) -> Void
     public typealias NetworkUnreachable = (Reachability) -> Void
 
@@ -56,7 +55,7 @@ public class Reachability {
     }
 
     public enum Connection: CustomStringConvertible {
-        @available(*, deprecated, renamed: "unavailable")case none
+        @available(*, deprecated, renamed: "unavailable") case none
 
         case unavailable, wifi, cellular
 
@@ -105,7 +104,7 @@ public class Reachability {
         }
     }
 
-    fileprivate var isRunningOnDevice: Bool = {
+    private var isRunningOnDevice: Bool = {
         #if targetEnvironment(simulator)
             return false
         #else
@@ -113,10 +112,10 @@ public class Reachability {
         #endif
     }()
 
-    fileprivate(set) var notifierRunning = false
-    fileprivate let reachabilityRef: SCNetworkReachability
-    fileprivate let reachabilitySerialQueue: DispatchQueue
-    fileprivate let notificationQueue: DispatchQueue?
+    private(set) var notifierRunning = false
+    private let reachabilityRef: SCNetworkReachability
+    private let reachabilitySerialQueue: DispatchQueue
+    private let notificationQueue: DispatchQueue?
 
     fileprivate(set) var flags: SCNetworkReachabilityFlags? {
         didSet {
@@ -125,15 +124,15 @@ public class Reachability {
         }
     }
 
-    required public init(
+    public required init(
         reachabilityRef: SCNetworkReachability,
         queueQoS: DispatchQoS = .default,
         targetQueue: DispatchQueue? = nil,
         notificationQueue: DispatchQueue? = .main
     ) {
-        self.allowsCellularConnection = true
+        allowsCellularConnection = true
         self.reachabilityRef = reachabilityRef
-        self.reachabilitySerialQueue = DispatchQueue(
+        reachabilitySerialQueue = DispatchQueue(
             label: "uk.co.ashleymills.reachability",
             qos: queueQoS,
             target: targetQueue
@@ -185,12 +184,12 @@ public class Reachability {
 }
 
 extension Reachability {
-
     // MARK: - *** Notifier methods ***
+
     public func startNotifier() throws {
         guard !notifierRunning else { return }
 
-        let callback: SCNetworkReachabilityCallBack = { (reachability, flags, info) in
+        let callback: SCNetworkReachabilityCallBack = { _, flags, info in
             guard let info = info else { return }
 
             // `weakifiedReachability` is guaranteed to exist by virtue of our
@@ -260,17 +259,16 @@ extension Reachability {
     @available(*, deprecated, message: "Please use `connection != .none`")
 
     // MARK: - *** Connection test methods ***
+
     public
-        var isReachable: Bool
-    {
+    var isReachable: Bool {
         return connection != .unavailable
     }
 
     @available(*, deprecated, message: "Please use `connection == .cellular`")
 
     public
-        var isReachableViaWWAN: Bool
-    {
+    var isReachableViaWWAN: Bool {
         // Check we're not on the simulator, we're REACHABLE and check we're on WWAN
         return connection == .cellular
     }
@@ -278,8 +276,7 @@ extension Reachability {
     @available(*, deprecated, message: "Please use `connection == .wifi`")
 
     public
-        var isReachableViaWiFi: Bool
-    {
+    var isReachableViaWiFi: Bool {
         return connection == .wifi
     }
 
@@ -289,7 +286,6 @@ extension Reachability {
 }
 
 extension Reachability {
-
     fileprivate func setReachabilityFlags() throws {
         try reachabilitySerialQueue.sync { [unowned self] in
             var flags = SCNetworkReachabilityFlags()
@@ -316,7 +312,6 @@ extension Reachability {
 }
 
 extension SCNetworkReachabilityFlags {
-
     typealias Connection = Reachability.Connection
 
     var connection: Connection {

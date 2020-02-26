@@ -10,19 +10,14 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     // MARK: - Properties
     private lazy var mainWindow = UIWindow()
 
     private let router = AppCoordinator().strongRouter
 
     // MARK: - Methods
-    func application(
-        _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions:
-            [UIApplication.LaunchOptionsKey: Any]?
-    ) -> Bool {
-
+    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         configureAppUI()
 
         router.setRoot(for: mainWindow)
@@ -40,5 +35,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barStyle = .black
         UINavigationBar.appearance().tintColor = .white
     }
-
 }

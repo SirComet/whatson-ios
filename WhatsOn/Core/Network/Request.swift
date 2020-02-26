@@ -13,7 +13,7 @@ public enum RequestError: LocalizedError {
 
     var localizedDescription: String {
         switch self {
-        case .failedToRequestWithUrl(let url):
+        case let .failedToRequestWithUrl(url):
             return "Failed to create the request with url : \(url)"
         }
     }
@@ -24,7 +24,7 @@ public protocol Request {
 }
 
 public class BaseRequest: Request {
-
+    
     // MARK: - Properties
     private var request: URLRequest
 
@@ -32,7 +32,7 @@ public class BaseRequest: Request {
         request.addHttpHeadersFields(
             parameters: [
                 "Content-Type": "application/json; charset=utf-8",
-                "Accept-Encoding": "gzip",
+                "Accept-Encoding": "gzip"
             ]
         )
 
@@ -43,9 +43,8 @@ public class BaseRequest: Request {
     public init?(baseStringUrl: String) {
         guard let url = URL(string: baseStringUrl) else { return nil }
 
-        self.request = URLRequest(url: url)
+        request = URLRequest(url: url)
     }
-
 }
 
 extension URLRequest {
@@ -72,11 +71,8 @@ extension URLRequest {
     }
 
     mutating func addBodyParameters(_ parameters: Any) {
-        guard let data = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
-            return
-        }
+        guard let data = try? JSONSerialization.data(withJSONObject: parameters, options: []) else { return }
 
         httpBody = data
     }
-
 }

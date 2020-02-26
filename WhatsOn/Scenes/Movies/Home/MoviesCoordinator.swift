@@ -18,7 +18,7 @@ enum MoviesRoute: Route {
 }
 
 final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
-
+    
     // MARK: - Properties
     private var sections: [String: Presentable] = [:]
 
@@ -28,9 +28,7 @@ final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
     }
 
     // MARK: - Methods
-    override func prepareTransition(for route: MoviesRoute)
-        -> NavigationTransition
-    {
+    override func prepareTransition(for route: MoviesRoute) -> NavigationTransition {
         switch route {
         case .home:
             let viewController = MoviesViewController()

@@ -10,7 +10,7 @@ import SnapKit
 import UIKit
 
 final class MoviesView: UIView {
-
+    
     // MARK: - Outlets
     public private(set) lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -29,7 +29,7 @@ final class MoviesView: UIView {
         build()
     }
 
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -38,9 +38,8 @@ final class MoviesView: UIView {
         backgroundColor = .darkGrey900
 
         addSubview(tableView)
-        tableView.snp.makeConstraints { (make) in
+        tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
-
 }

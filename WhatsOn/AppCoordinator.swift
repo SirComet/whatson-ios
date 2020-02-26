@@ -13,14 +13,13 @@ enum AppRoute: Route {
 }
 
 class AppCoordinator: NavigationCoordinator<AppRoute> {
+    
     // MARK: - Lifecycle
-
     init() {
         super.init(initialRoute: .home)
     }
 
     // MARK: - Methods
-
     override func prepareTransition(for route: AppRoute) -> NavigationTransition {
         switch route {
         case .home:

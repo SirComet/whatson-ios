@@ -11,7 +11,7 @@ import RxSwift
 import UIKit
 
 final class MoviesViewController: UIViewController {
-
+    
     // MARK: - Properties
     private var viewModel: MoviesViewModelContract?
 
@@ -24,7 +24,7 @@ final class MoviesViewController: UIViewController {
 
     // MARK: - Lifecycle
     override func loadView() {
-        self.view = MoviesView()
+        view = MoviesView()
     }
 
     override func viewDidLoad() {
@@ -52,15 +52,9 @@ final class MoviesViewController: UIViewController {
     private func bindTableView() {
         viewModel?.sections
             .asDriver()
-            .drive(
-                customView.tableView.rx.items(
-                    cellIdentifier: "\(SectionCell.self)",
-                    cellType: SectionCell.self
-                )
-            )
-        { (_, section, cell) in
-            cell.display(title: section.title)
-        }
+            .drive(customView.tableView.rx.items(cellIdentifier: "\(SectionCell.self)",cellType: SectionCell.self)) { _, section, cell in
+                cell.display(title: section.title)
+            }
             .disposed(by: disposeBag)
 
         customView.tableView.rx
@@ -70,29 +64,19 @@ final class MoviesViewController: UIViewController {
 }
 
 extension MoviesViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
         150
     }
 
-    func tableView(
-        _ tableView: UITableView,
-        willDisplay cell: UITableViewCell,
-        forRowAt indexPath: IndexPath
-    ) {
+    func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let cell = cell as? SectionCell else { return }
 
         viewModel?.showSection(at: indexPath.row, in: cell.containerView)
     }
 
-    func tableView(
-        _ tableView: UITableView,
-        didEndDisplaying cell: UITableViewCell,
-        forRowAt indexPath: IndexPath
-    ) {
+    func tableView(_: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if !cell.isKind(of: SectionCell.self) { return }
 
         viewModel?.hideSection(at: indexPath.row)
     }
-
 }
