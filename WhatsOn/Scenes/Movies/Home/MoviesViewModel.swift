@@ -44,7 +44,7 @@ final class MoviesViewModel: MoviesViewModelContract {
     func loadSections() {
         sections.accept(
             [
-                Section(title: R.string.localizable.section_popular(), displayType: .featured),
+                Section(title: R.string.localizable.section_popular(), displayType: .featured)
             ]
         )
     }

@@ -10,9 +10,6 @@ excluded:
 
 # Disable some of them:
 disabled_rules:
-  - opening_brace
-  - colon
-  - trailing_comma
 
 # Enable rules
 opt_in_rules:
@@ -33,7 +30,7 @@ opt_in_rules:
 # Customize:
 trailing_whitespace:
   ignores_empty_lines: true
-line_length: 100
+line_length: 180
 type_body_length:
   - 600 # warning
   - 600 # error

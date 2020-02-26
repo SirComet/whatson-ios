@@ -52,7 +52,7 @@ final class MoviesViewController: UIViewController {
     private func bindTableView() {
         viewModel?.sections
             .asDriver()
-            .drive(customView.tableView.rx.items(cellIdentifier: "\(SectionCell.self)",cellType: SectionCell.self)) { _, section, cell in
+            .drive(customView.tableView.rx.items(cellIdentifier: "\(SectionCell.self)", cellType: SectionCell.self)) { _, section, cell in
                 cell.display(title: section.title)
             }
             .disposed(by: disposeBag)
