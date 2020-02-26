@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PopularMoviesEndpoint: ApiEndpoint {
+final class PopularMoviesEndpoint: ApiEndpoint {
     
     typealias RequestDataType = Void
     typealias ResponseDataType = [Movie]

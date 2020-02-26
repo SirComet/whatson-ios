@@ -9,6 +9,7 @@
 import XCoordinator
 import RxSwift
 import RxCocoa
+import UIKit
 
 protocol FeaturedViewModelContract {
     
@@ -20,6 +21,8 @@ protocol FeaturedViewModelContract {
 
     // MARK: - Methods
     func fetchPopularMovies()
+    func fetchPoster(for movie: Movie) -> Single<UIImage>
+    
 }
 
 final class FeaturedViewModel: FeaturedViewModelContract {
@@ -28,7 +31,8 @@ final class FeaturedViewModel: FeaturedViewModelContract {
     private let router: UnownedRouter<MoviesRoute>
     private let servicesContainer: DependenciesContainer
     
-    private let moviesService: MoviesServiceContract?
+    private let moviesService: MoviesServiceContract!
+    private let imagesService: ImagesServiceContract!
     
     private let disposeBag = DisposeBag()
     
@@ -38,18 +42,24 @@ final class FeaturedViewModel: FeaturedViewModelContract {
     var isLoading: BehaviorRelay<Bool> = .init(value: false)
     
     // MARK: - Lifecycle
-    init(router: UnownedRouter<MoviesRoute>, servicesContainer: DependenciesContainer, sectionContentType: SectionContentType) {
+    init(router: UnownedRouter<MoviesRoute>, servicesContainer: DependenciesContainer, sectionContentType: SectionContentType) throws {
         self.router = router
         self.servicesContainer = servicesContainer
         self.sectionContentType = sectionContentType
         
-        moviesService = servicesContainer.resolve()
+        guard
+            let moviesService: MoviesServiceContract = servicesContainer.resolve(),
+            let imagesService: ImagesServiceContract = servicesContainer.resolve()
+        else { throw ServiceError.notFound }
+        
+        self.moviesService = moviesService
+        self.imagesService = imagesService
     }
     
     func fetchPopularMovies() {
         isLoading.accept(true)
         
-        moviesService?
+        moviesService
             .popular()
             .subscribe(onSuccess: { [weak self] (movies) in
                 self?.isLoading.accept(false)
@@ -61,6 +71,10 @@ final class FeaturedViewModel: FeaturedViewModelContract {
                 self?.error.accept(AppError(error: error))
             })
             .disposed(by: disposeBag)
+    }
+    
+    func fetchPoster(for movie: Movie) -> Single<UIImage> {
+        imagesService.fetchImage(for: movie)
     }
 
 }

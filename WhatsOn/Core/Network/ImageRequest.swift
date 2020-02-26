@@ -1,5 +1,5 @@
 //
-//  BaseRequest.swift
+//  ImageRequest.swift
 //  What'sOn
 //
 //  Created by Maxime Maheo on 26/02/2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class BaseRequest: Request {
+final class ImageRequest: Request {
     
     // MARK: - Properties
     private var request: URLRequest
@@ -17,11 +17,6 @@ final class BaseRequest: Request {
         request.addHttpHeadersFields(parameters: [
             "Content-Type": "application/json; charset=utf-8",
             "Accept-Encoding": "gzip"
-        ])
-        
-        request.addQueryParameters(parameters: [
-            "api_key": ApiKey.value,
-            "language": Locale.preferredLanguages.first ?? "en-US"
         ])
         
         return request

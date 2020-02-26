@@ -34,6 +34,11 @@
 		5274EA082406AE72004F2A99 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5274EA072406AE72004F2A99 /* ApiKey.swift */; };
 		5275C4822407183E00EDE0EF /* FeaturedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275C4812407183E00EDE0EF /* FeaturedCell.swift */; };
 		5275C4842407196E00EDE0EF /* UIScreen+Proportional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275C4832407196E00EDE0EF /* UIScreen+Proportional.swift */; };
+		5275C48724071F3800EDE0EF /* ImagesServiceContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275C48624071F3800EDE0EF /* ImagesServiceContract.swift */; };
+		5275C48924071F7C00EDE0EF /* ImagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275C48824071F7C00EDE0EF /* ImagesService.swift */; };
+		5275C48C24071FBC00EDE0EF /* ImageEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275C48B24071FBC00EDE0EF /* ImageEndpoint.swift */; };
+		5275C48E2407210400EDE0EF /* Movie+FetchableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275C48D2407210400EDE0EF /* Movie+FetchableImage.swift */; };
+		5275C49024072AEF00EDE0EF /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275C48F24072AEF00EDE0EF /* ImageRequest.swift */; };
 		5297A8E52406744B00FC528A /* ApiEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5297A8E42406744B00FC528A /* ApiEndpoint.swift */; };
 		5297A8E72406746800FC528A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5297A8E62406746800FC528A /* Request.swift */; };
 		5297A8E9240674BB00FC528A /* ApiRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5297A8E8240674BB00FC528A /* ApiRequester.swift */; };
@@ -88,6 +93,11 @@
 		5274EA072406AE72004F2A99 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		5275C4812407183E00EDE0EF /* FeaturedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedCell.swift; sourceTree = "<group>"; };
 		5275C4832407196E00EDE0EF /* UIScreen+Proportional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Proportional.swift"; sourceTree = "<group>"; };
+		5275C48624071F3800EDE0EF /* ImagesServiceContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesServiceContract.swift; sourceTree = "<group>"; };
+		5275C48824071F7C00EDE0EF /* ImagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesService.swift; sourceTree = "<group>"; };
+		5275C48B24071FBC00EDE0EF /* ImageEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEndpoint.swift; sourceTree = "<group>"; };
+		5275C48D2407210400EDE0EF /* Movie+FetchableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+FetchableImage.swift"; sourceTree = "<group>"; };
+		5275C48F24072AEF00EDE0EF /* ImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
 		5297A8E42406744B00FC528A /* ApiEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEndpoint.swift; sourceTree = "<group>"; };
 		5297A8E62406746800FC528A /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		5297A8E8240674BB00FC528A /* ApiRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequester.swift; sourceTree = "<group>"; };
@@ -157,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				52508E8924069A4B00880BA8 /* Movies */,
+				5275C48524071F2B00EDE0EF /* Images */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -262,6 +273,24 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		5275C48524071F2B00EDE0EF /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5275C48A24071FAE00EDE0EF /* Endpoints */,
+				5275C48624071F3800EDE0EF /* ImagesServiceContract.swift */,
+				5275C48824071F7C00EDE0EF /* ImagesService.swift */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		5275C48A24071FAE00EDE0EF /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				5275C48B24071FBC00EDE0EF /* ImageEndpoint.swift */,
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
 		5297A8E22406741D00FC528A /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +307,7 @@
 				5297A8E42406744B00FC528A /* ApiEndpoint.swift */,
 				5297A8E62406746800FC528A /* Request.swift */,
 				5274EA002406A80E004F2A99 /* BaseRequest.swift */,
+				5275C48F24072AEF00EDE0EF /* ImageRequest.swift */,
 				5297A8E8240674BB00FC528A /* ApiRequester.swift */,
 				5297A8EA2406756300FC528A /* Reachability.swift */,
 				5274EA072406AE72004F2A99 /* ApiKey.swift */,
@@ -321,6 +351,7 @@
 				52AA8C582405572500752DDB /* UIFont+App.swift */,
 				5274E9FE2406A6FD004F2A99 /* UIViewController+PresentAlertView.swift */,
 				5275C4832407196E00EDE0EF /* UIScreen+Proportional.swift */,
+				5275C48D2407210400EDE0EF /* Movie+FetchableImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -463,6 +494,7 @@
 				52B4789F24054B0E007D578E /* MoviesView.swift in Sources */,
 				526FDDC92405DDCB00272AD5 /* FeaturedView.swift in Sources */,
 				52508E8B24069A6300880BA8 /* MoviesServiceContract.swift in Sources */,
+				5275C48C24071FBC00EDE0EF /* ImageEndpoint.swift in Sources */,
 				5211441C24069F5F009A5D19 /* ProductionCompany.swift in Sources */,
 				523A2109240547B100C17124 /* R.generated.swift in Sources */,
 				5211441824069B87009A5D19 /* Movie.swift in Sources */,
@@ -476,18 +508,22 @@
 				52E194F8240141AD00407344 /* MoviesCoordinator.swift in Sources */,
 				526FDDCB2405DDD800272AD5 /* FeaturedViewModel.swift in Sources */,
 				52AA8C572405530500752DDB /* Section.swift in Sources */,
+				5275C48924071F7C00EDE0EF /* ImagesService.swift in Sources */,
 				52E194FE240148CA00407344 /* MainTabBarCoordinator.swift in Sources */,
 				5275C4842407196E00EDE0EF /* UIScreen+Proportional.swift in Sources */,
 				5274EA062406AD20004F2A99 /* MovieDetails.swift in Sources */,
 				5297A8E72406746800FC528A /* Request.swift in Sources */,
 				5211441E24069F79009A5D19 /* ProductionCountry.swift in Sources */,
 				5297A8EB2406756300FC528A /* Reachability.swift in Sources */,
+				5275C49024072AEF00EDE0EF /* ImageRequest.swift in Sources */,
+				5275C48E2407210400EDE0EF /* Movie+FetchableImage.swift in Sources */,
 				5275C4822407183E00EDE0EF /* FeaturedCell.swift in Sources */,
 				52B4789D24054A85007D578E /* UIColor+App.swift in Sources */,
 				52AA8C542405521600752DDB /* SectionCell.swift in Sources */,
 				52E194F62401418D00407344 /* MoviesViewModel.swift in Sources */,
 				52AA8C592405572500752DDB /* UIFont+App.swift in Sources */,
 				5211442024069F86009A5D19 /* SpokenLanguage.swift in Sources */,
+				5275C48724071F3800EDE0EF /* ImagesServiceContract.swift in Sources */,
 				526B571923FDDBE800E28658 /* AppDelegate.swift in Sources */,
 				5274EA042406A9EB004F2A99 /* PopularMoviesEndpoint.swift in Sources */,
 				5274E9FF2406A6FD004F2A99 /* UIViewController+PresentAlertView.swift in Sources */,

@@ -72,8 +72,21 @@ final class FeaturedViewController: UIViewController {
     private func bindCollectionView() {
         viewModel?.popularMovies
             .asDriver()
-            .drive(customView.collectionView.rx.items(cellIdentifier: "\(FeaturedCell.self)", cellType: FeaturedCell.self)) { (_, movie, cell) in
-                cell.display(title: movie.title, overview: movie.overview)
+            .drive(customView.collectionView.rx.items(cellIdentifier: "\(FeaturedCell.self)", cellType: FeaturedCell.self)) { [weak self] (_, movie, cell) in
+                guard
+                    let self = self,
+                    let posterPlaceholder = R.image.poster_placeholder()
+                else { return }
+                
+                cell.display(title: movie.title, overview: movie.overview, id: movie.id)
+                
+                self.viewModel?
+                    .fetchPoster(for: movie)
+                    .asDriver(onErrorJustReturn: posterPlaceholder)
+                    .drive(onNext: { (poster) in
+                        cell.set(poster: poster, id: movie.id)
+                    })
+                    .disposed(by: cell.disposeBag)
             }
             .disposed(by: disposeBag)
         

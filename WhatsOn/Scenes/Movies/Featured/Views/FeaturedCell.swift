@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import RxSwift
 
 open class FeaturedCell: UICollectionViewCell {
     
     // MARK: - Outlets
+    public private(set) lazy var posterImageView: UIImageView = {
+        UIImageView()
+    }()
+    
     public private(set) lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -26,10 +31,15 @@ open class FeaturedCell: UICollectionViewCell {
         label.textColor = .white
         label.font = .p3
         label.textAlignment = .left
-        label.numberOfLines = 5
+        label.numberOfLines = 0
         
         return label
     }()
+    
+    // MARK: - Properties
+    private var id: Int?
+    
+    var disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -45,14 +55,27 @@ open class FeaturedCell: UICollectionViewCell {
     override open func prepareForReuse() {
         super.prepareForReuse()
         
+        id = nil
+        
+        posterImageView.image = R.image.poster_placeholder()
         titleLabel.text = nil
         overviewLabel.text = nil
+        
+        disposeBag = DisposeBag()
     }
     
     // MARK: - Methods
-    func display(title: String, overview: String) {
+    func display(title: String, overview: String, id: Int) {
         titleLabel.text = title
         overviewLabel.text = overview
+        
+        self.id = id
+    }
+    
+    func set(poster: UIImage, id: Int) {
+        if self.id == id {
+            posterImageView.image = poster
+        }
     }
     
     private func setupViews() {
@@ -60,15 +83,20 @@ open class FeaturedCell: UICollectionViewCell {
         layer.cornerRadius = 4
         clipsToBounds = true
         
+        addSubview(posterImageView)
+        posterImageView.snp.makeConstraints { (make) in
+            make.leading.top.bottom.equalToSuperview()
+            make.width.equalTo(posterImageView.snp.height).multipliedBy(0.66)
+        }
+        
         addSubview(titleLabel)
         titleLabel.setContentHuggingPriority(.required, for: .vertical)
         titleLabel.snp.makeConstraints { (make) in
-            make.leading.trailing.top.equalToSuperview().inset(8)
+            make.trailing.top.equalToSuperview().inset(8)
+            make.leading.equalTo(posterImageView.snp.trailing).offset(8)
         }
         
         addSubview(overviewLabel)
-//        titleLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
-//        titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         overviewLabel.snp.makeConstraints { (make) in
             make.top.equalTo(titleLabel.snp.bottom).offset(4)
             make.leading.trailing.equalTo(titleLabel)

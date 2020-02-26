@@ -35,6 +35,7 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
     // MARK: - Private methods
     private func registerServices() {
         registerMoviesService()
+        registerImagesService()
     }
     
     private func registerMoviesService() {
@@ -44,6 +45,17 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
             servicesContainer.register(MoviesServiceContract.self, factory: { service })
         } catch {
             print("Error while ceating movies service : \(error)")
+        }
+    }
+    
+    private func registerImagesService() {
+        do {
+            let paramaters = ImagesServiceParameters(imageHostUrl: "https://image.tmdb.org/t/p")
+            let service = try ImagesService(parameters: paramaters)
+            
+            servicesContainer.register(ImagesServiceContract.self, factory: { service })
+        } catch {
+            print("Error while ceating images service : \(error)")
         }
     }
 }

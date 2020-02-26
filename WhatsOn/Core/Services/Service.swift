@@ -7,7 +7,7 @@
 //
 
 enum ServiceError: Error {
-    case invalidParameters
+    case invalidParameters, notFound
 }
 
 protocol Service {

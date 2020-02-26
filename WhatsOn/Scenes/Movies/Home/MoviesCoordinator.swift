@@ -45,12 +45,16 @@ final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
 
             return .none()
         case let .createFeaturedSection(childId, content):
-            let viewController = FeaturedViewController()
-            let viewModel = FeaturedViewModel(router: unownedRouter, servicesContainer: servicesContainer, sectionContentType: content)
-            viewController.bind(to: viewModel)
+            do {
+                let viewController = FeaturedViewController()
+                let viewModel = try FeaturedViewModel(router: unownedRouter, servicesContainer: servicesContainer, sectionContentType: content)
+                viewController.bind(to: viewModel)
 
-            sections[childId] = viewController
-
+                sections[childId] = viewController
+            } catch {
+                print("Error while creating featured section : \(error)")
+            }
+            
             return .none()
         case let .showSection(childId, container):
             guard let sectionPresentable = sections[childId] else { return .none() }
