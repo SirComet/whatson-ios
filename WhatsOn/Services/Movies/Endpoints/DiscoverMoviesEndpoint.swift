@@ -10,7 +10,7 @@ import Foundation
 
 final class DiscoverMoviesEndpoint: ApiEndpoint {
     
-    typealias RequestDataType = Void
+    typealias RequestDataType = ([Int]?)
     typealias ResponseDataType = [Movie]
     
     // MARK: - Methods
@@ -23,10 +23,16 @@ final class DiscoverMoviesEndpoint: ApiEndpoint {
             throw RequestError.failedToRequestWithUrl(stringUrl)
         }
   
-        request.addQueryParameters(parameters: [
+        var queryParameters: [String: String] = [
             "sort_by": "popularity.desc",
             "region": Locale.current.regionCode?.uppercased() ?? "US"
-        ])
+        ]
+        
+        if let genreIds = parameters {
+            queryParameters["with_genres"] = genreIds.map { "\($0)" }.joined(separator: ",")
+        }
+        
+        request.addQueryParameters(parameters: queryParameters)
         
         return request
     }

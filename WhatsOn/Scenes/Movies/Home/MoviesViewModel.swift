@@ -11,15 +11,17 @@ import RxSwift
 import UIKit
 import XCoordinator
 
-protocol MoviesViewModelContract {
+enum MoviesViewModelAction: ViewModelAction {
+    
+}
+
+protocol MoviesViewModelContract: ViewModel {
     // MARK: - Properties
 
     var sections: BehaviorRelay<[Section]> { get }
 
     // MARK: - Methods
-
     func loadSections()
-
     func showSection(at row: Int, in container: UIView)
     func hideSection(at row: Int)
 }
@@ -43,6 +45,10 @@ final class MoviesViewModel: MoviesViewModelContract {
     }
 
     // MARK: - Methods
+    func handle(action: ViewModelAction) {
+        
+    }
+    
     func loadSections() {
         sections.accept(
             [

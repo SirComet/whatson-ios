@@ -23,8 +23,8 @@ final class MoviesService: MoviesServiceContract {
         apiRequester.fetch(PopularMoviesEndpoint(), with: ())
     }
     
-    func discover() -> Single<[Movie]> {
-        apiRequester.fetch(DiscoverMoviesEndpoint(), with: ())
+    func discover(genreIds: [Int]?) -> Single<[Movie]> {
+        apiRequester.fetch(DiscoverMoviesEndpoint(), with: (genreIds))
     }
     
     func topRated() -> Single<[Movie]> {

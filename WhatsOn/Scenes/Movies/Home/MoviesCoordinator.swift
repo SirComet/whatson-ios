@@ -20,6 +20,8 @@ enum MoviesRoute: Route {
     
     case showSection(childId: String, container: Container)
     case hideSection(childId: String)
+    
+    case moviesList(title: String, movies: [Movie])
 }
 
 final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
@@ -40,11 +42,7 @@ final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
     override func prepareTransition(for route: MoviesRoute) -> NavigationTransition {
         switch route {
         case .home:
-            let viewController = MoviesViewController()
-            let viewModel = MoviesViewModel(router: unownedRouter, servicesContainer: servicesContainer)
-            viewController.bind(to: viewModel)
-
-            return .push(viewController)
+            return routeToHome()
         case .removeSections:
             sections.removeAll()
 
@@ -62,20 +60,48 @@ final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
             
             return .none()
         case let .showSection(childId, container):
-            guard let sectionPresentable = sections[childId] else { return .none() }
-
-            return .embed(sectionPresentable, in: container)
+            return routeToSection(childId: childId, container: container)
         case let .hideSection(childId):
-            guard let sectionViewController = sections[childId]?.viewController else {
-                return .none()
-            }
-
-            sectionViewController.view.removeFromSuperview()
-            sectionViewController.willMove(toParent: nil)
-            sectionViewController.removeFromParent()
+            hideSection(childId: childId)
 
             return .none()
+        case let .moviesList(title, movies):
+            return routeToMoviesList(title: title, movies: movies)
         }
+    }
+    
+    // MARK: - Private methods
+    private func routeToHome() -> NavigationTransition {
+        let viewController = MoviesViewController()
+        let viewModel = MoviesViewModel(router: unownedRouter, servicesContainer: servicesContainer)
+        viewController.bind(to: viewModel)
+
+        return .push(viewController)
+    }
+    
+    private func routeToMoviesList(title: String, movies: [Movie]) -> NavigationTransition {
+        let viewController = MoviesListViewController()
+        guard let viewModel = try? MoviesListViewModel(router: unownedRouter,
+                                            servicesContainer: servicesContainer,
+                                            title: title,
+                                            movies: movies) else { return .none() }
+        viewController.bind(to: viewModel)
+
+        return .push(viewController)
+    }
+    
+    private func routeToSection(childId: String, container: Container) -> NavigationTransition {
+        guard let sectionPresentable = sections[childId] else { return .none() }
+
+        return .embed(sectionPresentable, in: container)
+    }
+    
+    private func hideSection(childId: String) {
+        guard let sectionViewController = sections[childId]?.viewController else { return }
+
+        sectionViewController.view.removeFromSuperview()
+        sectionViewController.willMove(toParent: nil)
+        sectionViewController.removeFromParent()
     }
     
     private func createFeaturedSection(childId: String, content: SectionContentType) {

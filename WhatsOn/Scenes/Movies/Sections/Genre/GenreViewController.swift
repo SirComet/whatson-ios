@@ -78,6 +78,13 @@ final class GenreViewController: UIViewController {
             .disposed(by: disposeBag)
         
         customView.collectionView.rx
+            .itemSelected
+            .bind { [weak self] (indexPath) in
+                self?.viewModel?.handle(action: GenreViewModelAction.selectGenre(row: indexPath.row))
+            }
+            .disposed(by: disposeBag)
+        
+        customView.collectionView.rx
             .setDelegate(self)
             .disposed(by: disposeBag)
     }

@@ -11,7 +11,11 @@ import RxSwift
 import RxCocoa
 import UIKit
 
-protocol FeaturedViewModelContract {
+enum FeaturedViewModelAction: ViewModelAction {
+    
+}
+
+protocol FeaturedViewModelContract: ViewModel {
     
     // MARK: - Properties
     var sectionContentType: SectionContentType { get }
@@ -61,6 +65,11 @@ final class FeaturedViewModel: FeaturedViewModelContract {
         self.imagesService = imagesService
     }
     
+    // MARK: - Methods
+    func handle(action: ViewModelAction) {
+        
+    }
+    
     func fetchPopularMovies() {
         isLoading.accept(true)
         
@@ -70,7 +79,7 @@ final class FeaturedViewModel: FeaturedViewModelContract {
     func fetchDiscoverMovies() {
         isLoading.accept(true)
         
-        handle(single: moviesService.discover())
+        handle(single: moviesService.discover(genreIds: nil))
     }
     
     func fetchTopRatedMovies() {
@@ -95,7 +104,7 @@ final class FeaturedViewModel: FeaturedViewModelContract {
         imagesService.fetchImage(for: movie)
     }
     
-    // MARK: - Methods
+    // MARK: - Private methods
     private func handle(single: Single<[Movie]>) {
         single
             .subscribe(onSuccess: { [weak self] (movies) in

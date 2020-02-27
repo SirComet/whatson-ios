@@ -11,7 +11,11 @@ import RxSwift
 import RxCocoa
 import UIKit
 
-protocol GenreViewModelContract {
+enum GenreViewModelAction: ViewModelAction {
+    case selectGenre(row: Int)
+}
+
+protocol GenreViewModelContract: ViewModel {
     
     // MARK: - Properties
     var sectionContentType: SectionContentType { get }
@@ -52,6 +56,16 @@ final class GenreViewModel: GenreViewModelContract {
         self.moviesService = moviesService
     }
     
+    // MARK: - Methods
+    func handle(action: ViewModelAction) {
+        guard let action = action as? GenreViewModelAction else { return }
+        
+        switch action {
+        case let .selectGenre(row):
+            select(row: row)
+        }
+    }
+    
     func fetchMoviesGenres() {
         isLoading.accept(true)
         
@@ -61,6 +75,27 @@ final class GenreViewModel: GenreViewModelContract {
                 self?.isLoading.accept(false)
                 
                 self?.genres.accept(genres)
+            }, onError: { [weak self] (error) in
+                self?.isLoading.accept(false)
+                
+                self?.error.accept(AppError(error: error))
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: - Private methods
+    private func select(row: Int) {
+        let genre = genres.value[row]
+        
+        isLoading.accept(true)
+        
+        moviesService
+            .discover(genreIds: [genre.id])
+            .observeOn(MainScheduler.instance)
+            .subscribe(onSuccess: { [weak self] (movies) in
+                self?.isLoading.accept(false)
+                
+                self?.router.trigger(.moviesList(title: "\(genre.smiley) \(genre.name)", movies: movies))
             }, onError: { [weak self] (error) in
                 self?.isLoading.accept(false)
                 
