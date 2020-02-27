@@ -6,6 +6,12 @@
 //  Copyright © 2020 Maxime Maheo. All rights reserved.
 //
 
+struct GenreList: Decodable {
+    
+    let genres: [Genre]
+    
+}
+
 struct Genre: Codable {
     
     let id: Int

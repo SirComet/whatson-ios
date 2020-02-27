@@ -7,11 +7,11 @@
 //
 
 enum SectionDisplayType {
-    case featured, standard
+    case featured, standard, genre
 }
 
 enum SectionContentType {
-    case popular, discover, topRated, nowPlaying, upcoming
+    case popular, discover, topRated, nowPlaying, upcoming, genre
 }
 
 struct Section {

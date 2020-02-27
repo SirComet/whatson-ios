@@ -11,9 +11,13 @@ import XCoordinator
 
 enum MoviesRoute: Route {
     case home
+    
     case removeSections
+    
     case createFeaturedSection(childId: String, content: SectionContentType)
     case createStandardSection(childId: String, content: SectionContentType)
+    case createGenreSection(childId: String, content: SectionContentType)
+    
     case showSection(childId: String, container: Container)
     case hideSection(childId: String)
 }
@@ -46,27 +50,15 @@ final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
 
             return .none()
         case let .createFeaturedSection(childId, content):
-            do {
-                let viewController = FeaturedViewController()
-                let viewModel = try FeaturedViewModel(router: unownedRouter, servicesContainer: servicesContainer, sectionContentType: content)
-                viewController.bind(to: viewModel)
-
-                sections[childId] = viewController
-            } catch {
-                print("Error while creating featured section : \(error)")
-            }
+            createFeaturedSection(childId: childId, content: content)
             
             return .none()
         case let .createStandardSection(childId, content):
-            do {
-                let viewController = StandardViewController()
-                let viewModel = try StandardViewModel(router: unownedRouter, servicesContainer: servicesContainer, sectionContentType: content)
-                viewController.bind(to: viewModel)
-
-                sections[childId] = viewController
-            } catch {
-                print("Error while creating standard section : \(error)")
-            }
+            createStandardSection(childId: childId, content: content)
+            
+            return .none()
+        case let .createGenreSection(childId, content):
+            createGenreSection(childId: childId, content: content)
             
             return .none()
         case let .showSection(childId, container):
@@ -83,6 +75,42 @@ final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
             sectionViewController.removeFromParent()
 
             return .none()
+        }
+    }
+    
+    private func createFeaturedSection(childId: String, content: SectionContentType) {
+        do {
+            let viewController = FeaturedViewController()
+            let viewModel = try FeaturedViewModel(router: unownedRouter, servicesContainer: servicesContainer, sectionContentType: content)
+            viewController.bind(to: viewModel)
+
+            sections[childId] = viewController
+        } catch {
+            print("Error while creating featured section : \(error)")
+        }
+    }
+    
+    private func createStandardSection(childId: String, content: SectionContentType) {
+        do {
+            let viewController = StandardViewController()
+            let viewModel = try StandardViewModel(router: unownedRouter, servicesContainer: servicesContainer, sectionContentType: content)
+            viewController.bind(to: viewModel)
+
+            sections[childId] = viewController
+        } catch {
+            print("Error while creating standard section : \(error)")
+        }
+    }
+    
+    private func createGenreSection(childId: String, content: SectionContentType) {
+        do {
+            let viewController = GenreViewController()
+            let viewModel = try GenreViewModel(router: unownedRouter, servicesContainer: servicesContainer, sectionContentType: content)
+            viewController.bind(to: viewModel)
+
+            sections[childId] = viewController
+        } catch {
+            print("Error while creating genre section : \(error)")
         }
     }
 }

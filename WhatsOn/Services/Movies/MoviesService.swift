@@ -39,4 +39,8 @@ final class MoviesService: MoviesServiceContract {
         apiRequester.fetch(UpcomingMoviesEndpoint(), with: ())
     }
     
+    func genres() -> Single<[Genre]> {
+        apiRequester.fetch(MoviesGenresEndpoint(), with: ())
+    }
+    
 }

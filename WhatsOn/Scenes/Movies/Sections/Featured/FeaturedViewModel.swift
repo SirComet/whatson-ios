@@ -61,6 +61,7 @@ final class FeaturedViewModel: FeaturedViewModelContract {
         self.imagesService = imagesService
     }
     
+    // TODO : Refacto all `fetchXXX` methods
     func fetchPopularMovies() {
         isLoading.accept(true)
         

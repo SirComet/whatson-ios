@@ -43,7 +43,7 @@ final class FeaturedViewController: UIViewController {
             viewModel?.fetchNowPlayingMovies()
         case .upcoming:
             viewModel?.fetchUpcomingMovies()
-        case .none:
+        default:
             break
         }
     }

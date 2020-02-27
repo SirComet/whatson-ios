@@ -1,5 +1,5 @@
 //
-//  StandardViewController.swift
+//  GenreViewController.swift
 //  What'sOn
 //
 //  Created by Maxime Maheo on 27/02/2020.
@@ -9,21 +9,21 @@
 import UIKit
 import RxSwift
 
-final class StandardViewController: UIViewController {
+final class GenreViewController: UIViewController {
     
     // MARK: - Properties
-    private var viewModel: StandardViewModelContract?
+    private var viewModel: GenreViewModelContract?
     
     private let disposeBag = DisposeBag()
 
-    private var customView: StandardView {
+    private var customView: GenreView {
         // swiftlint:disable:next force_cast
-        return view as! StandardView
+        return view as! GenreView
     }
 
     // MARK: - Lifecycle
     override func loadView() {
-        view = StandardView()
+        view = GenreView()
     }
 
     override func viewDidLoad() {
@@ -33,23 +33,15 @@ final class StandardViewController: UIViewController {
         bindViews()
         
         switch viewModel?.sectionContentType {
-        case .popular:
-            viewModel?.fetchPopularMovies()
-        case .discover:
-            viewModel?.fetchDiscoverMovies()
-        case .topRated:
-            viewModel?.fetchTopRatedMovies()
-        case .nowPlaying:
-            viewModel?.fetchNowPlayingMovies()
-        case .upcoming:
-            viewModel?.fetchUpcomingMovies()
+        case .genre:
+            viewModel?.fetchMoviesGenres()
         default:
             break
         }
     }
 
     // MARK: - Methods
-    func bind(to viewModel: StandardViewModelContract) {
+    func bind(to viewModel: GenreViewModelContract) {
         self.viewModel = viewModel
     }
 
@@ -78,23 +70,10 @@ final class StandardViewController: UIViewController {
     }
     
     private func bindCollectionView() {
-        viewModel?.movies
+        viewModel?.genres
             .asDriver()
-            .drive(customView.collectionView.rx.items(cellIdentifier: "\(StandardCell.self)", cellType: StandardCell.self)) { [weak self] (_, movie, cell) in
-                guard
-                    let self = self,
-                    let posterPlaceholder = R.image.poster_placeholder()
-                else { return }
-                
-                cell.display(id: movie.id)
-                
-                self.viewModel?
-                    .fetchPoster(for: movie)
-                    .asDriver(onErrorJustReturn: posterPlaceholder)
-                    .drive(onNext: { (poster) in
-                        cell.set(poster: poster, id: movie.id)
-                    })
-                    .disposed(by: cell.disposeBag)
+            .drive(customView.collectionView.rx.items(cellIdentifier: "\(GenreCell.self)", cellType: GenreCell.self)) { (_, genre, cell) in
+                cell.display(title: genre.name)
             }
             .disposed(by: disposeBag)
         
@@ -105,10 +84,10 @@ final class StandardViewController: UIViewController {
     
 }
 
-extension StandardViewController: UICollectionViewDelegateFlowLayout {
+extension GenreViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        StandardCell.size
+        GenreCell.size
     }
     
 }

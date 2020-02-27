@@ -74,6 +74,8 @@ extension MoviesViewController: UITableViewDelegate {
             return margins + FeaturedCell.size.height
         case .standard:
             return margins + StandardCell.size.height
+        case .genre:
+            return margins + GenreCell.size.height
         }
     }
 
