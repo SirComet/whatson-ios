@@ -12,7 +12,7 @@ import RxCocoa
 import UIKit
 
 enum MoviesListViewModelAction: ViewModelAction {
-
+    case selectMovie(row: Int)
 }
 
 protocol MoviesListViewModelContract: ViewModel {
@@ -53,7 +53,14 @@ final class MoviesListViewModel: MoviesListViewModelContract {
     
     // MARK: - Methods
     func handle(action: ViewModelAction) {
+        guard let action = action as? MoviesListViewModelAction else { return }
         
+        switch action {
+        case let .selectMovie(row):
+            let movie = movies.value[row]
+            
+            router.trigger(.movieDetails(movie: movie))
+        }
     }
     
     func fetchPoster(for movie: Movie) -> Single<UIImage> {

@@ -12,7 +12,7 @@ import RxCocoa
 import UIKit
 
 enum FeaturedViewModelAction: ViewModelAction {
-    
+    case selectMovie(row: Int)
 }
 
 protocol FeaturedViewModelContract: ViewModel {
@@ -67,7 +67,14 @@ final class FeaturedViewModel: FeaturedViewModelContract {
     
     // MARK: - Methods
     func handle(action: ViewModelAction) {
+        guard let action = action as? FeaturedViewModelAction else { return }
         
+        switch action {
+        case let .selectMovie(row):
+            let movie = movies.value[row]
+            
+            router.trigger(.movieDetails(movie: movie))
+        }
     }
     
     func fetchPopularMovies() {

@@ -80,6 +80,13 @@ final class MoviesListViewController: UIViewController {
             .disposed(by: disposeBag)
 
         customView.tableView.rx
+            .itemSelected
+            .bind { [weak self] (indexPath) in
+                self?.viewModel?.handle(action: MoviesListViewModelAction.selectMovie(row: indexPath.row))
+            }
+            .disposed(by: disposeBag)
+        
+        customView.tableView.rx
             .setDelegate(self)
             .disposed(by: disposeBag)
     }

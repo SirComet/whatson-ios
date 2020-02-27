@@ -11,6 +11,8 @@ import XCoordinator
 
 enum MoviesRoute: Route {
     case home
+    case moviesList(title: String, movies: [Movie])
+    case movieDetails(movie: Movie)
     
     case removeSections
     
@@ -20,8 +22,6 @@ enum MoviesRoute: Route {
     
     case showSection(childId: String, container: Container)
     case hideSection(childId: String)
-    
-    case moviesList(title: String, movies: [Movie])
 }
 
 final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
@@ -43,30 +43,24 @@ final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
         switch route {
         case .home:
             return routeToHome()
+        case let .moviesList(title, movies):
+            return routeToMoviesList(title: title, movies: movies)
+        case let .movieDetails(movie):
+            return routeToMovieDetails(movie: movie)
         case .removeSections:
             sections.removeAll()
 
             return .none()
         case let .createFeaturedSection(childId, content):
-            createFeaturedSection(childId: childId, content: content)
-            
-            return .none()
+            return createFeaturedSection(childId: childId, content: content)
         case let .createStandardSection(childId, content):
-            createStandardSection(childId: childId, content: content)
-            
-            return .none()
+            return createStandardSection(childId: childId, content: content)
         case let .createGenreSection(childId, content):
-            createGenreSection(childId: childId, content: content)
-            
-            return .none()
+            return createGenreSection(childId: childId, content: content)
         case let .showSection(childId, container):
             return routeToSection(childId: childId, container: container)
         case let .hideSection(childId):
-            hideSection(childId: childId)
-
-            return .none()
-        case let .moviesList(title, movies):
-            return routeToMoviesList(title: title, movies: movies)
+            return hideSection(childId: childId)
         }
     }
     
@@ -81,10 +75,26 @@ final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
     
     private func routeToMoviesList(title: String, movies: [Movie]) -> NavigationTransition {
         let viewController = MoviesListViewController()
-        guard let viewModel = try? MoviesListViewModel(router: unownedRouter,
-                                            servicesContainer: servicesContainer,
-                                            title: title,
-                                            movies: movies) else { return .none() }
+        guard
+            let viewModel = try? MoviesListViewModel(router: unownedRouter,
+                                                     servicesContainer: servicesContainer,
+                                                     title: title,
+                                                     movies: movies)
+        else { return .none() }
+        
+        viewController.bind(to: viewModel)
+
+        return .push(viewController)
+    }
+    
+    private func routeToMovieDetails(movie: Movie) -> NavigationTransition {
+        let viewController = MovieDetailsViewController()
+        guard
+            let viewModel = try? MovieDetailsViewModel(router: unownedRouter,
+                                                       servicesContainer: servicesContainer,
+                                                       movie: movie)
+        else { return .none() }
+        
         viewController.bind(to: viewModel)
 
         return .push(viewController)
@@ -96,15 +106,17 @@ final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
         return .embed(sectionPresentable, in: container)
     }
     
-    private func hideSection(childId: String) {
-        guard let sectionViewController = sections[childId]?.viewController else { return }
+    private func hideSection(childId: String) -> NavigationTransition {
+        guard let sectionViewController = sections[childId]?.viewController else { return .none() }
 
         sectionViewController.view.removeFromSuperview()
         sectionViewController.willMove(toParent: nil)
         sectionViewController.removeFromParent()
+        
+        return .none()
     }
     
-    private func createFeaturedSection(childId: String, content: SectionContentType) {
+    private func createFeaturedSection(childId: String, content: SectionContentType) -> NavigationTransition {
         do {
             let viewController = FeaturedViewController()
             let viewModel = try FeaturedViewModel(router: unownedRouter, servicesContainer: servicesContainer, sectionContentType: content)
@@ -114,9 +126,11 @@ final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
         } catch {
             print("Error while creating featured section : \(error)")
         }
+        
+        return .none()
     }
     
-    private func createStandardSection(childId: String, content: SectionContentType) {
+    private func createStandardSection(childId: String, content: SectionContentType) -> NavigationTransition {
         do {
             let viewController = StandardViewController()
             let viewModel = try StandardViewModel(router: unownedRouter, servicesContainer: servicesContainer, sectionContentType: content)
@@ -126,9 +140,11 @@ final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
         } catch {
             print("Error while creating standard section : \(error)")
         }
+        
+        return .none()
     }
     
-    private func createGenreSection(childId: String, content: SectionContentType) {
+    private func createGenreSection(childId: String, content: SectionContentType) -> NavigationTransition {
         do {
             let viewController = GenreViewController()
             let viewModel = try GenreViewModel(router: unownedRouter, servicesContainer: servicesContainer, sectionContentType: content)
@@ -138,5 +154,7 @@ final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
         } catch {
             print("Error while creating genre section : \(error)")
         }
+        
+        return .none()
     }
 }

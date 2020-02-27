@@ -99,6 +99,13 @@ final class StandardViewController: UIViewController {
             .disposed(by: disposeBag)
         
         customView.collectionView.rx
+            .itemSelected
+            .bind { [weak self] (indexPath) in
+                self?.viewModel?.handle(action: StandardViewModelAction.selectMovie(row: indexPath.row))
+            }
+            .disposed(by: disposeBag)
+        
+        customView.collectionView.rx
             .setDelegate(self)
             .disposed(by: disposeBag)
     }
