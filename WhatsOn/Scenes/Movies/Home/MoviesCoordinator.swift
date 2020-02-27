@@ -13,6 +13,7 @@ enum MoviesRoute: Route {
     case home
     case removeSections
     case createFeaturedSection(childId: String, content: SectionContentType)
+    case createStandardSection(childId: String, content: SectionContentType)
     case showSection(childId: String, container: Container)
     case hideSection(childId: String)
 }
@@ -53,6 +54,18 @@ final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
                 sections[childId] = viewController
             } catch {
                 print("Error while creating featured section : \(error)")
+            }
+            
+            return .none()
+        case let .createStandardSection(childId, content):
+            do {
+                let viewController = StandardViewController()
+                let viewModel = try StandardViewModel(router: unownedRouter, servicesContainer: servicesContainer, sectionContentType: content)
+                viewController.bind(to: viewModel)
+
+                sections[childId] = viewController
+            } catch {
+                print("Error while creating standard section : \(error)")
             }
             
             return .none()

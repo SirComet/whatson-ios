@@ -48,6 +48,10 @@
 		52AA8C542405521600752DDB /* SectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AA8C532405521600752DDB /* SectionCell.swift */; };
 		52AA8C572405530500752DDB /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AA8C562405530500752DDB /* Section.swift */; };
 		52AA8C592405572500752DDB /* UIFont+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AA8C582405572500752DDB /* UIFont+App.swift */; };
+		52ADC0452407BBA00012FC80 /* StandardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADC0442407BBA00012FC80 /* StandardView.swift */; };
+		52ADC0472407BBAB0012FC80 /* StandardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADC0462407BBAB0012FC80 /* StandardViewController.swift */; };
+		52ADC0492407BBB60012FC80 /* StandardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADC0482407BBB60012FC80 /* StandardViewModel.swift */; };
+		52ADC04C2407BD0B0012FC80 /* StandardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADC04B2407BD0B0012FC80 /* StandardCell.swift */; };
 		52B4789D24054A85007D578E /* UIColor+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4789C24054A85007D578E /* UIColor+App.swift */; };
 		52B4789F24054B0E007D578E /* MoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4789E24054B0E007D578E /* MoviesView.swift */; };
 		52B478A524054DB8007D578E /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 52B478A424054DB8007D578E /* RxRelay */; };
@@ -108,6 +112,10 @@
 		52AA8C532405521600752DDB /* SectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCell.swift; sourceTree = "<group>"; };
 		52AA8C562405530500752DDB /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		52AA8C582405572500752DDB /* UIFont+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+App.swift"; sourceTree = "<group>"; };
+		52ADC0442407BBA00012FC80 /* StandardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardView.swift; sourceTree = "<group>"; };
+		52ADC0462407BBAB0012FC80 /* StandardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardViewController.swift; sourceTree = "<group>"; };
+		52ADC0482407BBB60012FC80 /* StandardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardViewModel.swift; sourceTree = "<group>"; };
+		52ADC04B2407BD0B0012FC80 /* StandardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardCell.swift; sourceTree = "<group>"; };
 		52B4789C24054A85007D578E /* UIColor+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+App.swift"; sourceTree = "<group>"; };
 		52B4789E24054B0E007D578E /* MoviesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesView.swift; sourceTree = "<group>"; };
 		52E194F52401418D00407344 /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
@@ -336,11 +344,39 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		52ADC0422407BB7E0012FC80 /* Standard */ = {
+			isa = PBXGroup;
+			children = (
+				52ADC04A2407BCFE0012FC80 /* Views */,
+				52ADC0482407BBB60012FC80 /* StandardViewModel.swift */,
+				52ADC0462407BBAB0012FC80 /* StandardViewController.swift */,
+				52ADC0442407BBA00012FC80 /* StandardView.swift */,
+			);
+			path = Standard;
+			sourceTree = "<group>";
+		};
+		52ADC0432407BB840012FC80 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				526FDDC52405DDB100272AD5 /* Featured */,
+				52ADC0422407BB7E0012FC80 /* Standard */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
+		52ADC04A2407BCFE0012FC80 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				52ADC04B2407BD0B0012FC80 /* StandardCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		52E194F42401417F00407344 /* Movies */ = {
 			isa = PBXGroup;
 			children = (
 				526FDDC42405DDAA00272AD5 /* Home */,
-				526FDDC52405DDB100272AD5 /* Featured */,
+				52ADC0432407BB840012FC80 /* Sections */,
 			);
 			path = Movies;
 			sourceTree = "<group>";
@@ -494,19 +530,23 @@
 				52E194FA240141C000407344 /* MoviesViewController.swift in Sources */,
 				5211441624069AEA009A5D19 /* Service.swift in Sources */,
 				5211441324069AAB009A5D19 /* MoviesService.swift in Sources */,
+				52ADC0472407BBAB0012FC80 /* StandardViewController.swift in Sources */,
 				52B4789F24054B0E007D578E /* MoviesView.swift in Sources */,
 				526FDDC92405DDCB00272AD5 /* FeaturedView.swift in Sources */,
 				52508E8B24069A6300880BA8 /* MoviesServiceContract.swift in Sources */,
 				5275C48C24071FBC00EDE0EF /* ImageEndpoint.swift in Sources */,
+				52ADC0452407BBA00012FC80 /* StandardView.swift in Sources */,
 				5211441C24069F5F009A5D19 /* ProductionCompany.swift in Sources */,
 				523A2109240547B100C17124 /* R.generated.swift in Sources */,
 				5211441824069B87009A5D19 /* Movie.swift in Sources */,
+				52ADC04C2407BD0B0012FC80 /* StandardCell.swift in Sources */,
 				526FDDC72405DDC200272AD5 /* FeaturedViewController.swift in Sources */,
 				52508E872406988200880BA8 /* DependenciesContainer.swift in Sources */,
 				5274E9F72406A37A004F2A99 /* AppError.swift in Sources */,
 				52E1950B24014CB800407344 /* Animation+fade.swift in Sources */,
 				5297A8E9240674BB00FC528A /* ApiRequester.swift in Sources */,
 				52E1950924014C7E00407344 /* Transition+presentFullScreen.swift in Sources */,
+				52ADC0492407BBB60012FC80 /* StandardViewModel.swift in Sources */,
 				5275C49624072EE400EDE0EF /* DiscoverMoviesEndpoint.swift in Sources */,
 				5274EA012406A80E004F2A99 /* BaseRequest.swift in Sources */,
 				52E194F8240141AD00407344 /* MoviesCoordinator.swift in Sources */,
@@ -684,6 +724,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D27NXEG753;
 				INFOPLIST_FILE = WhatsOn/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -703,6 +744,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D27NXEG753;
 				INFOPLIST_FILE = WhatsOn/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

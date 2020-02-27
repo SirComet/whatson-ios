@@ -7,7 +7,7 @@
 //
 
 enum SectionDisplayType {
-    case featured
+    case featured, standard
 }
 
 enum SectionContentType {

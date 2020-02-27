@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-open class FeaturedCell: UICollectionViewCell {
+final class FeaturedCell: UICollectionViewCell {
     
     // MARK: - Outlets
     public private(set) lazy var posterImageView: UIImageView = {
@@ -48,11 +48,11 @@ open class FeaturedCell: UICollectionViewCell {
         setupViews()
     }
     
-    required public init?(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override open func prepareForReuse() {
+    override func prepareForReuse() {
         super.prepareForReuse()
         
         id = nil
@@ -103,4 +103,16 @@ open class FeaturedCell: UICollectionViewCell {
             make.bottom.equalToSuperview().offset(-8)
         }
     }
+}
+
+extension FeaturedCell {
+    
+    static var size: CGSize {
+        let numberOfCellsDisplayed: CGFloat = 1
+        let margins: CGFloat = 20 + numberOfCellsDisplayed * 16 + 20 + 20
+        let width: CGFloat = (UIScreen.width - margins) / numberOfCellsDisplayed
+
+        return CGSize(width: width, height: UIScreen.width(percent: 40))
+    }
+    
 }

@@ -47,7 +47,7 @@ final class MoviesViewModel: MoviesViewModelContract {
         sections.accept(
             [
                 Section(title: R.string.localizable.section_discover(), displayType: .featured, content: .discoverMovies),
-                Section(title: R.string.localizable.section_popular(), displayType: .featured, content: .popularMovies)
+                Section(title: R.string.localizable.section_popular(), displayType: .standard, content: .popularMovies)
             ]
         )
     }
@@ -79,6 +79,8 @@ final class MoviesViewModel: MoviesViewModelContract {
                         switch section.displayType {
                         case .featured:
                             self.router.trigger(.createFeaturedSection(childId: childId, content: section.content))
+                        case .standard:
+                            self.router.trigger(.createStandardSection(childId: childId, content: section.content))
                         }
                     }
             })

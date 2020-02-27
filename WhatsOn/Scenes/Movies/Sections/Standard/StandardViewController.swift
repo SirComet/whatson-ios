@@ -1,29 +1,29 @@
 //
-//  FeaturedViewController.swift
+//  StandardViewController.swift
 //  What'sOn
 //
-//  Created by Maxime Maheo on 25/02/2020.
+//  Created by Maxime Maheo on 27/02/2020.
 //  Copyright © 2020 Maxime Maheo. All rights reserved.
 //
 
 import UIKit
 import RxSwift
 
-final class FeaturedViewController: UIViewController {
+final class StandardViewController: UIViewController {
     
     // MARK: - Properties
-    private var viewModel: FeaturedViewModelContract?
+    private var viewModel: StandardViewModelContract?
     
     private let disposeBag = DisposeBag()
 
-    private var customView: FeaturedView {
+    private var customView: StandardView {
         // swiftlint:disable:next force_cast
-        return view as! FeaturedView
+        return view as! StandardView
     }
 
     // MARK: - Lifecycle
     override func loadView() {
-        view = FeaturedView()
+        view = StandardView()
     }
 
     override func viewDidLoad() {
@@ -43,7 +43,7 @@ final class FeaturedViewController: UIViewController {
     }
 
     // MARK: - Methods
-    func bind(to viewModel: FeaturedViewModelContract) {
+    func bind(to viewModel: StandardViewModelContract) {
         self.viewModel = viewModel
     }
 
@@ -74,13 +74,13 @@ final class FeaturedViewController: UIViewController {
     private func bindCollectionView() {
         viewModel?.movies
             .asDriver()
-            .drive(customView.collectionView.rx.items(cellIdentifier: "\(FeaturedCell.self)", cellType: FeaturedCell.self)) { [weak self] (_, movie, cell) in
+            .drive(customView.collectionView.rx.items(cellIdentifier: "\(StandardCell.self)", cellType: StandardCell.self)) { [weak self] (_, movie, cell) in
                 guard
                     let self = self,
                     let posterPlaceholder = R.image.poster_placeholder()
                 else { return }
                 
-                cell.display(title: movie.title, overview: movie.overview, id: movie.id)
+                cell.display(id: movie.id)
                 
                 self.viewModel?
                     .fetchPoster(for: movie)
@@ -99,14 +99,10 @@ final class FeaturedViewController: UIViewController {
     
 }
 
-extension FeaturedViewController: UICollectionViewDelegateFlowLayout {
+extension StandardViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let margins = 20 + 16 + 20 + 20
-        let width = Int(UIScreen.width) - margins
-        
-        return CGSize(width: width, height: Int(UIScreen.width(percent: 40)))
+        StandardCell.size
     }
     
 }
