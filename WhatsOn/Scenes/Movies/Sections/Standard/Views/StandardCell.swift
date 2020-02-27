@@ -69,7 +69,7 @@ extension StandardCell {
     
     static var size: CGSize {
         let numberOfCellsDisplayed: CGFloat = 3
-        let margins: CGFloat = 20 + numberOfCellsDisplayed * 16 + 20 + 20
+        let margins: CGFloat = 20 + numberOfCellsDisplayed * 16 + 20
         let width: CGFloat = (UIScreen.width - margins) / numberOfCellsDisplayed
         let height: CGFloat = width * 1.5
         

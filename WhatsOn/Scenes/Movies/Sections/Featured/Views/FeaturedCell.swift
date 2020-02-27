@@ -28,7 +28,7 @@ final class FeaturedCell: UICollectionViewCell {
     
     public private(set) lazy var overviewLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = .lightGrey800
         label.font = .p3
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -109,7 +109,7 @@ extension FeaturedCell {
     
     static var size: CGSize {
         let numberOfCellsDisplayed: CGFloat = 1
-        let margins: CGFloat = 20 + numberOfCellsDisplayed * 16 + 20 + 20
+        let margins: CGFloat = 20 + numberOfCellsDisplayed * 16 + 20
         let width: CGFloat = (UIScreen.width - margins) / numberOfCellsDisplayed
 
         return CGSize(width: width, height: UIScreen.width(percent: 40))

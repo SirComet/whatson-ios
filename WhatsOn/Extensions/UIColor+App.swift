@@ -18,4 +18,8 @@ extension UIColor {
         UIColor(red: 18 / 255, green: 18 / 255, blue: 22 / 255, alpha: 1)
     }
     
+    static var lightGrey800: UIColor {
+        UIColor(red: 146 / 255, green: 146 / 255, blue: 157 / 255, alpha: 1)
+    }
+    
 }
