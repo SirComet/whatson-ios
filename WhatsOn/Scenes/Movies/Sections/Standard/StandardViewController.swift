@@ -33,12 +33,16 @@ final class StandardViewController: UIViewController {
         bindViews()
         
         switch viewModel?.sectionContentType {
-        case .popularMovies:
+        case .popular:
             viewModel?.fetchPopularMovies()
-        case .discoverMovies:
+        case .discover:
             viewModel?.fetchDiscoverMovies()
         case .topRated:
             viewModel?.fetchTopRatedMovies()
+        case .nowPlaying:
+            viewModel?.fetchNowPlayingMovies()
+        case .upcoming:
+            viewModel?.fetchUpcomingMovies()
         case .none:
             break
         }

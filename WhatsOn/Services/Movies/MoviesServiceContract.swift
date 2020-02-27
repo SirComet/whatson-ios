@@ -13,5 +13,7 @@ protocol MoviesServiceContract: Service {
     func popular() -> Single<[Movie]>
     func discover() -> Single<[Movie]>
     func topRated() -> Single<[Movie]>
-    
+    func nowPlaying() -> Single<[Movie]>
+    func upcoming() -> Single<[Movie]>
+
 }

@@ -66,6 +66,8 @@
 		52E1950624014C5A00407344 /* XCoordinator in Frameworks */ = {isa = PBXBuildFile; productRef = 52E1950524014C5A00407344 /* XCoordinator */; };
 		52E1950924014C7E00407344 /* Transition+presentFullScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E1950824014C7E00407344 /* Transition+presentFullScreen.swift */; };
 		52E1950B24014CB800407344 /* Animation+fade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E1950A24014CB800407344 /* Animation+fade.swift */; };
+		52FC021C2407DC1C001E3CCF /* NowPlayingMoviesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC021B2407DC1C001E3CCF /* NowPlayingMoviesEndpoint.swift */; };
+		52FC021E2407EA4B001E3CCF /* UpcomingMoviesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC021D2407EA4B001E3CCF /* UpcomingMoviesEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +128,8 @@
 		52E194FD240148CA00407344 /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		52E1950824014C7E00407344 /* Transition+presentFullScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transition+presentFullScreen.swift"; sourceTree = "<group>"; };
 		52E1950A24014CB800407344 /* Animation+fade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+fade.swift"; sourceTree = "<group>"; };
+		52FC021B2407DC1C001E3CCF /* NowPlayingMoviesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingMoviesEndpoint.swift; sourceTree = "<group>"; };
+		52FC021D2407EA4B001E3CCF /* UpcomingMoviesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +279,8 @@
 				5274EA032406A9EB004F2A99 /* PopularMoviesEndpoint.swift */,
 				5275C49524072EE400EDE0EF /* DiscoverMoviesEndpoint.swift */,
 				521D1F8B2407C87B006C3648 /* TopRatedMoviesEndpoint.swift */,
+				52FC021B2407DC1C001E3CCF /* NowPlayingMoviesEndpoint.swift */,
+				52FC021D2407EA4B001E3CCF /* UpcomingMoviesEndpoint.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -549,6 +555,7 @@
 				52E1950B24014CB800407344 /* Animation+fade.swift in Sources */,
 				5297A8E9240674BB00FC528A /* ApiRequester.swift in Sources */,
 				52E1950924014C7E00407344 /* Transition+presentFullScreen.swift in Sources */,
+				52FC021C2407DC1C001E3CCF /* NowPlayingMoviesEndpoint.swift in Sources */,
 				52ADC0492407BBB60012FC80 /* StandardViewModel.swift in Sources */,
 				5275C49624072EE400EDE0EF /* DiscoverMoviesEndpoint.swift in Sources */,
 				5274EA012406A80E004F2A99 /* BaseRequest.swift in Sources */,
@@ -558,6 +565,7 @@
 				5275C48924071F7C00EDE0EF /* ImagesService.swift in Sources */,
 				521D1F8C2407C87B006C3648 /* TopRatedMoviesEndpoint.swift in Sources */,
 				52E194FE240148CA00407344 /* MainTabBarCoordinator.swift in Sources */,
+				52FC021E2407EA4B001E3CCF /* UpcomingMoviesEndpoint.swift in Sources */,
 				5275C4842407196E00EDE0EF /* UIScreen+Proportional.swift in Sources */,
 				5274EA062406AD20004F2A99 /* MovieDetails.swift in Sources */,
 				5297A8E72406746800FC528A /* Request.swift in Sources */,

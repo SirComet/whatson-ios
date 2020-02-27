@@ -18,7 +18,8 @@ final class MoviesView: UIView {
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
         tableView.register(SectionCell.self, forCellReuseIdentifier: "\(SectionCell.self)")
-
+        tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
+        
         return tableView
     }()
 

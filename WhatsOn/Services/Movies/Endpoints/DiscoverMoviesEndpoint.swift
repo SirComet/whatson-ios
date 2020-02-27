@@ -34,6 +34,6 @@ final class DiscoverMoviesEndpoint: ApiEndpoint {
     func parseResponse(data: Data) throws -> DiscoverMoviesEndpoint.ResponseDataType {
         let response = try JSONDecoder().decode(MovieList.self, from: data)
         
-        return response.results.sorted(by: { $0.voteCount > $1.voteCount })
+        return response.results.sorted(by: { $0.popularity > $1.popularity })
     }
 }

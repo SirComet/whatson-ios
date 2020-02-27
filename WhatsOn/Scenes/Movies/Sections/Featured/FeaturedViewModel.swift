@@ -23,6 +23,9 @@ protocol FeaturedViewModelContract {
     func fetchPopularMovies()
     func fetchDiscoverMovies()
     func fetchTopRatedMovies()
+    func fetchNowPlayingMovies()
+    func fetchUpcomingMovies()
+
     func fetchPoster(for movie: Movie) -> Single<UIImage>
     
 }
@@ -97,6 +100,40 @@ final class FeaturedViewModel: FeaturedViewModelContract {
         
         moviesService
             .topRated()
+            .subscribe(onSuccess: { [weak self] (movies) in
+                self?.isLoading.accept(false)
+                
+                self?.movies.accept(movies)
+            }, onError: { [weak self] (error) in
+                self?.isLoading.accept(false)
+                
+                self?.error.accept(AppError(error: error))
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func fetchNowPlayingMovies() {
+        isLoading.accept(true)
+        
+        moviesService
+            .nowPlaying()
+            .subscribe(onSuccess: { [weak self] (movies) in
+                self?.isLoading.accept(false)
+                
+                self?.movies.accept(movies)
+            }, onError: { [weak self] (error) in
+                self?.isLoading.accept(false)
+                
+                self?.error.accept(AppError(error: error))
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func fetchUpcomingMovies() {
+        isLoading.accept(true)
+        
+        moviesService
+            .upcoming()
             .subscribe(onSuccess: { [weak self] (movies) in
                 self?.isLoading.accept(false)
                 

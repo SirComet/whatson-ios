@@ -14,7 +14,7 @@ final class TopRatedMoviesEndpoint: ApiEndpoint {
     typealias ResponseDataType = [Movie]
     
     // MARK: - Methods
-    func buildRequest(parameters: DiscoverMoviesEndpoint.RequestDataType) throws -> Request {
+    func buildRequest(parameters: TopRatedMoviesEndpoint.RequestDataType) throws -> Request {
         let stringUrl = "https://api.themoviedb.org/3/movie/top_rated"
         
         guard
@@ -30,7 +30,7 @@ final class TopRatedMoviesEndpoint: ApiEndpoint {
         return request
     }
     
-    func parseResponse(data: Data) throws -> DiscoverMoviesEndpoint.ResponseDataType {
+    func parseResponse(data: Data) throws -> TopRatedMoviesEndpoint.ResponseDataType {
         let response = try JSONDecoder().decode(MovieList.self, from: data)
         
         return response.results.sorted(by: { $0.voteCount > $1.voteCount })

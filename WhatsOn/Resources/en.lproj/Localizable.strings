@@ -6,9 +6,11 @@
   Copyright © 2020 Maxime Maheo. All rights reserved.
 */
 "tab_bar_movies" = "Movies";
-"section_popular" = "Popular";
+"section_popular" = "Most populars";
 "section_discover" = "Discover";
 "section_top_rated" = "Top rated";
+"section_now_playing" = "Currently in theaters";
+"section_upcoming" = "Coming soon";
 "error_description_generic" = "Error occurred.";
 "error_description_network_unavailable" = "Network error occurred.";
 "error_failure_reason_generic" = "Something went wrong here.";

@@ -11,7 +11,7 @@ enum SectionDisplayType {
 }
 
 enum SectionContentType {
-    case popularMovies, discoverMovies, topRated
+    case popular, discover, topRated, nowPlaying, upcoming
 }
 
 struct Section {
