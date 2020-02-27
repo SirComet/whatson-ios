@@ -37,6 +37,8 @@ final class FeaturedViewController: UIViewController {
             viewModel?.fetchPopularMovies()
         case .discoverMovies:
             viewModel?.fetchDiscoverMovies()
+        case .topRated:
+            viewModel?.fetchTopRatedMovies()
         case .none:
             break
         }

@@ -8,6 +8,7 @@
 "tab_bar_movies" = "Movies";
 "section_popular" = "Popular";
 "section_discover" = "Discover";
+"section_top_rated" = "Top rated";
 "error_description_generic" = "Error occurred.";
 "error_description_network_unavailable" = "Network error occurred.";
 "error_failure_reason_generic" = "Something went wrong here.";

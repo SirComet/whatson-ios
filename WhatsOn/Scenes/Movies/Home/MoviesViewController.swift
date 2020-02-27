@@ -67,7 +67,7 @@ extension MoviesViewController: UITableViewDelegate {
     func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let section = viewModel?.sections.value[indexPath.row] else { return 0 }
         
-        let margins: CGFloat = 16 + 24 + 8
+        let margins: CGFloat = 16 + 24 + 8 + 4
         
         switch section.displayType {
         case .featured:

@@ -47,7 +47,8 @@ final class MoviesViewModel: MoviesViewModelContract {
         sections.accept(
             [
                 Section(title: R.string.localizable.section_discover(), displayType: .featured, content: .discoverMovies),
-                Section(title: R.string.localizable.section_popular(), displayType: .standard, content: .popularMovies)
+                Section(title: R.string.localizable.section_popular(), displayType: .standard, content: .popularMovies),
+                Section(title: R.string.localizable.section_top_rated(), displayType: .featured, content: .topRated)
             ]
         )
     }
