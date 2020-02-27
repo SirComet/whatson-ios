@@ -58,10 +58,10 @@ final class GenreCell: UICollectionViewCell {
 extension GenreCell {
     
     static var size: CGSize {
-        let numberOfCellsDisplayed: CGFloat = 3
+        let numberOfCellsDisplayed: CGFloat = 2
         let margins: CGFloat = 20 + numberOfCellsDisplayed * 16 + 20
         let width: CGFloat = (UIScreen.width - margins) / numberOfCellsDisplayed
-        let height: CGFloat = width * 0.7
+        let height: CGFloat = width * 0.4
         
         return CGSize(width: width, height: height)
     }

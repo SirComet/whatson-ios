@@ -73,7 +73,7 @@ final class GenreViewController: UIViewController {
         viewModel?.genres
             .asDriver()
             .drive(customView.collectionView.rx.items(cellIdentifier: "\(GenreCell.self)", cellType: GenreCell.self)) { (_, genre, cell) in
-                cell.display(title: genre.name)
+                cell.display(title: "\(genre.smiley) \(genre.name)")
             }
             .disposed(by: disposeBag)
         
