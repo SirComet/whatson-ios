@@ -27,5 +27,7 @@ final class MovieDetailsView: UIView {
     // MARK: - Methods
     private func build() {
         backgroundColor = .darkGrey900
+        
+        // TODO : Add button to dismiss view
     }
 }

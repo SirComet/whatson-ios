@@ -33,6 +33,12 @@ final class MoviesListViewController: UIViewController {
         setupViews()
         bindViews()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 
     // MARK: - Methods
     func bind(to viewModel: MoviesListViewModelContract) {
