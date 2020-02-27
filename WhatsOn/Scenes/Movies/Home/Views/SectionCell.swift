@@ -60,7 +60,7 @@ final class SectionCell: UITableViewCell {
         addSubview(containerView)
         containerView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
-            make.leading.trailing.equalTo(titleLabel)
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
     }

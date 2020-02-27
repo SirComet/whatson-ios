@@ -17,7 +17,8 @@ final class StandardView: UIView {
         layout.minimumLineSpacing = 16
         layout.minimumInteritemSpacing = 16
         layout.scrollDirection = .horizontal
-               
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .darkGrey900
