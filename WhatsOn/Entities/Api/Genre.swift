@@ -40,7 +40,7 @@ extension Genre {
         case 35:
             return "😂"
         case 80:
-            return "🩸"
+            return "🔪"
         case 27:
             return "😰"
         case 10402:

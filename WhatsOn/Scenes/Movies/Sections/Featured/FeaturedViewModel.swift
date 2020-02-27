@@ -61,80 +61,43 @@ final class FeaturedViewModel: FeaturedViewModelContract {
         self.imagesService = imagesService
     }
     
-    // TODO : Refacto all `fetchXXX` methods
     func fetchPopularMovies() {
         isLoading.accept(true)
         
-        moviesService
-            .popular()
-            .subscribe(onSuccess: { [weak self] (movies) in
-                self?.isLoading.accept(false)
-                
-                self?.movies.accept(movies)
-            }, onError: { [weak self] (error) in
-                self?.isLoading.accept(false)
-                
-                self?.error.accept(AppError(error: error))
-            })
-            .disposed(by: disposeBag)
+        handle(single: moviesService.popular())
     }
     
     func fetchDiscoverMovies() {
         isLoading.accept(true)
         
-        moviesService
-            .discover()
-            .subscribe(onSuccess: { [weak self] (movies) in
-                self?.isLoading.accept(false)
-                
-                self?.movies.accept(movies)
-            }, onError: { [weak self] (error) in
-                self?.isLoading.accept(false)
-                
-                self?.error.accept(AppError(error: error))
-            })
-            .disposed(by: disposeBag)
+        handle(single: moviesService.discover())
     }
     
     func fetchTopRatedMovies() {
         isLoading.accept(true)
         
-        moviesService
-            .topRated()
-            .subscribe(onSuccess: { [weak self] (movies) in
-                self?.isLoading.accept(false)
-                
-                self?.movies.accept(movies)
-            }, onError: { [weak self] (error) in
-                self?.isLoading.accept(false)
-                
-                self?.error.accept(AppError(error: error))
-            })
-            .disposed(by: disposeBag)
+        handle(single: moviesService.topRated())
     }
     
     func fetchNowPlayingMovies() {
         isLoading.accept(true)
         
-        moviesService
-            .nowPlaying()
-            .subscribe(onSuccess: { [weak self] (movies) in
-                self?.isLoading.accept(false)
-                
-                self?.movies.accept(movies)
-            }, onError: { [weak self] (error) in
-                self?.isLoading.accept(false)
-                
-                self?.error.accept(AppError(error: error))
-            })
-            .disposed(by: disposeBag)
+        handle(single: moviesService.nowPlaying())
     }
     
     func fetchUpcomingMovies() {
         isLoading.accept(true)
         
-        moviesService
-            .upcoming()
+        handle(single: moviesService.upcoming())
+    }
+    
+    func fetchPoster(for movie: Movie) -> Single<UIImage> {
+        imagesService.fetchImage(for: movie)
+    }
+    
+    // MARK: - Methods
+    private func handle(single: Single<[Movie]>) {
+        single
             .subscribe(onSuccess: { [weak self] (movies) in
                 self?.isLoading.accept(false)
                 
@@ -145,10 +108,6 @@ final class FeaturedViewModel: FeaturedViewModelContract {
                 self?.error.accept(AppError(error: error))
             })
             .disposed(by: disposeBag)
-    }
-    
-    func fetchPoster(for movie: Movie) -> Single<UIImage> {
-        imagesService.fetchImage(for: movie)
     }
 
 }
