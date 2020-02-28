@@ -70,10 +70,9 @@
 		52E194F8240141AD00407344 /* MoviesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E194F7240141AD00407344 /* MoviesCoordinator.swift */; };
 		52E194FA240141C000407344 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E194F9240141C000407344 /* MoviesViewController.swift */; };
 		52E194FE240148CA00407344 /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E194FD240148CA00407344 /* MainTabBarCoordinator.swift */; };
-		52E1950424014C5A00407344 /* XCoordinatorRx in Frameworks */ = {isa = PBXBuildFile; productRef = 52E1950324014C5A00407344 /* XCoordinatorRx */; };
-		52E1950624014C5A00407344 /* XCoordinator in Frameworks */ = {isa = PBXBuildFile; productRef = 52E1950524014C5A00407344 /* XCoordinator */; };
 		52E1950924014C7E00407344 /* Transition+presentFullScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E1950824014C7E00407344 /* Transition+presentFullScreen.swift */; };
 		52E1950B24014CB800407344 /* Animation+fade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E1950A24014CB800407344 /* Animation+fade.swift */; };
+		52E6235524090EDB00812217 /* XCoordinator in Frameworks */ = {isa = PBXBuildFile; productRef = 52E6235424090EDB00812217 /* XCoordinator */; };
 		52FC021C2407DC1C001E3CCF /* NowPlayingMoviesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC021B2407DC1C001E3CCF /* NowPlayingMoviesEndpoint.swift */; };
 		52FC021E2407EA4B001E3CCF /* UpcomingMoviesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC021D2407EA4B001E3CCF /* UpcomingMoviesEndpoint.swift */; };
 		52FC02232407F3D1001E3CCF /* MoviesGenresEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC02222407F3D1001E3CCF /* MoviesGenresEndpoint.swift */; };
@@ -165,11 +164,10 @@
 			files = (
 				52B478A924054DB8007D578E /* RxCocoa in Frameworks */,
 				523A2106240545FF00C17124 /* Rswift in Frameworks */,
-				52E1950624014C5A00407344 /* XCoordinator in Frameworks */,
 				5256A70D2405505500183686 /* SnapKit in Frameworks */,
 				52B478A724054DB8007D578E /* RxSwift in Frameworks */,
+				52E6235524090EDB00812217 /* XCoordinator in Frameworks */,
 				52B478A524054DB8007D578E /* RxRelay in Frameworks */,
-				52E1950424014C5A00407344 /* XCoordinatorRx in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,13 +508,12 @@
 			);
 			name = "What'sOn";
 			packageProductDependencies = (
-				52E1950324014C5A00407344 /* XCoordinatorRx */,
-				52E1950524014C5A00407344 /* XCoordinator */,
 				523A2105240545FF00C17124 /* Rswift */,
 				52B478A424054DB8007D578E /* RxRelay */,
 				52B478A624054DB8007D578E /* RxSwift */,
 				52B478A824054DB8007D578E /* RxCocoa */,
 				5256A70C2405505500183686 /* SnapKit */,
+				52E6235424090EDB00812217 /* XCoordinator */,
 			);
 			productName = Netflix;
 			productReference = 526B571523FDDBE800E28658 /* What'sOn.app */;
@@ -548,10 +545,10 @@
 			);
 			mainGroup = 526B570C23FDDBE800E28658;
 			packageReferences = (
-				52E1950224014C5A00407344 /* XCRemoteSwiftPackageReference "XCoordinator" */,
 				523A2104240545FF00C17124 /* XCRemoteSwiftPackageReference "R.swift" */,
 				52B478A324054DB8007D578E /* XCRemoteSwiftPackageReference "RxSwift" */,
 				5256A70B2405505500183686 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				52E6235324090EDB00812217 /* XCRemoteSwiftPackageReference "XCoordinator" */,
 			);
 			productRefGroup = 526B571623FDDBE800E28658 /* Products */;
 			projectDirPath = "";
@@ -917,7 +914,7 @@
 				minimumVersion = 5.0.1;
 			};
 		};
-		52E1950224014C5A00407344 /* XCRemoteSwiftPackageReference "XCoordinator" */ = {
+		52E6235324090EDB00812217 /* XCRemoteSwiftPackageReference "XCoordinator" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/quickbirdstudios/XCoordinator";
 			requirement = {
@@ -953,14 +950,9 @@
 			package = 52B478A324054DB8007D578E /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
 		};
-		52E1950324014C5A00407344 /* XCoordinatorRx */ = {
+		52E6235424090EDB00812217 /* XCoordinator */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 52E1950224014C5A00407344 /* XCRemoteSwiftPackageReference "XCoordinator" */;
-			productName = XCoordinatorRx;
-		};
-		52E1950524014C5A00407344 /* XCoordinator */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 52E1950224014C5A00407344 /* XCRemoteSwiftPackageReference "XCoordinator" */;
+			package = 52E6235324090EDB00812217 /* XCRemoteSwiftPackageReference "XCoordinator" */;
 			productName = XCoordinator;
 		};
 /* End XCSwiftPackageProductDependency section */

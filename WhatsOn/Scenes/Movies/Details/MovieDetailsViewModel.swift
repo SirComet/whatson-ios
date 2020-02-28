@@ -12,7 +12,7 @@ import RxCocoa
 import UIKit
 
 enum MovieDetailsViewModelAction: ViewModelAction {
-    
+    case dismiss
 }
 
 protocol MovieDetailsViewModelContract: ViewModel {
@@ -50,8 +50,8 @@ final class MovieDetailsViewModel: MovieDetailsViewModelContract {
         guard let action = action as? MovieDetailsViewModelAction else { return }
         
         switch action {
-        default:
-            break
+        case .dismiss:
+            router.trigger(.dismissMovieDetails)
         }
     }
     

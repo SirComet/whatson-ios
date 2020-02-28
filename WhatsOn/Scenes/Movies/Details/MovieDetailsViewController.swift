@@ -52,6 +52,7 @@ final class MovieDetailsViewController: UIViewController {
 
     private func bindViews() {
         bindTitle()
+        bindDismissButton()
     }
     
     private func bindTitle() {
@@ -61,6 +62,15 @@ final class MovieDetailsViewController: UIViewController {
             .drive(onNext: { [weak self] (title) in
                 self?.title = title
             })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindDismissButton() {
+        customView.dismissButton.rx
+            .tap
+            .bind { [weak self] () in
+                self?.viewModel?.handle(action: MovieDetailsViewModelAction.dismiss)
+            }
             .disposed(by: disposeBag)
     }
 }

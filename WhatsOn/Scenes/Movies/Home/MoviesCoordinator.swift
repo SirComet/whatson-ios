@@ -13,6 +13,7 @@ enum MoviesRoute: Route {
     case home
     case moviesList(title: String, movies: [Movie])
     case movieDetails(movie: Movie)
+    case dismissMovieDetails
     
     case removeSections
     
@@ -47,6 +48,8 @@ final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
             return routeToMoviesList(title: title, movies: movies)
         case let .movieDetails(movie):
             return routeToMovieDetails(movie: movie)
+        case .dismissMovieDetails:
+            return .pop(animation: .fade)
         case .removeSections:
             sections.removeAll()
 
@@ -97,7 +100,7 @@ final class MoviesCoordinator: NavigationCoordinator<MoviesRoute> {
         
         viewController.bind(to: viewModel)
 
-        return .push(viewController)
+        return .push(viewController, animation: .fade)
     }
     
     private func routeToSection(childId: String, container: Container) -> NavigationTransition {

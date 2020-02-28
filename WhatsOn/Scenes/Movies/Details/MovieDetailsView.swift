@@ -12,6 +12,16 @@ import UIKit
 final class MovieDetailsView: UIView {
     
     // MARK: - Outlets
+    public private(set) lazy var dismissButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .darkGrey600
+        button.layer.cornerRadius = 12
+        button.tintColor = .white
+        button.setImage(R.image.icons_times()?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
+        
+        return button
+    }()
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -28,6 +38,10 @@ final class MovieDetailsView: UIView {
     private func build() {
         backgroundColor = .darkGrey900
         
-        // TODO : Add button to dismiss view
+        addSubview(dismissButton)
+        dismissButton.snp.makeConstraints { (make) in
+            make.trailing.top.equalTo(safeAreaLayoutGuide).inset(16)
+            make.height.width.equalTo(24)
+        }
     }
 }
