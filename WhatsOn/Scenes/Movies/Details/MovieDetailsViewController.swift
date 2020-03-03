@@ -53,6 +53,8 @@ final class MovieDetailsViewController: UIViewController {
     private func bindViews() {
         bindTitle()
         bindDismissButton()
+        bindBlurImageView()
+        bindPosterImageView()
     }
     
     private func bindTitle() {
@@ -73,4 +75,27 @@ final class MovieDetailsViewController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
+    
+    private func bindBlurImageView() {
+        guard let placeholderImage = R.image.poster_placeholder() else { return }
+        
+        viewModel?.fetchBackdropImage()
+            .asDriver(onErrorJustReturn: placeholderImage)
+            .drive(onNext: { [weak self] (image) in
+                self?.customView.displayBlurImage(with: image.blur(radius: 40))
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindPosterImageView() {
+        guard let placeholderImage = R.image.poster_placeholder() else { return }
+        
+        viewModel?.fetchBackdropImage()
+            .asDriver(onErrorJustReturn: placeholderImage)
+            .drive(onNext: { [weak self] (image) in
+                self?.customView.displayPosterImage(with: image)
+            })
+            .disposed(by: disposeBag)
+    }
+    
 }

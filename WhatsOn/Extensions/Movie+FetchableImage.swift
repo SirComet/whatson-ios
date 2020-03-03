@@ -13,5 +13,5 @@ extension Movie: FetchableImage {
         
         return "\(host)/w500\(posterPath)"
     }
-    
+        
 }

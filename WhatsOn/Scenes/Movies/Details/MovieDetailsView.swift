@@ -12,6 +12,28 @@ import UIKit
 final class MovieDetailsView: UIView {
     
     // MARK: - Outlets
+    public private(set) lazy var blurImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
+        imageView.alpha = 0
+        
+        return imageView
+    }()
+
+    public private(set) lazy var gradientImageView: UIImageView = {
+        UIImageView()
+    }()
+    
+    public private(set) lazy var posterImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 4
+        imageView.layer.masksToBounds = true
+        imageView.alpha = 0
+        
+        return imageView
+    }()
+    
     public private(set) lazy var dismissButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .darkGrey600
@@ -38,10 +60,52 @@ final class MovieDetailsView: UIView {
     private func build() {
         backgroundColor = .darkGrey900
         
+        addSubview(blurImageView)
+        blurImageView.snp.makeConstraints { (make) in
+            make.leading.trailing.top.equalToSuperview()
+            make.height.equalTo(UIScreen.height(percent: 50))
+        }
+        
+        addSubview(gradientImageView)
+        gradientImageView.image = UIImage.withGradient(colors: [UIColor.darkGrey900.withAlphaComponent(0.5), .darkGrey900],
+                                                       size: CGSize(width: UIScreen.width,
+                                                                    height: UIScreen.height(percent: 50)))
+        gradientImageView.snp.makeConstraints { (make) in
+            make.edges.equalTo(blurImageView)
+        }
+        
+        addSubview(posterImageView)
+        posterImageView.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.centerY.equalTo(gradientImageView)
+            make.height.equalTo(200)
+            make.width.equalTo(posterImageView.snp.height).multipliedBy(0.66)
+        }
+        
         addSubview(dismissButton)
         dismissButton.snp.makeConstraints { (make) in
             make.trailing.top.equalTo(safeAreaLayoutGuide).inset(16)
             make.height.width.equalTo(24)
+        }
+    }
+    
+    func displayBlurImage(with image: UIImage?) {
+        blurImageView.image = image
+        
+        UIView.animate(withDuration: Constants.defaultDuration) {
+            self.blurImageView.alpha = 1
+            
+            self.layoutIfNeeded()
+        }
+    }
+    
+    func displayPosterImage(with image: UIImage?) {
+        posterImageView.image = image
+        
+        UIView.animate(withDuration: Constants.defaultDuration) {
+            self.posterImageView.alpha = 1
+            
+            self.layoutIfNeeded()
         }
     }
 }

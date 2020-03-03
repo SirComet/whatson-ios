@@ -15,7 +15,7 @@ extension Animation {
 }
 
 extension InteractiveTransitionAnimation {
-    fileprivate static let fade = InteractiveTransitionAnimation(duration: 0.2) { transitionContext in
+    fileprivate static let fade = InteractiveTransitionAnimation(duration: Constants.defaultDuration) { transitionContext in
         let containerView = transitionContext.containerView
         let toView = transitionContext.view(forKey: .to)!
 
@@ -23,7 +23,7 @@ extension InteractiveTransitionAnimation {
         containerView.addSubview(toView)
 
         UIView.animate(
-            withDuration: 0.2,
+            withDuration: Constants.defaultDuration,
             delay: 0,
             options: [.curveLinear],
             animations: {

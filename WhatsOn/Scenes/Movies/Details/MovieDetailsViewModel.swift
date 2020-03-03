@@ -20,6 +20,8 @@ protocol MovieDetailsViewModelContract: ViewModel {
     // MARK: - Properties
     var movie: BehaviorRelay<Movie> { get }
     
+    // MARK: - Methods
+    func fetchBackdropImage() -> Single<UIImage>
 }
 
 final class MovieDetailsViewModel: MovieDetailsViewModelContract {
@@ -53,6 +55,10 @@ final class MovieDetailsViewModel: MovieDetailsViewModelContract {
         case .dismiss:
             router.trigger(.dismissMovieDetails)
         }
+    }
+    
+    func fetchBackdropImage() -> Single<UIImage> {
+        imagesService.fetchImage(for: movie.value)
     }
     
 }
