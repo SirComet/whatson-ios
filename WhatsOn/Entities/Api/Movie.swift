@@ -48,7 +48,6 @@ struct Movie: Codable {
         case voteCount = "vote_count"
         case hasVideo = "video"
         case voteAverage = "vote_average"
-        
     }
     
 }

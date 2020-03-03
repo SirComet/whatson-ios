@@ -62,6 +62,8 @@ final class MovieDetailsViewController: UIViewController {
             .drive(onNext: { [weak self] (movie) in
                 self?.customView.titleLabel.text = movie.title
                 self?.customView.overviewLabel.text = movie.overview
+                self?.customView.markLabel.text = "\(movie.voteAverage) / 10"
+                self?.customView.releaseDateLabel.text = movie.formattedReleaseDate
             })
             .disposed(by: disposeBag)
     }

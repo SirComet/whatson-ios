@@ -55,6 +55,35 @@ final class MovieDetailsView: UIView {
         
         return label
     }()
+
+    public private(set) lazy var informationStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 16
+        stackView.distribution = .fill
+        
+        return stackView
+    }()
+    
+    public private(set) lazy var markLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .p2
+        label.textAlignment = .left
+        label.alpha = 0
+        
+        return label
+    }()
+    
+    public private(set) lazy var releaseDateLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .lightGrey800
+        label.font = .p3
+        label.textAlignment = .left
+        label.alpha = 0
+        
+        return label
+    }()
     
     public private(set) lazy var overviewLabel: UILabel = {
         let label = UILabel()
@@ -116,10 +145,19 @@ final class MovieDetailsView: UIView {
             make.top.equalTo(posterImageView.snp.bottom).offset(16)
         }
         
+        addSubview(informationStackView)
+        informationStackView.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(titleLabel.snp.bottom).offset(16)
+        }
+        
+        [ markLabel,
+          releaseDateLabel ].forEach { informationStackView.addArrangedSubview($0) }
+        
         addSubview(overviewLabel)
         overviewLabel.snp.makeConstraints { (make) in
             make.leading.trailing.equalTo(titleLabel)
-            make.top.equalTo(titleLabel.snp.bottom).offset(16)
+            make.top.equalTo(informationStackView.snp.bottom).offset(16)
         }
     }
     
@@ -147,6 +185,8 @@ final class MovieDetailsView: UIView {
         UIView.animate(withDuration: Constants.defaultDuration) {
             self.titleLabel.alpha = 1
             self.overviewLabel.alpha = 1
+            self.markLabel.alpha = 1
+            self.releaseDateLabel.alpha = 1
             
             self.layoutIfNeeded()
         }

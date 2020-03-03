@@ -49,6 +49,7 @@
 		5275C48E2407210400EDE0EF /* Movie+FetchableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275C48D2407210400EDE0EF /* Movie+FetchableImage.swift */; };
 		5275C49024072AEF00EDE0EF /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275C48F24072AEF00EDE0EF /* ImageRequest.swift */; };
 		5275C49624072EE400EDE0EF /* DiscoverMoviesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275C49524072EE400EDE0EF /* DiscoverMoviesEndpoint.swift */; };
+		528BB1A4240F0CC6003C12C8 /* Movie+FormattedDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528BB1A3240F0CC6003C12C8 /* Movie+FormattedDate.swift */; };
 		5297A8E52406744B00FC528A /* ApiEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5297A8E42406744B00FC528A /* ApiEndpoint.swift */; };
 		5297A8E72406746800FC528A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5297A8E62406746800FC528A /* Request.swift */; };
 		5297A8E9240674BB00FC528A /* ApiRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5297A8E8240674BB00FC528A /* ApiRequester.swift */; };
@@ -131,6 +132,7 @@
 		5275C48D2407210400EDE0EF /* Movie+FetchableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+FetchableImage.swift"; sourceTree = "<group>"; };
 		5275C48F24072AEF00EDE0EF /* ImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
 		5275C49524072EE400EDE0EF /* DiscoverMoviesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverMoviesEndpoint.swift; sourceTree = "<group>"; };
+		528BB1A3240F0CC6003C12C8 /* Movie+FormattedDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+FormattedDate.swift"; sourceTree = "<group>"; };
 		5297A8E42406744B00FC528A /* ApiEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEndpoint.swift; sourceTree = "<group>"; };
 		5297A8E62406746800FC528A /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		5297A8E8240674BB00FC528A /* ApiRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequester.swift; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 				5275C48D2407210400EDE0EF /* Movie+FetchableImage.swift */,
 				52B4F171240E7B15009B2C61 /* UIImage+Gradient.swift */,
 				52B4F179240E81BC009B2C61 /* UIImage+Blur.swift */,
+				528BB1A3240F0CC6003C12C8 /* Movie+FormattedDate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -690,6 +693,7 @@
 				5274E9FF2406A6FD004F2A99 /* UIViewController+PresentAlertView.swift in Sources */,
 				525B1B37240847D1004ABDCE /* MoviesListView.swift in Sources */,
 				52FC022D2407F5A2001E3CCF /* GenreCell.swift in Sources */,
+				528BB1A4240F0CC6003C12C8 /* Movie+FormattedDate.swift in Sources */,
 				5274EA082406AE72004F2A99 /* ApiKey.swift in Sources */,
 				52FC02282407F4E6001E3CCF /* GenreViewController.swift in Sources */,
 				5297A8E52406744B00FC528A /* ApiEndpoint.swift in Sources */,
