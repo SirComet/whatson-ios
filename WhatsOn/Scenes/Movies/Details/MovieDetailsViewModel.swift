@@ -19,8 +19,11 @@ protocol MovieDetailsViewModelContract: ViewModel {
     
     // MARK: - Properties
     var movie: BehaviorRelay<Movie> { get }
-    
+    var movieDetails: BehaviorRelay<MovieDetails?> { get }
+    var error: PublishRelay<AppError> { get }
+
     // MARK: - Methods
+    func fetchMovieDetails()
     func fetchPosterImage() -> Single<UIImage>
 }
 
@@ -30,11 +33,14 @@ final class MovieDetailsViewModel: MovieDetailsViewModelContract {
     private let router: UnownedRouter<MoviesRoute>
     private let servicesContainer: DependenciesContainer
         
+    private let moviesService: MoviesServiceContract!
     private let imagesService: ImagesServiceContract!
     
     private let disposeBag = DisposeBag()
     
     var movie: BehaviorRelay<Movie>
+    var movieDetails: BehaviorRelay<MovieDetails?> = .init(value: nil)
+    var error: PublishRelay<AppError> = .init()
     
     // MARK: - Lifecycle
     init(router: UnownedRouter<MoviesRoute>, servicesContainer: DependenciesContainer, movie: Movie) throws {
@@ -42,8 +48,12 @@ final class MovieDetailsViewModel: MovieDetailsViewModelContract {
         self.servicesContainer = servicesContainer
         self.movie = BehaviorRelay(value: movie)
         
-        guard let imagesService: ImagesServiceContract = servicesContainer.resolve() else { throw ServiceError.notFound }
+        guard
+            let moviesService: MoviesServiceContract = servicesContainer.resolve(),
+            let imagesService: ImagesServiceContract = servicesContainer.resolve()
+        else { throw ServiceError.notFound }
         
+        self.moviesService = moviesService
         self.imagesService = imagesService
     }
     
@@ -55,6 +65,17 @@ final class MovieDetailsViewModel: MovieDetailsViewModelContract {
         case .dismiss:
             router.trigger(.dismissMovieDetails)
         }
+    }
+    
+    func fetchMovieDetails() {
+        moviesService
+            .details(id: movie.value.id)
+            .subscribe(onSuccess: { [weak self] (movieDetails) in
+                self?.movieDetails.accept(movieDetails)
+            }, onError: { [weak self] (error) in
+                self?.error.accept(AppError(error: error))
+            })
+            .disposed(by: disposeBag)
     }
     
     func fetchPosterImage() -> Single<UIImage> {

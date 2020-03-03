@@ -32,6 +32,8 @@ final class MovieDetailsViewController: UIViewController {
 
         setupViews()
         bindViews()
+        
+        viewModel?.fetchMovieDetails()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,9 +53,20 @@ final class MovieDetailsViewController: UIViewController {
     }
 
     private func bindViews() {
+        bindError()
         bindMovie()
+        bindMovieDetails()
         bindDismissButton()
         bindPosterImage()
+    }
+    
+    private func bindError() {
+        viewModel?.error
+            .asDriver(onErrorJustReturn: .generic)
+            .drive(onNext: { [weak self] (error) in
+                self?.presentAlertView(with: error)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func bindMovie() {
@@ -63,7 +76,18 @@ final class MovieDetailsViewController: UIViewController {
                 self?.customView.titleLabel.text = movie.title
                 self?.customView.overviewLabel.text = movie.overview
                 self?.customView.markLabel.text = "\(movie.voteAverage) / 10"
-                self?.customView.releaseDateLabel.text = movie.formattedReleaseDate
+                self?.customView.releaseDateLabel.text = movie.releaseDate?.format()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindMovieDetails() {
+        viewModel?.movieDetails
+            .asDriver()
+            .filter { $0 != nil }
+            .map { $0! }
+            .drive(onNext: { [weak self] (movieDetails) in
+                self?.customView.display(duration: movieDetails.duration.format())
             })
             .disposed(by: disposeBag)
     }
@@ -85,7 +109,8 @@ final class MovieDetailsViewController: UIViewController {
             .drive(onNext: { [weak self] (image) in
                 self?.customView.displayBlurImage(with: image.blur(radius: 40))
                 self?.customView.displayPosterImage(with: image)
-                self?.customView.displayTexts()
+                
+                self?.customView.displayMovieInformation()
             })
             .disposed(by: disposeBag)
     }

@@ -85,6 +85,16 @@ final class MovieDetailsView: UIView {
         return label
     }()
     
+    public private(set) lazy var durationLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .lightGrey800
+        label.font = .p3
+        label.textAlignment = .left
+        label.alpha = 0
+        
+        return label
+    }()
+    
     public private(set) lazy var overviewLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -152,7 +162,8 @@ final class MovieDetailsView: UIView {
         }
         
         [ markLabel,
-          releaseDateLabel ].forEach { informationStackView.addArrangedSubview($0) }
+          releaseDateLabel,
+          durationLabel ].forEach { informationStackView.addArrangedSubview($0) }
         
         addSubview(overviewLabel)
         overviewLabel.snp.makeConstraints { (make) in
@@ -181,12 +192,22 @@ final class MovieDetailsView: UIView {
         }
     }
     
-    func displayTexts() {
+    func displayMovieInformation() {
         UIView.animate(withDuration: Constants.defaultDuration) {
             self.titleLabel.alpha = 1
             self.overviewLabel.alpha = 1
             self.markLabel.alpha = 1
             self.releaseDateLabel.alpha = 1
+            
+            self.layoutIfNeeded()
+        }
+    }
+    
+    func display(duration: String) {
+        durationLabel.text = duration
+        
+        UIView.animate(withDuration: Constants.defaultDuration) {
+            self.durationLabel.alpha = 1
             
             self.layoutIfNeeded()
         }

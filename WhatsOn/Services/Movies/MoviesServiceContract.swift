@@ -16,5 +16,6 @@ protocol MoviesServiceContract: Service {
     func nowPlaying() -> Single<[Movie]>
     func upcoming() -> Single<[Movie]>
     func genres() -> Single<[Genre]>
+    func details(id: Int) -> Single<MovieDetails>
 
 }

@@ -12,7 +12,7 @@
 "section_now_playing" = "Currently in theaters";
 "section_upcoming" = "Coming soon";
 "section_genre" = "Genres";
-"error_description_generic" = "Error occurred.";
+"error_description_generic" = "An error occurred.";
 "error_description_network_unavailable" = "Network error occurred.";
 "error_failure_reason_generic" = "Something went wrong here.";
 "error_failure_reason_network_unavailable" = "Looks like you\'ve lost internet connection.";
