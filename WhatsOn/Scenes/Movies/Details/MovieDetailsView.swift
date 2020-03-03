@@ -106,6 +106,31 @@ final class MovieDetailsView: UIView {
         return label
     }()
     
+    public private(set) lazy var genresLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .h2
+        label.textAlignment = .left
+        label.text = R.string.localizable.section_genre()
+        
+        return label
+    }()
+    
+    public private(set) lazy var genresCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 16
+        layout.minimumInteritemSpacing = 16
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .darkGrey900
+        collectionView.register(GenreCell.self, forCellWithReuseIdentifier: "\(GenreCell.self)")
+        
+        return collectionView
+    }()
+    
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -151,7 +176,7 @@ final class MovieDetailsView: UIView {
         
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in
-            make.leading.trailing.equalTo(safeAreaInsets).inset(16)
+            make.leading.trailing.equalTo(safeAreaLayoutGuide).inset(16)
             make.top.equalTo(posterImageView.snp.bottom).offset(16)
         }
         
@@ -170,6 +195,19 @@ final class MovieDetailsView: UIView {
             make.leading.trailing.equalTo(titleLabel)
             make.top.equalTo(informationStackView.snp.bottom).offset(16)
         }
+        
+        addSubview(genresLabel)
+        genresLabel.snp.makeConstraints { (make) in
+            make.leading.trailing.equalTo(overviewLabel)
+            make.top.equalTo(overviewLabel.snp.bottom).offset(32)
+        }
+        
+        addSubview(genresCollectionView)
+        genresCollectionView.snp.makeConstraints { (make) in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(genresLabel.snp.bottom).offset(16)
+            make.height.equalTo(GenreCell.size.height)
+        }
     }
     
     func displayBlurImage(with image: UIImage?) {
@@ -187,7 +225,7 @@ final class MovieDetailsView: UIView {
         
         UIView.animate(withDuration: Constants.defaultDuration) {
             self.posterImageView.alpha = 1
-            
+
             self.layoutIfNeeded()
         }
     }
@@ -198,7 +236,7 @@ final class MovieDetailsView: UIView {
             self.overviewLabel.alpha = 1
             self.markLabel.alpha = 1
             self.releaseDateLabel.alpha = 1
-            
+
             self.layoutIfNeeded()
         }
     }

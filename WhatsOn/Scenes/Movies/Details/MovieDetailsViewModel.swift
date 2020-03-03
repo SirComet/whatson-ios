@@ -20,6 +20,7 @@ protocol MovieDetailsViewModelContract: ViewModel {
     // MARK: - Properties
     var movie: BehaviorRelay<Movie> { get }
     var movieDetails: BehaviorRelay<MovieDetails?> { get }
+    var genres: BehaviorRelay<[Genre]> { get }
     var error: PublishRelay<AppError> { get }
 
     // MARK: - Methods
@@ -40,6 +41,7 @@ final class MovieDetailsViewModel: MovieDetailsViewModelContract {
     
     var movie: BehaviorRelay<Movie>
     var movieDetails: BehaviorRelay<MovieDetails?> = .init(value: nil)
+    var genres: BehaviorRelay<[Genre]> = .init(value: [])
     var error: PublishRelay<AppError> = .init()
     
     // MARK: - Lifecycle
@@ -72,6 +74,7 @@ final class MovieDetailsViewModel: MovieDetailsViewModelContract {
             .details(id: movie.value.id)
             .subscribe(onSuccess: { [weak self] (movieDetails) in
                 self?.movieDetails.accept(movieDetails)
+                self?.genres.accept(movieDetails.genres)
             }, onError: { [weak self] (error) in
                 self?.error.accept(AppError(error: error))
             })

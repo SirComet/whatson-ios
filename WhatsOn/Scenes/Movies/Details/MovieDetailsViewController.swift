@@ -58,6 +58,7 @@ final class MovieDetailsViewController: UIViewController {
         bindMovieDetails()
         bindDismissButton()
         bindPosterImage()
+        bindGenresCollectionView()
     }
     
     private func bindError() {
@@ -113,6 +114,51 @@ final class MovieDetailsViewController: UIViewController {
                 self?.customView.displayMovieInformation()
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func bindGenresCollectionView() {
+        viewModel?.genres
+            .asDriver()
+            .filter { !$0.isEmpty }
+            .drive(onNext: { [weak self] (_) in
+                self?.customView.genresCollectionView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        
+        customView.genresCollectionView.rx
+            .setDataSource(self)
+            .disposed(by: disposeBag)
+        
+        customView.genresCollectionView.rx
+            .setDelegate(self)
+            .disposed(by: disposeBag)
+    }
+    
+}
+
+extension MovieDetailsViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        viewModel?.genres.value.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(GenreCell.self)", for: indexPath) as? GenreCell,
+            let genre = viewModel?.genres.value[indexPath.row]
+        else { return UICollectionViewCell() }
+        
+        cell.display(title: "\(genre.smiley) \(genre.name)")
+        
+        return cell
+    }
+    
+}
+
+extension MovieDetailsViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        GenreCell.size
     }
     
 }
