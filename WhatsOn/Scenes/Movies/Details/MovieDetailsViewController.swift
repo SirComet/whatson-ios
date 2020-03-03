@@ -51,18 +51,17 @@ final class MovieDetailsViewController: UIViewController {
     }
 
     private func bindViews() {
-        bindTitle()
+        bindMovie()
         bindDismissButton()
-        bindBlurImageView()
-        bindPosterImageView()
+        bindPosterImage()
     }
     
-    private func bindTitle() {
+    private func bindMovie() {
         viewModel?.movie
             .asDriver()
-            .map { $0.title }
-            .drive(onNext: { [weak self] (title) in
-                self?.title = title
+            .drive(onNext: { [weak self] (movie) in
+                self?.customView.titleLabel.text = movie.title
+                self?.customView.overviewLabel.text = movie.overview
             })
             .disposed(by: disposeBag)
     }
@@ -76,24 +75,15 @@ final class MovieDetailsViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    private func bindBlurImageView() {
+    private func bindPosterImage() {
         guard let placeholderImage = R.image.poster_placeholder() else { return }
         
-        viewModel?.fetchBackdropImage()
+        viewModel?.fetchPosterImage()
             .asDriver(onErrorJustReturn: placeholderImage)
             .drive(onNext: { [weak self] (image) in
                 self?.customView.displayBlurImage(with: image.blur(radius: 40))
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    private func bindPosterImageView() {
-        guard let placeholderImage = R.image.poster_placeholder() else { return }
-        
-        viewModel?.fetchBackdropImage()
-            .asDriver(onErrorJustReturn: placeholderImage)
-            .drive(onNext: { [weak self] (image) in
                 self?.customView.displayPosterImage(with: image)
+                self?.customView.displayTexts()
             })
             .disposed(by: disposeBag)
     }

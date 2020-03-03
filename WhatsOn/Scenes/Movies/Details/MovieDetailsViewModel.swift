@@ -21,7 +21,7 @@ protocol MovieDetailsViewModelContract: ViewModel {
     var movie: BehaviorRelay<Movie> { get }
     
     // MARK: - Methods
-    func fetchBackdropImage() -> Single<UIImage>
+    func fetchPosterImage() -> Single<UIImage>
 }
 
 final class MovieDetailsViewModel: MovieDetailsViewModelContract {
@@ -57,7 +57,7 @@ final class MovieDetailsViewModel: MovieDetailsViewModelContract {
         }
     }
     
-    func fetchBackdropImage() -> Single<UIImage> {
+    func fetchPosterImage() -> Single<UIImage> {
         imagesService.fetchImage(for: movie.value)
     }
     

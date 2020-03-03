@@ -45,6 +45,28 @@ final class MovieDetailsView: UIView {
         return button
     }()
     
+    public private(set) lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .h2
+        label.textAlignment = .center
+        label.numberOfLines = 2
+        label.alpha = 0
+        
+        return label
+    }()
+    
+    public private(set) lazy var overviewLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .p3
+        label.textAlignment = .left
+        label.numberOfLines = 0
+        label.alpha = 0
+        
+        return label
+    }()
+    
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -87,6 +109,18 @@ final class MovieDetailsView: UIView {
             make.trailing.top.equalTo(safeAreaLayoutGuide).inset(16)
             make.height.width.equalTo(24)
         }
+        
+        addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { (make) in
+            make.leading.trailing.equalTo(safeAreaInsets).inset(16)
+            make.top.equalTo(posterImageView.snp.bottom).offset(16)
+        }
+        
+        addSubview(overviewLabel)
+        overviewLabel.snp.makeConstraints { (make) in
+            make.leading.trailing.equalTo(titleLabel)
+            make.top.equalTo(titleLabel.snp.bottom).offset(16)
+        }
     }
     
     func displayBlurImage(with image: UIImage?) {
@@ -104,6 +138,15 @@ final class MovieDetailsView: UIView {
         
         UIView.animate(withDuration: Constants.defaultDuration) {
             self.posterImageView.alpha = 1
+            
+            self.layoutIfNeeded()
+        }
+    }
+    
+    func displayTexts() {
+        UIView.animate(withDuration: Constants.defaultDuration) {
+            self.titleLabel.alpha = 1
+            self.overviewLabel.alpha = 1
             
             self.layoutIfNeeded()
         }
