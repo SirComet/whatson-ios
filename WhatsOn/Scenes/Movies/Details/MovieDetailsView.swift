@@ -90,6 +90,7 @@ final class MovieDetailsView: UIView {
         label.textColor = .lightGrey800
         label.font = .p3
         label.textAlignment = .left
+        label.text = "--"
         label.alpha = 0
         
         return label
@@ -205,8 +206,8 @@ final class MovieDetailsView: UIView {
         addSubview(genresCollectionView)
         genresCollectionView.snp.makeConstraints { (make) in
             make.leading.trailing.equalToSuperview()
-            make.top.equalTo(genresLabel.snp.bottom).offset(16)
-            make.height.equalTo(GenreCell.size.height)
+            make.top.equalTo(genresLabel.snp.bottom).offset(8)
+            make.height.equalTo(GenreCell.size.height + 8)
         }
     }
     
@@ -236,17 +237,8 @@ final class MovieDetailsView: UIView {
             self.overviewLabel.alpha = 1
             self.markLabel.alpha = 1
             self.releaseDateLabel.alpha = 1
-
-            self.layoutIfNeeded()
-        }
-    }
-    
-    func display(duration: String) {
-        durationLabel.text = duration
-        
-        UIView.animate(withDuration: Constants.defaultDuration) {
             self.durationLabel.alpha = 1
-            
+
             self.layoutIfNeeded()
         }
     }

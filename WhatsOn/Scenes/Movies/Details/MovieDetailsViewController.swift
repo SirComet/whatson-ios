@@ -88,7 +88,7 @@ final class MovieDetailsViewController: UIViewController {
             .filter { $0 != nil }
             .map { $0! }
             .drive(onNext: { [weak self] (movieDetails) in
-                self?.customView.display(duration: movieDetails.duration.format())
+                self?.customView.durationLabel.text = movieDetails.duration.format()
             })
             .disposed(by: disposeBag)
     }
