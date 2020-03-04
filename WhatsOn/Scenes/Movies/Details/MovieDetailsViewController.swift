@@ -74,25 +74,25 @@ final class MovieDetailsViewController: UIViewController {
         viewModel?.movie
             .asDriver()
             .drive(onNext: { [weak self] (movie) in
-                self?.customView.titleLabel.text = movie.title
-                self?.customView.overviewLabel.text = movie.overview
-                self?.customView.markLabel.text = "\(movie.voteAverage) / 10"
-                self?.customView.releaseDateLabel.text = movie.releaseDate?.format()
+                self?.customView.movieDetailsTopInformation.display(title: movie.title,
+                                                                    mark: "\(movie.voteAverage) / 10",
+                                                                    releaseDate: movie.releaseDate?.format() ?? "",
+                                                                    overview: movie.overview)
             })
             .disposed(by: disposeBag)
     }
-    
+
     private func bindMovieDetails() {
         viewModel?.movieDetails
             .asDriver()
             .filter { $0 != nil }
             .map { $0! }
             .drive(onNext: { [weak self] (movieDetails) in
-                self?.customView.durationLabel.text = movieDetails.duration.format()
+                self?.customView.movieDetailsTopInformation.display(duration: movieDetails.duration.format())
             })
             .disposed(by: disposeBag)
     }
-    
+
     private func bindDismissButton() {
         customView.dismissButton.rx
             .tap
@@ -101,21 +101,18 @@ final class MovieDetailsViewController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
-    
+
     private func bindPosterImage() {
         guard let placeholderImage = R.image.poster_placeholder() else { return }
-        
+
         viewModel?.fetchPosterImage()
             .asDriver(onErrorJustReturn: placeholderImage)
             .drive(onNext: { [weak self] (image) in
-                self?.customView.displayBlurImage(with: image.blur(radius: 40))
-                self?.customView.displayPosterImage(with: image)
-                
-                self?.customView.displayMovieInformation()
+                self?.customView.movieDetailsTopInformation.display(posterImage: image)
             })
             .disposed(by: disposeBag)
     }
-    
+
     private func bindGenresCollectionView() {
         viewModel?.genres
             .asDriver()
@@ -124,11 +121,11 @@ final class MovieDetailsViewController: UIViewController {
                 self?.customView.genresCollectionView.reloadData()
             })
             .disposed(by: disposeBag)
-        
+
         customView.genresCollectionView.rx
             .setDataSource(self)
             .disposed(by: disposeBag)
-        
+
         customView.genresCollectionView.rx
             .setDelegate(self)
             .disposed(by: disposeBag)
