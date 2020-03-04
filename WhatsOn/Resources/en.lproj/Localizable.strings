@@ -20,3 +20,4 @@
 "error_recovery_suggestion_generic" = "Please try again later.";
 "error_recovery_suggestion_network_unavailable" = "Please enable WiFi or check your settings.";
 "error_action" = "Got it !";
+"title_more_information" = "More information";

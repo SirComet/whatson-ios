@@ -118,15 +118,15 @@ final class MovieDetailsViewController: UIViewController {
             .asDriver()
             .filter { !$0.isEmpty }
             .drive(onNext: { [weak self] (_) in
-                self?.customView.genresCollectionView.reloadData()
+                self?.customView.movieDetailsGenre.genresCollectionView.reloadData()
             })
             .disposed(by: disposeBag)
 
-        customView.genresCollectionView.rx
+        customView.movieDetailsGenre.genresCollectionView.rx
             .setDataSource(self)
             .disposed(by: disposeBag)
 
-        customView.genresCollectionView.rx
+        customView.movieDetailsGenre.genresCollectionView.rx
             .setDelegate(self)
             .disposed(by: disposeBag)
     }

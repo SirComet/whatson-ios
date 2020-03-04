@@ -12,6 +12,14 @@ import UIKit
 final class MovieDetailsView: UIView {
     
     // MARK: - Outlets
+    public private(set) lazy var scrollView: UIScrollView = {
+        UIScrollView()
+    }()
+    
+    public private(set) lazy var containerView: UIView = {
+        UIView()
+    }()
+    
     public private(set) lazy var movieDetailsTopInformation: MovieDetailsTopInformation = {
         MovieDetailsTopInformation()
     }()
@@ -27,29 +35,12 @@ final class MovieDetailsView: UIView {
         return button
     }()
     
-    public private(set) lazy var genresLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .h2
-        label.textAlignment = .left
-        label.text = R.string.localizable.section_genre()
-        
-        return label
+    public private(set) lazy var movieDetailsGenre: MovieDetailsGenre = {
+        MovieDetailsGenre()
     }()
     
-    public private(set) lazy var genresCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 16
-        layout.minimumInteritemSpacing = 16
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .darkGrey900
-        collectionView.register(GenreCell.self, forCellWithReuseIdentifier: "\(GenreCell.self)")
-        
-        return collectionView
+    public private(set) lazy var movieDetailsMoreInformation: MovieDetailsMoreInformation = {
+        MovieDetailsMoreInformation()
     }()
     
     // MARK: - Lifecycle
@@ -67,28 +58,40 @@ final class MovieDetailsView: UIView {
     private func build() {
         backgroundColor = .darkGrey900
         
-        addSubview(movieDetailsTopInformation)
+        addSubview(scrollView)
+        scrollView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+        
+        scrollView.addSubview(containerView)
+        containerView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.equalToSuperview().priority(250)
+        }
+        
+        containerView.addSubview(movieDetailsTopInformation)
         movieDetailsTopInformation.snp.makeConstraints { (make) in
             make.leading.trailing.top.equalToSuperview()
         }
         
-        addSubview(dismissButton)
+        containerView.addSubview(dismissButton)
         dismissButton.snp.makeConstraints { (make) in
             make.trailing.top.equalTo(safeAreaLayoutGuide).inset(16)
             make.height.width.equalTo(24)
         }
         
-        addSubview(genresLabel)
-        genresLabel.snp.makeConstraints { (make) in
+        containerView.addSubview(movieDetailsGenre)
+        movieDetailsGenre.snp.makeConstraints { (make) in
             make.top.equalTo(movieDetailsTopInformation.snp.bottom).offset(32)
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview()
         }
         
-        addSubview(genresCollectionView)
-        genresCollectionView.snp.makeConstraints { (make) in
+        containerView.addSubview(movieDetailsMoreInformation)
+        movieDetailsMoreInformation.snp.makeConstraints { (make) in
+            make.top.equalTo(movieDetailsGenre.snp.bottom).offset(32)
             make.leading.trailing.equalToSuperview()
-            make.top.equalTo(genresLabel.snp.bottom).offset(8)
-            make.height.equalTo(GenreCell.size.height + 8)
+            make.bottom.equalToSuperview().inset(32)
         }
     }
 }

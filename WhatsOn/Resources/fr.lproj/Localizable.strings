@@ -20,3 +20,4 @@
 "error_recovery_suggestion_generic" = "Nous vous invitons à réessayer plus tard.";
 "error_recovery_suggestion_network_unavailable" = "Rendez-vous dans les paramètres de votre téléphone pour vous connecter à un réseau WiFi.";
 "error_action" = "J\'ai compris !";
+"title_more_information" = "Plus d'informations";
