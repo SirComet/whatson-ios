@@ -428,8 +428,8 @@
 			isa = PBXGroup;
 			children = (
 				52A88EDE240FDAAE00BA374A /* MovieDetailsTopInformation.swift */,
-				52734CE02410198300AA8B71 /* MovieDetailsMoreInformation.swift */,
 				52734CE224101A8D00AA8B71 /* MovieDetailsGenre.swift */,
+				52734CE02410198300AA8B71 /* MovieDetailsMoreInformation.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

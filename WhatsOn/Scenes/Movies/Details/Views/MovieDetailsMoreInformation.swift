@@ -21,6 +21,41 @@ final class MovieDetailsMoreInformation: UIView {
         return label
     }()
     
+    public private(set) lazy var contentStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        stackView.distribution = .fillEqually
+        
+        return stackView
+    }()
+    
+    public private(set) lazy var popularityStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 8
+        stackView.distribution = .fillEqually
+        
+        return stackView
+    }()
+    
+    public private(set) lazy var popularityTitleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .p2
+        label.text = R.string.localizable.title_popularity()
+        
+        return label
+    }()
+    
+    public private(set) lazy var popularityValueLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .lightGrey800
+        label.font = .p3
+        
+        return label
+    }()
+    
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,6 +68,13 @@ final class MovieDetailsMoreInformation: UIView {
     }
 
     // MARK: - Methods
+    func display(popularity: Double) {
+        popularityValueLabel.text = "\(Int(popularity)) \(R.string.localizable.title_points())"
+        
+        UIView.animate(withDuration: Constants.defaultDuration) {
+            self.popularityValueLabel.alpha = 1
+        }
+    }
     
     // MARK: - Private methods
     private func build() {
@@ -40,8 +82,20 @@ final class MovieDetailsMoreInformation: UIView {
         
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in
-            make.top.bottom.equalToSuperview()
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(16)
         }
+        
+        addSubview(contentStackView)
+        contentStackView.snp.makeConstraints { (make) in
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview()
+        }
+        
+        [ popularityStackView ].forEach { contentStackView.addArrangedSubview($0) }
+        
+        [ popularityTitleLabel,
+          popularityValueLabel ].forEach { popularityStackView.addArrangedSubview($0) }
     }
 }
