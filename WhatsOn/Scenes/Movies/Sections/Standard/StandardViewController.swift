@@ -43,6 +43,8 @@ final class StandardViewController: UIViewController {
             viewModel?.fetchNowPlayingMovies()
         case .upcoming:
             viewModel?.fetchUpcomingMovies()
+        case .trendingWeek:
+            viewModel?.fetchTrendingWeekMovies()
         default:
             break
         }

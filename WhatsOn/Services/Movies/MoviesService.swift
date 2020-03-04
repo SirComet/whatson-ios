@@ -39,6 +39,10 @@ final class MoviesService: MoviesServiceContract {
         apiRequester.fetch(UpcomingMoviesEndpoint(), with: ())
     }
     
+    func trendingWeek() -> Single<[Movie]> {
+        apiRequester.fetch(TrendingWeekMoviesEndpoint(), with: ())
+    }
+    
     func genres() -> Single<[Genre]> {
         apiRequester.fetch(MoviesGenresEndpoint(), with: ())
     }

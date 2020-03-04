@@ -11,6 +11,7 @@
 "section_top_rated" = "Top rated";
 "section_now_playing" = "Currently in theaters";
 "section_upcoming" = "Coming soon";
+"section_trending_week" = "Trends of the week";
 "section_genre" = "Genres";
 "error_description_generic" = "An error occurred.";
 "error_description_network_unavailable" = "Network error occurred.";

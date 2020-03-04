@@ -29,6 +29,7 @@ protocol FeaturedViewModelContract: ViewModel {
     func fetchTopRatedMovies()
     func fetchNowPlayingMovies()
     func fetchUpcomingMovies()
+    func fetchTrendingWeekMovies()
 
     func fetchPoster(for movie: Movie) -> Single<UIImage>
     
@@ -105,6 +106,12 @@ final class FeaturedViewModel: FeaturedViewModelContract {
         isLoading.accept(true)
         
         handle(single: moviesService.upcoming())
+    }
+    
+    func fetchTrendingWeekMovies() {
+        isLoading.accept(true)
+        
+        handle(single: moviesService.trendingWeek())
     }
     
     func fetchPoster(for movie: Movie) -> Single<UIImage> {
