@@ -152,7 +152,7 @@ final class MovieDetailsMoreInformation: UIView {
         revenueValueLabel.text = revenue ?? "--"
         budgetValueLabel.text = budget ?? "--"
         
-        UIView.animate(withDuration: Constants.defaultDuration) {
+        UIView.animate(withDuration: Constants.defaultAnimationDuration) {
             self.popularityValueLabel.alpha = 1
             self.statusValueLabel.alpha = 1
             self.revenueValueLabel.alpha = 1

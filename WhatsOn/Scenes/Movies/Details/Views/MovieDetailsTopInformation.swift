@@ -112,7 +112,7 @@ final class MovieDetailsTopInformation: UIView {
         blurImageView.image = posterImage?.blur(radius: 40)
         posterImageView.image = posterImage
         
-        UIView.animate(withDuration: Constants.defaultDuration) {
+        UIView.animate(withDuration: Constants.defaultAnimationDuration) {
             self.blurImageView.alpha = 1
             self.posterImageView.alpha = 1
 
@@ -126,7 +126,7 @@ final class MovieDetailsTopInformation: UIView {
         releaseDateLabel.text = releaseDate
         overviewLabel.text = overview
         
-        UIView.animate(withDuration: Constants.defaultDuration) {
+        UIView.animate(withDuration: Constants.defaultAnimationDuration) {
             self.titleLabel.alpha = 1
             self.markLabel.alpha = 1
             self.releaseDateLabel.alpha = 1

@@ -10,6 +10,6 @@ import Foundation
 
 struct Constants {
     
-    static let defaultDuration = TimeInterval(0.2)
+    static let defaultAnimationDuration = TimeInterval(0.2)
     
 }

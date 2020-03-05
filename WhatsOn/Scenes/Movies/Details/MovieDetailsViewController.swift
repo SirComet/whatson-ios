@@ -35,12 +35,19 @@ final class MovieDetailsViewController: UIViewController {
         
         viewModel?.fetchMovieDetails()
         viewModel?.fetchMoviesRecommendations()
+        viewModel?.fetchMovieVideos()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        customView.moviesDetailsTrailer.trailerWebView.stopLoading()
     }
 
     // MARK: - Methods
@@ -61,6 +68,7 @@ final class MovieDetailsViewController: UIViewController {
         bindPosterImage()
         bindGenresCollectionView()
         bindRecommendationsCollectionView()
+        bindVideos()
     }
     
     private func bindError() {
@@ -169,6 +177,21 @@ final class MovieDetailsViewController: UIViewController {
         
         customView.movieDetailsRecommendations.collectionView.rx
             .setDelegate(self)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindVideos() {
+        viewModel?.videos
+            .asDriver()
+            .filter { !$0.isEmpty }
+            .drive(onNext: { [weak self] (videos) in
+                guard
+                    let trailerKey = videos.first(where: { $0.isTrailerFromYouTube })?.key,
+                    let trailerUrl = URL(string: "https://www.youtube.com/embed/\(trailerKey)")
+                else { return }
+                
+                self?.customView.moviesDetailsTrailer.load(trailerUrl: trailerUrl)
+            })
             .disposed(by: disposeBag)
     }
     
