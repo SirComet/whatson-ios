@@ -18,5 +18,6 @@ protocol MoviesServiceContract: Service {
     func trendingWeek() -> Single<[Movie]>
     func genres() -> Single<[Genre]>
     func details(id: Int) -> Single<MovieDetails>
+    func recommendations(id: Int) -> Single<[Movie]>
 
 }

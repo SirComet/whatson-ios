@@ -51,4 +51,8 @@ final class MoviesService: MoviesServiceContract {
         apiRequester.fetch(MovieDetailsEndpoint(), with: id)
     }
     
+    func recommendations(id: Int) -> Single<[Movie]> {
+        apiRequester.fetch(MoviesRecommendationsEndpoint(), with: id)
+    }
+    
 }

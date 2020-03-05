@@ -78,12 +78,14 @@
 		52B4F17A240E81BC009B2C61 /* UIImage+Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4F179240E81BC009B2C61 /* UIImage+Blur.swift */; };
 		52B4F17D240E88B6009B2C61 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4F17C240E88B6009B2C61 /* Constants.swift */; };
 		52CC27A824111BCA00685D04 /* Int+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CC27A724111BCA00685D04 /* Int+Format.swift */; };
+		52CC27AA24112A0600685D04 /* MoviesRecommendationsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CC27A924112A0600685D04 /* MoviesRecommendationsEndpoint.swift */; };
 		52E194F62401418D00407344 /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E194F52401418D00407344 /* MoviesViewModel.swift */; };
 		52E194F8240141AD00407344 /* MoviesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E194F7240141AD00407344 /* MoviesCoordinator.swift */; };
 		52E194FA240141C000407344 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E194F9240141C000407344 /* MoviesViewController.swift */; };
 		52E194FE240148CA00407344 /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E194FD240148CA00407344 /* MainTabBarCoordinator.swift */; };
 		52E1950924014C7E00407344 /* Transition+presentFullScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E1950824014C7E00407344 /* Transition+presentFullScreen.swift */; };
 		52E1950B24014CB800407344 /* Animation+fade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E1950A24014CB800407344 /* Animation+fade.swift */; };
+		52E2537F24112B1600B765DF /* MovieDetailsRecommendations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E2537E24112B1600B765DF /* MovieDetailsRecommendations.swift */; };
 		52E6235524090EDB00812217 /* XCoordinator in Frameworks */ = {isa = PBXBuildFile; productRef = 52E6235424090EDB00812217 /* XCoordinator */; };
 		52FC021C2407DC1C001E3CCF /* NowPlayingMoviesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC021B2407DC1C001E3CCF /* NowPlayingMoviesEndpoint.swift */; };
 		52FC021E2407EA4B001E3CCF /* UpcomingMoviesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC021D2407EA4B001E3CCF /* UpcomingMoviesEndpoint.swift */; };
@@ -166,12 +168,14 @@
 		52B4F179240E81BC009B2C61 /* UIImage+Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Blur.swift"; sourceTree = "<group>"; };
 		52B4F17C240E88B6009B2C61 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		52CC27A724111BCA00685D04 /* Int+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Format.swift"; sourceTree = "<group>"; };
+		52CC27A924112A0600685D04 /* MoviesRecommendationsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesRecommendationsEndpoint.swift; sourceTree = "<group>"; };
 		52E194F52401418D00407344 /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
 		52E194F7240141AD00407344 /* MoviesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesCoordinator.swift; sourceTree = "<group>"; };
 		52E194F9240141C000407344 /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		52E194FD240148CA00407344 /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		52E1950824014C7E00407344 /* Transition+presentFullScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transition+presentFullScreen.swift"; sourceTree = "<group>"; };
 		52E1950A24014CB800407344 /* Animation+fade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+fade.swift"; sourceTree = "<group>"; };
+		52E2537E24112B1600B765DF /* MovieDetailsRecommendations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsRecommendations.swift; sourceTree = "<group>"; };
 		52FC021B2407DC1C001E3CCF /* NowPlayingMoviesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingMoviesEndpoint.swift; sourceTree = "<group>"; };
 		52FC021D2407EA4B001E3CCF /* UpcomingMoviesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesEndpoint.swift; sourceTree = "<group>"; };
 		52FC02222407F3D1001E3CCF /* MoviesGenresEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesGenresEndpoint.swift; sourceTree = "<group>"; };
@@ -370,6 +374,7 @@
 				52FC02222407F3D1001E3CCF /* MoviesGenresEndpoint.swift */,
 				528BB1A5240F0F83003C12C8 /* MovieDetailsEndpoint.swift */,
 				526DA877241015F100729E44 /* TrendingWeekMoviesEndpoint.swift */,
+				52CC27A924112A0600685D04 /* MoviesRecommendationsEndpoint.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -432,6 +437,7 @@
 				52A88EDE240FDAAE00BA374A /* MovieDetailsTopInformation.swift */,
 				52734CE224101A8D00AA8B71 /* MovieDetailsGenre.swift */,
 				52734CE02410198300AA8B71 /* MovieDetailsMoreInformation.swift */,
+				52E2537E24112B1600B765DF /* MovieDetailsRecommendations.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -716,8 +722,10 @@
 				5275C49024072AEF00EDE0EF /* ImageRequest.swift in Sources */,
 				52CC27A824111BCA00685D04 /* Int+Format.swift in Sources */,
 				521D938324085BF000B95067 /* MovieDetailsView.swift in Sources */,
+				52E2537F24112B1600B765DF /* MovieDetailsRecommendations.swift in Sources */,
 				528BB1A6240F0F83003C12C8 /* MovieDetailsEndpoint.swift in Sources */,
 				5275C48E2407210400EDE0EF /* Movie+FetchableImage.swift in Sources */,
+				52CC27AA24112A0600685D04 /* MoviesRecommendationsEndpoint.swift in Sources */,
 				52A88EDF240FDAAE00BA374A /* MovieDetailsTopInformation.swift in Sources */,
 				5275C4822407183E00EDE0EF /* FeaturedCell.swift in Sources */,
 				52B4789D24054A85007D578E /* UIColor+App.swift in Sources */,

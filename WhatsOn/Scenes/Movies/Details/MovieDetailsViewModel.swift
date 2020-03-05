@@ -13,6 +13,7 @@ import UIKit
 
 enum MovieDetailsViewModelAction: ViewModelAction {
     case dismiss
+    case selectRecommendedMovie(row: Int)
 }
 
 protocol MovieDetailsViewModelContract: ViewModel {
@@ -20,12 +21,14 @@ protocol MovieDetailsViewModelContract: ViewModel {
     // MARK: - Properties
     var movie: BehaviorRelay<Movie> { get }
     var movieDetails: BehaviorRelay<MovieDetails?> { get }
+    var recommendedMovies: BehaviorRelay<[Movie]> { get }
     var genres: BehaviorRelay<[Genre]> { get }
     var error: PublishRelay<AppError> { get }
 
     // MARK: - Methods
     func fetchMovieDetails()
-    func fetchPosterImage() -> Single<UIImage>
+    func fetchMoviesRecommendations()
+    func fetchPoster(for movie: Movie) -> Single<UIImage>
 }
 
 final class MovieDetailsViewModel: MovieDetailsViewModelContract {
@@ -41,6 +44,7 @@ final class MovieDetailsViewModel: MovieDetailsViewModelContract {
     
     var movie: BehaviorRelay<Movie>
     var movieDetails: BehaviorRelay<MovieDetails?> = .init(value: nil)
+    var recommendedMovies: BehaviorRelay<[Movie]> = .init(value: [])
     var genres: BehaviorRelay<[Genre]> = .init(value: [])
     var error: PublishRelay<AppError> = .init()
     
@@ -66,6 +70,10 @@ final class MovieDetailsViewModel: MovieDetailsViewModelContract {
         switch action {
         case .dismiss:
             router.trigger(.dismissMovieDetails)
+        case let .selectRecommendedMovie(row):
+            let recommendedMovie = recommendedMovies.value[row]
+            
+            router.trigger(.movieDetails(movie: recommendedMovie))
         }
     }
     
@@ -81,8 +89,19 @@ final class MovieDetailsViewModel: MovieDetailsViewModelContract {
             .disposed(by: disposeBag)
     }
     
-    func fetchPosterImage() -> Single<UIImage> {
-        imagesService.fetchImage(for: movie.value)
+    func fetchMoviesRecommendations() {
+        moviesService
+            .recommendations(id: movie.value.id)
+            .subscribe(onSuccess: { [weak self] (recommendedMovies) in
+                self?.recommendedMovies.accept(recommendedMovies)
+            }, onError: { [weak self] (error) in
+                self?.error.accept(AppError(error: error))
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func fetchPoster(for movie: Movie) -> Single<UIImage> {
+        imagesService.fetchImage(for: movie)
     }
     
 }

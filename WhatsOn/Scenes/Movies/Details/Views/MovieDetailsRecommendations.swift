@@ -1,15 +1,15 @@
 //
-//  MovieDetailsGenre.swift
+//  MovieDetailsRecommendations.swift
 //  What'sOn
 //
-//  Created by Maxime Maheo on 04/03/2020.
+//  Created by Maxime Maheo on 05/03/2020.
 //  Copyright © 2020 Maxime Maheo. All rights reserved.
 //
 
 import SnapKit
 import UIKit
 
-final class MovieDetailsGenre: UIView {
+final class MovieDetailsRecommendations: UIView {
     
     // MARK: - Outlets
     public private(set) lazy var titleLabel: UILabel = {
@@ -17,7 +17,7 @@ final class MovieDetailsGenre: UIView {
         label.textColor = .white
         label.font = .h2
         label.textAlignment = .left
-        label.text = R.string.localizable.section_genre()
+        label.text = R.string.localizable.title_recommendations()
         
         return label
     }()
@@ -32,7 +32,7 @@ final class MovieDetailsGenre: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .darkGrey900
-        collectionView.register(GenreCell.self, forCellWithReuseIdentifier: "\(GenreCell.self)")
+        collectionView.register(StandardCell.self, forCellWithReuseIdentifier: "\(StandardCell.self)")
         
         return collectionView
     }()
@@ -64,7 +64,7 @@ final class MovieDetailsGenre: UIView {
         collectionView.snp.makeConstraints { (make) in
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
-            make.height.equalTo(GenreCell.size.height + 8)
+            make.height.equalTo(StandardCell.size.height + 8)
             make.bottom.equalToSuperview()
         }
     }

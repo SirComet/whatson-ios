@@ -34,6 +34,7 @@ final class MovieDetailsViewController: UIViewController {
         bindViews()
         
         viewModel?.fetchMovieDetails()
+        viewModel?.fetchMoviesRecommendations()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +60,7 @@ final class MovieDetailsViewController: UIViewController {
         bindDismissButton()
         bindPosterImage()
         bindGenresCollectionView()
+        bindRecommendationsCollectionView()
     }
     
     private func bindError() {
@@ -107,9 +109,13 @@ final class MovieDetailsViewController: UIViewController {
     }
 
     private func bindPosterImage() {
-        guard let placeholderImage = R.image.poster_placeholder() else { return }
+        guard
+            let placeholderImage = R.image.poster_placeholder(),
+            let movie = viewModel?.movie.value
+        else { return }
 
-        viewModel?.fetchPosterImage()
+        viewModel?
+            .fetchPoster(for: movie)
             .asDriver(onErrorJustReturn: placeholderImage)
             .drive(onNext: { [weak self] (image) in
                 self?.customView.movieDetailsTopInformation.display(posterImage: image)
@@ -121,37 +127,49 @@ final class MovieDetailsViewController: UIViewController {
         viewModel?.genres
             .asDriver()
             .filter { !$0.isEmpty }
-            .drive(onNext: { [weak self] (_) in
-                self?.customView.movieDetailsGenre.genresCollectionView.reloadData()
-            })
+            .drive(customView.movieDetailsGenre.collectionView.rx.items(cellIdentifier: "\(GenreCell.self)", cellType: GenreCell.self)) { (_, genre, cell) in
+                cell.display(title: "\(genre.smiley) \(genre.name)")
+            }
             .disposed(by: disposeBag)
-
-        customView.movieDetailsGenre.genresCollectionView.rx
-            .setDataSource(self)
-            .disposed(by: disposeBag)
-
-        customView.movieDetailsGenre.genresCollectionView.rx
+        
+        customView.movieDetailsGenre.collectionView.rx
             .setDelegate(self)
             .disposed(by: disposeBag)
     }
     
-}
-
-extension MovieDetailsViewController: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel?.genres.value.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(GenreCell.self)", for: indexPath) as? GenreCell,
-            let genre = viewModel?.genres.value[indexPath.row]
-        else { return UICollectionViewCell() }
+    private func bindRecommendationsCollectionView() {
+        viewModel?.recommendedMovies
+            .asDriver()
+            .filter { !$0.isEmpty }
+            // swiftlint:disable:next line_length
+            .drive(customView.movieDetailsRecommendations.collectionView.rx.items(cellIdentifier: "\(StandardCell.self)", cellType: StandardCell.self)) { [weak self] (_, recommendedMovie, cell) in
+                guard
+                    let self = self,
+                    let posterPlaceholder = R.image.poster_placeholder()
+                else { return }
+                
+                cell.display(id: recommendedMovie.id)
+                
+                self.viewModel?
+                    .fetchPoster(for: recommendedMovie)
+                    .asDriver(onErrorJustReturn: posterPlaceholder)
+                    .drive(onNext: { (poster) in
+                        cell.set(poster: poster, id: recommendedMovie.id)
+                    })
+                    .disposed(by: cell.disposeBag)
+            }
+            .disposed(by: disposeBag)
         
-        cell.display(title: "\(genre.smiley) \(genre.name)")
+        customView.movieDetailsRecommendations.collectionView.rx
+            .itemSelected
+            .bind { [weak self] (indexPath) in
+                self?.viewModel?.handle(action: MovieDetailsViewModelAction.selectRecommendedMovie(row: indexPath.row))
+            }
+            .disposed(by: disposeBag)
         
-        return cell
+        customView.movieDetailsRecommendations.collectionView.rx
+            .setDelegate(self)
+            .disposed(by: disposeBag)
     }
     
 }
@@ -159,7 +177,7 @@ extension MovieDetailsViewController: UICollectionViewDataSource {
 extension MovieDetailsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        GenreCell.size
+        collectionView == customView.movieDetailsGenre.collectionView ? GenreCell.size : StandardCell.size
     }
     
 }
