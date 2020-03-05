@@ -56,6 +56,84 @@ final class MovieDetailsMoreInformation: UIView {
         return label
     }()
     
+    public private(set) lazy var statusStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 8
+        stackView.distribution = .fillEqually
+        
+        return stackView
+    }()
+    
+    public private(set) lazy var statusTitleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .p2
+        label.text = R.string.localizable.title_status()
+        
+        return label
+    }()
+    
+    public private(set) lazy var statusValueLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .lightGrey800
+        label.font = .p3
+        
+        return label
+    }()
+    
+    public private(set) lazy var revenueStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 8
+        stackView.distribution = .fillEqually
+        
+        return stackView
+    }()
+    
+    public private(set) lazy var revenueTitleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .p2
+        label.text = R.string.localizable.title_revenue()
+        
+        return label
+    }()
+    
+    public private(set) lazy var revenueValueLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .lightGrey800
+        label.font = .p3
+        
+        return label
+    }()
+    
+    public private(set) lazy var budgetStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 8
+        stackView.distribution = .fillEqually
+        
+        return stackView
+    }()
+    
+    public private(set) lazy var budgetTitleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .p2
+        label.text = R.string.localizable.title_budget()
+        
+        return label
+    }()
+    
+    public private(set) lazy var budgetValueLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .lightGrey800
+        label.font = .p3
+        
+        return label
+    }()
+    
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -68,11 +146,17 @@ final class MovieDetailsMoreInformation: UIView {
     }
 
     // MARK: - Methods
-    func display(popularity: Double) {
+    func display(popularity: Double, status: String, revenue: String?, budget: String?) {
         popularityValueLabel.text = "\(Int(popularity)) \(R.string.localizable.title_points())"
+        statusValueLabel.text = status
+        revenueValueLabel.text = revenue ?? "--"
+        budgetValueLabel.text = budget ?? "--"
         
         UIView.animate(withDuration: Constants.defaultDuration) {
             self.popularityValueLabel.alpha = 1
+            self.statusValueLabel.alpha = 1
+            self.revenueValueLabel.alpha = 1
+            self.budgetValueLabel.alpha = 1
         }
     }
     
@@ -93,9 +177,21 @@ final class MovieDetailsMoreInformation: UIView {
             make.bottom.equalToSuperview()
         }
         
-        [ popularityStackView ].forEach { contentStackView.addArrangedSubview($0) }
+        [ popularityStackView,
+          statusStackView,
+          revenueStackView,
+          budgetStackView ].forEach { contentStackView.addArrangedSubview($0) }
         
         [ popularityTitleLabel,
           popularityValueLabel ].forEach { popularityStackView.addArrangedSubview($0) }
+        
+        [ statusTitleLabel,
+          statusValueLabel ].forEach { statusStackView.addArrangedSubview($0) }
+        
+        [ revenueTitleLabel,
+          revenueValueLabel ].forEach { revenueStackView.addArrangedSubview($0) }
+        
+        [ budgetTitleLabel,
+          budgetValueLabel ].forEach { budgetStackView.addArrangedSubview($0) }
     }
 }

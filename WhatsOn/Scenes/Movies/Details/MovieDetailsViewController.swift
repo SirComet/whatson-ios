@@ -89,7 +89,10 @@ final class MovieDetailsViewController: UIViewController {
             .map { $0! }
             .drive(onNext: { [weak self] (movieDetails) in
                 self?.customView.movieDetailsTopInformation.display(duration: movieDetails.duration.format())
-                self?.customView.movieDetailsMoreInformation.display(popularity: movieDetails.popularity)
+                self?.customView.movieDetailsMoreInformation.display(popularity: movieDetails.popularity,
+                                                                     status: movieDetails.status,
+                                                                     revenue: movieDetails.revenue.format(style: .currency),
+                                                                     budget: movieDetails.budget.format(style: .currency))
             })
             .disposed(by: disposeBag)
     }
