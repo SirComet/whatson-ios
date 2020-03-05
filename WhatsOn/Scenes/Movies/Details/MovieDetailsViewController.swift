@@ -36,6 +36,7 @@ final class MovieDetailsViewController: UIViewController {
         viewModel?.fetchMovieDetails()
         viewModel?.fetchMoviesRecommendations()
         viewModel?.fetchMovieVideos()
+        viewModel?.fetchMovieCredits()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,7 +48,7 @@ final class MovieDetailsViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        customView.moviesDetailsTrailer.trailerWebView.stopLoading()
+        customView.movieDetailsTrailer.trailerWebView.stopLoading()
     }
 
     // MARK: - Methods
@@ -69,6 +70,7 @@ final class MovieDetailsViewController: UIViewController {
         bindGenresCollectionView()
         bindRecommendationsCollectionView()
         bindVideos()
+        bindCastCollectionView()
     }
     
     private func bindError() {
@@ -123,7 +125,7 @@ final class MovieDetailsViewController: UIViewController {
         else { return }
 
         viewModel?
-            .fetchPoster(for: movie)
+            .fetchImage(for: movie)
             .asDriver(onErrorJustReturn: placeholderImage)
             .drive(onNext: { [weak self] (image) in
                 self?.customView.movieDetailsTopInformation.display(posterImage: image)
@@ -159,7 +161,7 @@ final class MovieDetailsViewController: UIViewController {
                 cell.display(id: recommendedMovie.id)
                 
                 self.viewModel?
-                    .fetchPoster(for: recommendedMovie)
+                    .fetchImage(for: recommendedMovie)
                     .asDriver(onErrorJustReturn: posterPlaceholder)
                     .drive(onNext: { (poster) in
                         cell.set(poster: poster, id: recommendedMovie.id)
@@ -190,8 +192,35 @@ final class MovieDetailsViewController: UIViewController {
                     let trailerUrl = URL(string: "https://www.youtube.com/embed/\(trailerKey)")
                 else { return }
                 
-                self?.customView.moviesDetailsTrailer.load(trailerUrl: trailerUrl)
+                self?.customView.movieDetailsTrailer.load(trailerUrl: trailerUrl)
             })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindCastCollectionView() {
+        viewModel?.casts
+            .asDriver()
+            .filter { !$0.isEmpty }
+            .drive(customView.movieDetailsCast.collectionView.rx.items(cellIdentifier: "\(CastCell.self)", cellType: CastCell.self)) { [weak self] (_, cast, cell) in
+                guard
+                    let self = self,
+                    let posterPlaceholder = R.image.poster_placeholder()
+                else { return }
+                
+                cell.display(name: cast.name, character: cast.character, id: cast.id)
+                
+                self.viewModel?
+                    .fetchImage(for: cast)
+                    .asDriver(onErrorJustReturn: posterPlaceholder)
+                    .drive(onNext: { (poster) in
+                        cell.set(poster: poster, id: cast.id)
+                    })
+                    .disposed(by: cell.disposeBag)
+            }
+            .disposed(by: disposeBag)
+        
+        customView.movieDetailsCast.collectionView.rx
+            .setDelegate(self)
             .disposed(by: disposeBag)
     }
     
@@ -200,7 +229,13 @@ final class MovieDetailsViewController: UIViewController {
 extension MovieDetailsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        collectionView == customView.movieDetailsGenre.collectionView ? GenreCell.size : StandardCell.size
+        if collectionView == customView.movieDetailsGenre.collectionView {
+            return GenreCell.size
+        } else if collectionView == customView.movieDetailsRecommendations.collectionView {
+            return StandardCell.size
+        }
+        
+        return CastCell.size
     }
     
 }

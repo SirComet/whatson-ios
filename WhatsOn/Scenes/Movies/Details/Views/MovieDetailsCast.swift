@@ -1,5 +1,5 @@
 //
-//  MoviesDetailsTrailer.swift
+//  MovieDetailsCast.swift
 //  What'sOn
 //
 //  Created by Maxime Maheo on 05/03/2020.
@@ -8,9 +8,8 @@
 
 import SnapKit
 import UIKit
-import WebKit
 
-final class MoviesDetailsTrailer: UIView {
+final class MovieDetailsCast: UIView {
     
     // MARK: - Outlets
     public private(set) lazy var titleLabel: UILabel = {
@@ -18,19 +17,24 @@ final class MoviesDetailsTrailer: UIView {
         label.textColor = .white
         label.font = .h2
         label.textAlignment = .left
-        label.text = R.string.localizable.title_trailer()
+        label.text = R.string.localizable.title_cast()
         
         return label
     }()
     
-    public private(set) lazy var trailerWebView: WKWebView = {
-        let webView = WKWebView()
-        webView.backgroundColor = .darkGrey900
-        webView.scrollView.isScrollEnabled = false
-        webView.scrollView.bounces = false
-        webView.isOpaque = false
+    public private(set) lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 16
+        layout.minimumInteritemSpacing = 16
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .darkGrey900
+        collectionView.register(CastCell.self, forCellWithReuseIdentifier: "\(CastCell.self)")
         
-        return webView
+        return collectionView
     }()
     
     // MARK: - Lifecycle
@@ -45,15 +49,6 @@ final class MoviesDetailsTrailer: UIView {
     }
 
     // MARK: - Methods
-    func load(trailerUrl: URL) {
-        trailerWebView.load(URLRequest(url: trailerUrl))
-        
-        UIView.animate(withDuration: Constants.defaultAnimationDuration) {
-            self.trailerWebView.snp.updateConstraints { (make) in
-                make.height.equalTo(UIScreen.height(percent: 30))
-            }
-        }
-    }
     
     // MARK: - Private methods
     private func build() {
@@ -65,11 +60,11 @@ final class MoviesDetailsTrailer: UIView {
             make.leading.trailing.equalToSuperview().inset(16)
         }
         
-        addSubview(trailerWebView)
-        trailerWebView.snp.makeConstraints { (make) in
-            make.leading.trailing.equalToSuperview().inset(16)
+        addSubview(collectionView)
+        collectionView.snp.makeConstraints { (make) in
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
-            make.height.equalTo(0)
+            make.height.equalTo(CastCell.size.height + 8)
             make.bottom.equalToSuperview()
         }
     }

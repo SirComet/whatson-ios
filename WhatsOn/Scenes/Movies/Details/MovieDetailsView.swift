@@ -39,8 +39,12 @@ final class MovieDetailsView: UIView {
         MovieDetailsGenre()
     }()
     
-    public private(set) lazy var moviesDetailsTrailer: MoviesDetailsTrailer = {
-        MoviesDetailsTrailer()
+    public private(set) lazy var movieDetailsTrailer: MovieDetailsTrailer = {
+        MovieDetailsTrailer()
+    }()
+    
+    public private(set) lazy var movieDetailsCast: MovieDetailsCast = {
+        MovieDetailsCast()
     }()
     
     public private(set) lazy var movieDetailsRecommendations: MovieDetailsRecommendations = {
@@ -95,15 +99,21 @@ final class MovieDetailsView: UIView {
             make.leading.trailing.equalToSuperview()
         }
         
-        containerView.addSubview(moviesDetailsTrailer)
-        moviesDetailsTrailer.snp.makeConstraints { (make) in
+        containerView.addSubview(movieDetailsTrailer)
+        movieDetailsTrailer.snp.makeConstraints { (make) in
             make.top.equalTo(movieDetailsGenre.snp.bottom).offset(32)
+            make.leading.trailing.equalToSuperview()
+        }
+        
+        containerView.addSubview(movieDetailsCast)
+        movieDetailsCast.snp.makeConstraints { (make) in
+            make.top.equalTo(movieDetailsTrailer.snp.bottom).offset(32)
             make.leading.trailing.equalToSuperview()
         }
         
         containerView.addSubview(movieDetailsRecommendations)
         movieDetailsRecommendations.snp.makeConstraints { (make) in
-            make.top.equalTo(moviesDetailsTrailer.snp.bottom).offset(32)
+            make.top.equalTo(movieDetailsCast.snp.bottom).offset(32)
             make.leading.trailing.equalToSuperview()
         }
         

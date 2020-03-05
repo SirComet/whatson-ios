@@ -24,13 +24,16 @@ protocol MovieDetailsViewModelContract: ViewModel {
     var recommendedMovies: BehaviorRelay<[Movie]> { get }
     var videos: BehaviorRelay<[MovieVideo]> { get }
     var genres: BehaviorRelay<[Genre]> { get }
+    var casts: BehaviorRelay<[Cast]> { get }
     var error: PublishRelay<AppError> { get }
 
     // MARK: - Methods
     func fetchMovieDetails()
     func fetchMoviesRecommendations()
     func fetchMovieVideos()
-    func fetchPoster(for movie: Movie) -> Single<UIImage>
+    func fetchMovieCredits()
+    
+    func fetchImage<T>(for object: T) -> Single<UIImage> where T: FetchableImage
 }
 
 final class MovieDetailsViewModel: MovieDetailsViewModelContract {
@@ -49,6 +52,7 @@ final class MovieDetailsViewModel: MovieDetailsViewModelContract {
     var recommendedMovies: BehaviorRelay<[Movie]> = .init(value: [])
     var videos: BehaviorRelay<[MovieVideo]> = .init(value: [])
     var genres: BehaviorRelay<[Genre]> = .init(value: [])
+    var casts: BehaviorRelay<[Cast]> = .init(value: [])
     var error: PublishRelay<AppError> = .init()
     
     // MARK: - Lifecycle
@@ -114,8 +118,19 @@ final class MovieDetailsViewModel: MovieDetailsViewModelContract {
             .disposed(by: disposeBag)
     }
     
-    func fetchPoster(for movie: Movie) -> Single<UIImage> {
-        imagesService.fetchImage(for: movie)
+    func fetchMovieCredits() {
+        moviesService
+            .credits(id: movie.value.id)
+            .subscribe(onSuccess: { [weak self] (credits) in
+                self?.casts.accept(credits.cast)
+            }, onError: { [weak self] (error) in
+                self?.error.accept(AppError(error: error))
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func fetchImage<T>(for object: T) -> Single<UIImage> where T: FetchableImage {
+        imagesService.fetchImage(for: object)
     }
     
 }

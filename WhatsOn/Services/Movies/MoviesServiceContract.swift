@@ -20,5 +20,5 @@ protocol MoviesServiceContract: Service {
     func details(id: Int) -> Single<MovieDetails>
     func recommendations(id: Int) -> Single<[Movie]>
     func videos(id: Int) -> Single<[MovieVideo]>
-    
+    func credits(id: Int) -> Single<MovieCredits>
 }
