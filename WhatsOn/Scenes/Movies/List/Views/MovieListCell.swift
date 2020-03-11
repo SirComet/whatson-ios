@@ -112,7 +112,7 @@ final class MovieListCell: UITableViewCell {
 extension MovieListCell {
     
     static var size: CGSize {
-        return CGSize(width: UIScreen.width, height: UIScreen.height(percent: 20))
+        CGSize(width: UIScreen.width, height: UIScreen.height(percent: 20))
     }
     
 }

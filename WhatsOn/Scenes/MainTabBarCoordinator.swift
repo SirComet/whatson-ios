@@ -10,13 +10,16 @@ import XCoordinator
 
 enum MainTabBarRoute: Route {
     case movies
+    case search
 }
 
 final class MainTabBarCoordinator: TabBarCoordinator<MainTabBarRoute> {
     
     // MARK: - Properties
-    private let moviesRouter: StrongRouter<MoviesRoute>
     private let servicesContainer: DependenciesContainer
+    
+    private let moviesRouter: StrongRouter<MoviesRoute>
+    private let searchRouter: StrongRouter<SearchRoute>
 
     // MARK: - Lifecycle
     convenience init(servicesContainer: DependenciesContainer) {
@@ -24,15 +27,21 @@ final class MainTabBarCoordinator: TabBarCoordinator<MainTabBarRoute> {
         moviesCoordinator.rootViewController.tabBarItem = UITabBarItem(title: R.string.localizable.tab_bar_movies(),
                                                                        image: R.image.icons_tab_bar_movies(),
                                                                        selectedImage: R.image.icons_tab_bar_movies_selected())
+        
+        let searchCoordinator = SearchCoordinator(servicesContainer: servicesContainer)
+        searchCoordinator.rootViewController.tabBarItem = UITabBarItem(title: R.string.localizable.tab_bar_search(),
+                                                                       image: R.image.icons_tab_bar_search(),
+                                                                       selectedImage: R.image.icons_tab_bar_search_selected())
 
-        self.init(servicesContainer: servicesContainer, moviesRouter: moviesCoordinator.strongRouter)
+        self.init(servicesContainer: servicesContainer, moviesRouter: moviesCoordinator.strongRouter, searchRouter: searchCoordinator.strongRouter)
     }
 
-    private init(servicesContainer: DependenciesContainer, moviesRouter: StrongRouter<MoviesRoute>) {
+    private init(servicesContainer: DependenciesContainer, moviesRouter: StrongRouter<MoviesRoute>, searchRouter: StrongRouter<SearchRoute>) {
         self.servicesContainer = servicesContainer
         self.moviesRouter = moviesRouter
+        self.searchRouter = searchRouter
 
-        super.init(tabs: [moviesRouter], select: moviesRouter)
+        super.init(tabs: [moviesRouter, searchRouter], select: moviesRouter)
     }
 
     // MARK: - Methods
@@ -41,6 +50,8 @@ final class MainTabBarCoordinator: TabBarCoordinator<MainTabBarRoute> {
         switch route {
         case .movies:
             return .select(moviesRouter)
+        case .search:
+            return .select(searchRouter)
         }
     }
 }

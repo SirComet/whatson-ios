@@ -6,6 +6,7 @@
   Copyright © 2020 Maxime Maheo. All rights reserved.
 */
 "tab_bar_movies" = "Films";
+"tab_bar_search" = "Rechercher";
 "section_popular" = "Les plus populaires";
 "section_discover" = "Découvrir";
 "section_top_rated" = "Les mieux notés";
