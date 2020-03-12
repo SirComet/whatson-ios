@@ -15,7 +15,16 @@ struct SearchView<T>: View where T: SearchViewModelContract {
     
     // MARK: - Body
     var body: some View {
-        Text("Hello, World from SwiftUI !")
+        VStack(alignment: .leading) {
+            Text("Recherche")
+                .fontWeight(.bold)
+                .font(.largeTitle)
+                .foregroundColor(.white)
+            
+            SearchBarView()
+        }
+        .padding(16)
+        .background(Color(.darkGrey900))
     }
 }
 
