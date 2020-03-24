@@ -12,89 +12,63 @@ import UIKit
 final class MovieDetailsTopInformation: UIView {
     
     // MARK: - Outlets
-    public private(set) lazy var blurImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.masksToBounds = true
-        imageView.alpha = 0
-        
-        return imageView
-    }()
+    private let blurImageView = UIImageView().apply {
+        $0.contentMode = .scaleAspectFill
+        $0.layer.masksToBounds = true
+        $0.alpha = 0
+    }
 
-    public private(set) lazy var gradientImageView: UIImageView = {
-        UIImageView()
-    }()
+    private let gradientImageView = UIImageView()
     
-    public private(set) lazy var posterImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 4
-        imageView.layer.masksToBounds = true
-        imageView.alpha = 0
-        
-        return imageView
-    }()
+    private let posterImageView = UIImageView().apply {
+        $0.layer.cornerRadius = 4
+        $0.layer.masksToBounds = true
+        $0.alpha = 0
+    }
     
-    public private(set) lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .h2
-        label.textAlignment = .center
-        label.numberOfLines = 2
-        label.alpha = 0
-        
-        return label
-    }()
+    private let titleLabel = UILabel().apply {
+        $0.textColor = .white
+        $0.font = .h2
+        $0.textAlignment = .center
+        $0.numberOfLines = 2
+        $0.alpha = 0
+    }
     
-    public private(set) lazy var informationStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 16
-        stackView.distribution = .fill
-        
-        return stackView
-    }()
+    private let informationStackView = UIStackView().apply {
+        $0.axis = .horizontal
+        $0.spacing = 16
+        $0.distribution = .fill
+    }
     
-    public private(set) lazy var markLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .p2
-        label.textAlignment = .left
-        label.alpha = 0
-        
-        return label
-    }()
+    private let markLabel = UILabel().apply {
+        $0.textColor = .white
+        $0.font = .p2
+        $0.textAlignment = .left
+        $0.alpha = 0
+    }
     
-    public private(set) lazy var releaseDateLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .lightGrey800
-        label.font = .p3
-        label.textAlignment = .left
-        label.alpha = 0
-        
-        return label
-    }()
+    private let releaseDateLabel = UILabel().apply {
+        $0.textColor = .lightGrey800
+        $0.font = .p3
+        $0.textAlignment = .left
+        $0.alpha = 0
+    }
     
-    public private(set) lazy var durationLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .lightGrey800
-        label.font = .p3
-        label.textAlignment = .left
-        label.text = "--"
-        label.alpha = 0
-        
-        return label
-    }()
+    private let durationLabel = UILabel().apply {
+        $0.textColor = .lightGrey800
+        $0.font = .p3
+        $0.textAlignment = .left
+        $0.text = "--"
+        $0.alpha = 0
+    }
     
-    public private(set) lazy var overviewLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .p3
-        label.textAlignment = .left
-        label.numberOfLines = 0
-        label.alpha = 0
-        
-        return label
-    }()
+    private let overviewLabel = UILabel().apply {
+        $0.textColor = .white
+        $0.font = .p3
+        $0.textAlignment = .left
+        $0.numberOfLines = 0
+        $0.alpha = 0
+    }
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {

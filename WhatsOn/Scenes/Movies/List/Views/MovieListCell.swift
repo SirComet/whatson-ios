@@ -12,33 +12,24 @@ import RxSwift
 final class MovieListCell: UITableViewCell {
     
     // MARK: - Outlets
-    public private(set) lazy var posterImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 4
-        imageView.layer.masksToBounds = true
-        
-        return imageView
-    }()
+    private let posterImageView = UIImageView().apply {
+        $0.layer.cornerRadius = 4
+        $0.layer.masksToBounds = true
+    }
     
-    public private(set) lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .p2
-        label.textAlignment = .left
-        label.numberOfLines = 2
-
-        return label
-    }()
+    private let titleLabel = UILabel().apply {
+        $0.textColor = .white
+        $0.font = .p2
+        $0.textAlignment = .left
+        $0.numberOfLines = 2
+    }
     
-    public private(set) lazy var overviewLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .lightGrey800
-        label.font = .p3
-        label.textAlignment = .left
-        label.numberOfLines = 0
-        
-        return label
-    }()
+    private let overviewLabel = UILabel().apply {
+        $0.textColor = .lightGrey800
+        $0.font = .p3
+        $0.textAlignment = .left
+        $0.numberOfLines = 0
+    }
     
     // MARK: - Properties
     private var id: Int?

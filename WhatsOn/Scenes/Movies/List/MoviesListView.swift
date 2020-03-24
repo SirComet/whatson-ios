@@ -12,15 +12,12 @@ import UIKit
 final class MoviesListView: UIView {
     
     // MARK: - Outlets
-    public private(set) lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = .darkGrey900
-        tableView.separatorStyle = .none
-        tableView.tableFooterView = UIView()
-        tableView.register(MovieListCell.self, forCellReuseIdentifier: "\(MovieListCell.self)")
-        
-        return tableView
-    }()
+    let tableView = UITableView().apply {
+        $0.backgroundColor = .darkGrey900
+        $0.separatorStyle = .none
+        $0.tableFooterView = UIView()
+        $0.register(MovieListCell.self, forCellReuseIdentifier: "\(MovieListCell.self)")
+    }
 
     // MARK: - Lifecycle
     override init(frame: CGRect) {

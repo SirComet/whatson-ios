@@ -12,9 +12,7 @@ import RxSwift
 final class StandardCell: UICollectionViewCell {
     
     // MARK: - Outlets
-    public private(set) lazy var posterImageView: UIImageView = {
-        UIImageView()
-    }()
+    private let posterImageView = UIImageView()
     
     // MARK: - Properties
     private var id: Int?

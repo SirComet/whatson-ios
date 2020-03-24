@@ -12,30 +12,23 @@ import UIKit
 final class MovieDetailsRecommendations: UIView {
     
     // MARK: - Outlets
-    public private(set) lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .h2
-        label.textAlignment = .left
-        label.text = R.string.localizable.title_recommendations()
-        
-        return label
-    }()
+    private let titleLabel = UILabel().apply {
+        $0.textColor = .white
+        $0.font = .h2
+        $0.textAlignment = .left
+        $0.text = R.string.localizable.title_recommendations()
+    }
     
-    public private(set) lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 16
-        layout.minimumInteritemSpacing = 16
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .darkGrey900
-        collectionView.register(StandardCell.self, forCellWithReuseIdentifier: "\(StandardCell.self)")
-        
-        return collectionView
-    }()
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout().apply {
+        $0.minimumLineSpacing = 16
+        $0.minimumInteritemSpacing = 16
+        $0.scrollDirection = .horizontal
+        $0.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+    }).apply {
+        $0.showsHorizontalScrollIndicator = false
+        $0.backgroundColor = .darkGrey900
+        $0.register(StandardCell.self, forCellWithReuseIdentifier: "\(StandardCell.self)")
+    }
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {

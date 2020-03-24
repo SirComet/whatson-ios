@@ -12,27 +12,20 @@ import UIKit
 final class StandardView: UIView {
 
     // MARK: - Outlets
-    public private(set) lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 16
-        layout.minimumInteritemSpacing = 16
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .darkGrey900
-        collectionView.register(StandardCell.self, forCellWithReuseIdentifier: "\(StandardCell.self)")
-        
-        return collectionView
-    }()
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout().apply {
+        $0.minimumLineSpacing = 16
+        $0.minimumInteritemSpacing = 16
+        $0.scrollDirection = .horizontal
+        $0.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+    }).apply {
+        $0.showsHorizontalScrollIndicator = false
+        $0.backgroundColor = .darkGrey900
+        $0.register(StandardCell.self, forCellWithReuseIdentifier: "\(StandardCell.self)")
+    }
     
-    public private(set) lazy var activityIndicatorView: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView()
-        view.color = .white
-        
-        return view
-    }()
+    let activityIndicatorView = UIActivityIndicatorView().apply {
+        $0.color = .white
+    }
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {

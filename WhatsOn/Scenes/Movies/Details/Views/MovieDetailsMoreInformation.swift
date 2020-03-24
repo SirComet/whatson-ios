@@ -12,127 +12,85 @@ import UIKit
 final class MovieDetailsMoreInformation: UIView {
     
     // MARK: - Outlets
-    public private(set) lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .h2
-        label.text = R.string.localizable.title_more_information()
-        
-        return label
-    }()
+    private let titleLabel = UILabel().apply {
+        $0.textColor = .white
+        $0.font = .h2
+        $0.text = R.string.localizable.title_more_information()
+    }
     
-    public private(set) lazy var contentStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 8
-        stackView.distribution = .fillEqually
-        
-        return stackView
-    }()
+    private let contentStackView = UIStackView().apply {
+        $0.axis = .vertical
+        $0.spacing = 8
+        $0.distribution = .fillEqually
+    }
     
-    public private(set) lazy var popularityStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 8
-        stackView.distribution = .fillEqually
-        
-        return stackView
-    }()
+    private let popularityStackView = UIStackView().apply {
+        $0.axis = .horizontal
+        $0.spacing = 8
+        $0.distribution = .fillEqually
+    }
     
-    public private(set) lazy var popularityTitleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .p2
-        label.text = R.string.localizable.title_popularity()
-        
-        return label
-    }()
+    private let popularityTitleLabel = UILabel().apply {
+        $0.textColor = .white
+        $0.font = .p2
+        $0.text = R.string.localizable.title_popularity()
+    }
     
-    public private(set) lazy var popularityValueLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .lightGrey800
-        label.font = .p3
-        
-        return label
-    }()
+    private let popularityValueLabel = UILabel().apply {
+        $0.textColor = .lightGrey800
+        $0.font = .p3
+    }
     
-    public private(set) lazy var statusStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 8
-        stackView.distribution = .fillEqually
-        
-        return stackView
-    }()
+    private let statusStackView = UIStackView().apply {
+        $0.axis = .horizontal
+        $0.spacing = 8
+        $0.distribution = .fillEqually
+    }
     
-    public private(set) lazy var statusTitleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .p2
-        label.text = R.string.localizable.title_status()
-        
-        return label
-    }()
+    private let statusTitleLabel = UILabel().apply {
+        $0.textColor = .white
+        $0.font = .p2
+        $0.text = R.string.localizable.title_status()
+    }
     
-    public private(set) lazy var statusValueLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .lightGrey800
-        label.font = .p3
-        
-        return label
-    }()
+    private let statusValueLabel = UILabel().apply {
+        $0.textColor = .lightGrey800
+        $0.font = .p3
+    }
     
-    public private(set) lazy var revenueStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 8
-        stackView.distribution = .fillEqually
-        
-        return stackView
-    }()
+    private let revenueStackView = UIStackView().apply {
+        $0.axis = .horizontal
+        $0.spacing = 8
+        $0.distribution = .fillEqually
+    }
     
-    public private(set) lazy var revenueTitleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .p2
-        label.text = R.string.localizable.title_revenue()
-        
-        return label
-    }()
+    private let revenueTitleLabel = UILabel().apply {
+        $0.textColor = .white
+        $0.font = .p2
+        $0.text = R.string.localizable.title_revenue()
+    }
     
-    public private(set) lazy var revenueValueLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .lightGrey800
-        label.font = .p3
-        
-        return label
-    }()
+    private let revenueValueLabel = UILabel().apply {
+        $0.textColor = .lightGrey800
+        $0.font = .p3
+    }
     
-    public private(set) lazy var budgetStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 8
-        stackView.distribution = .fillEqually
-        
-        return stackView
-    }()
+    private let budgetStackView = UIStackView().apply {
+        $0.axis = .horizontal
+        $0.spacing = 8
+        $0.distribution = .fillEqually
+    }
     
-    public private(set) lazy var budgetTitleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .p2
-        label.text = R.string.localizable.title_budget()
-        
-        return label
-    }()
+    private let budgetTitleLabel = UILabel().apply {
+        $0.textColor = .white
+        $0.font = .p2
+        $0.text = R.string.localizable.title_budget()
+    }
     
-    public private(set) lazy var budgetValueLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .lightGrey800
-        label.font = .p3
-        
-        return label
-    }()
+    private let budgetValueLabel = UILabel().apply {
+        $0.textColor = .lightGrey800
+        $0.font = .p3
+    }
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {

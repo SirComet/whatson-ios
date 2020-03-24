@@ -12,30 +12,21 @@ import RxSwift
 final class CastCell: UICollectionViewCell {
     
     // MARK: - Outlets
-    public private(set) lazy var posterImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 4
-        imageView.layer.masksToBounds = true
-        
-        return imageView
-    }()
+    private let posterImageView = UIImageView().apply {
+        $0.contentMode = .scaleAspectFill
+        $0.layer.cornerRadius = 4
+        $0.layer.masksToBounds = true
+    }
     
-    public private(set) lazy var nameLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .p2
-        
-        return label
-    }()
+    private let nameLabel = UILabel().apply {
+        $0.textColor = .white
+        $0.font = .p2
+    }
     
-    public private(set) lazy var characterLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .lightGrey800
-        label.font = .p3
-        
-        return label
-    }()
+    private let characterLabel = UILabel().apply {
+        $0.textColor = .lightGrey800
+        $0.font = .p3
+    }
     
     // MARK: - Properties
     private var id: Int?

@@ -11,19 +11,14 @@ import UIKit
 final class SectionCell: UITableViewCell {
     
     // MARK: - Outlets
-    public private(set) lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .h2
-        label.textAlignment = .left
-        label.numberOfLines = 2
+    private let titleLabel = UILabel().apply {
+        $0.textColor = .white
+        $0.font = .h2
+        $0.textAlignment = .left
+        $0.numberOfLines = 2
+    }
 
-        return label
-    }()
-
-    public private(set) lazy var containerView: UIView = {
-        UIView()
-    }()
+    let containerView = UIView()
 
     // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

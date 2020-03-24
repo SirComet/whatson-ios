@@ -12,15 +12,12 @@ import RxSwift
 final class GenreCell: UICollectionViewCell {
     
     // MARK: - Outlets
-    public private(set) lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .p2
-        label.textAlignment = .center
-        label.numberOfLines = 2
-
-        return label
-    }()
+    private let titleLabel = UILabel().apply {
+        $0.textColor = .white
+        $0.font = .p2
+        $0.textAlignment = .center
+        $0.numberOfLines = 2
+    }
         
     // MARK: - Lifecycle
     override init(frame: CGRect) {

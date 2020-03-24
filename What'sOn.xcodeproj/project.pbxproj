@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5205B13D242A370900542704 /* Apply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5205B13C242A370900542704 /* Apply.swift */; };
 		5211441324069AAB009A5D19 /* MoviesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211441224069AAB009A5D19 /* MoviesService.swift */; };
 		5211441624069AEA009A5D19 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211441524069AEA009A5D19 /* Service.swift */; };
 		5211441824069B87009A5D19 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211441724069B87009A5D19 /* Movie.swift */; };
@@ -113,6 +114,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5205B13C242A370900542704 /* Apply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apply.swift; sourceTree = "<group>"; };
 		5211441224069AAB009A5D19 /* MoviesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesService.swift; sourceTree = "<group>"; };
 		5211441524069AEA009A5D19 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		5211441724069B87009A5D19 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
@@ -234,6 +236,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5205B13B242A370000542704 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5205B13C242A370900542704 /* Apply.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		5211441424069AE2009A5D19 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,6 +468,7 @@
 		5297A8E22406741D00FC528A /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				5205B13B242A370000542704 /* View */,
 				52E7DC5D241AE52C00CF4E27 /* Logger */,
 				525B1B3F2408490C004ABDCE /* ViewModel */,
 				5211441424069AE2009A5D19 /* Services */,
@@ -753,6 +764,7 @@
 				52ADC0472407BBAB0012FC80 /* StandardViewController.swift in Sources */,
 				52B4789F24054B0E007D578E /* MoviesView.swift in Sources */,
 				521D938724085C0B00B95067 /* MovieDetailsViewModel.swift in Sources */,
+				5205B13D242A370900542704 /* Apply.swift in Sources */,
 				526FDDC92405DDCB00272AD5 /* FeaturedView.swift in Sources */,
 				52508E8B24069A6300880BA8 /* MoviesServiceContract.swift in Sources */,
 				525B1B4124084915004ABDCE /* ViewModel.swift in Sources */,

@@ -13,25 +13,19 @@ import WebKit
 final class MovieDetailsTrailer: UIView {
     
     // MARK: - Outlets
-    public private(set) lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .h2
-        label.textAlignment = .left
-        label.text = R.string.localizable.title_trailer()
-        
-        return label
-    }()
+    private let titleLabel = UILabel().apply {
+        $0.textColor = .white
+        $0.font = .h2
+        $0.textAlignment = .left
+        $0.text = R.string.localizable.title_trailer()
+    }
     
-    public private(set) lazy var trailerWebView: WKWebView = {
-        let webView = WKWebView()
-        webView.backgroundColor = .darkGrey900
-        webView.scrollView.isScrollEnabled = false
-        webView.scrollView.bounces = false
-        webView.isOpaque = false
-        
-        return webView
-    }()
+    let trailerWebView = WKWebView().apply {
+        $0.backgroundColor = .darkGrey900
+        $0.scrollView.isScrollEnabled = false
+        $0.scrollView.bounces = false
+        $0.isOpaque = false
+    }
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {

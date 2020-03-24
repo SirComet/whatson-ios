@@ -12,48 +12,29 @@ import UIKit
 final class MovieDetailsView: UIView {
     
     // MARK: - Outlets
-    public private(set) lazy var scrollView: UIScrollView = {
-        UIScrollView()
-    }()
+    private let scrollView = UIScrollView()
     
-    public private(set) lazy var containerView: UIView = {
-        UIView()
-    }()
+    private let containerView = UIView()
     
-    public private(set) lazy var movieDetailsTopInformation: MovieDetailsTopInformation = {
-        MovieDetailsTopInformation()
-    }()
+    let movieDetailsTopInformation = MovieDetailsTopInformation()
     
-    public private(set) lazy var dismissButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .darkGrey600
-        button.layer.cornerRadius = 12
-        button.tintColor = .white
-        button.setImage(R.image.icons_times()?.withRenderingMode(.alwaysTemplate), for: .normal)
-        button.imageEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
-        
-        return button
-    }()
+    let dismissButton = UIButton().apply {
+        $0.backgroundColor = .darkGrey600
+        $0.layer.cornerRadius = 12
+        $0.tintColor = .white
+        $0.setImage(R.image.icons_times()?.withRenderingMode(.alwaysTemplate), for: .normal)
+        $0.imageEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
+    }
     
-    public private(set) lazy var movieDetailsGenre: MovieDetailsGenre = {
-        MovieDetailsGenre()
-    }()
+    let movieDetailsGenre = MovieDetailsGenre()
     
-    public private(set) lazy var movieDetailsTrailer: MovieDetailsTrailer = {
-        MovieDetailsTrailer()
-    }()
+    let movieDetailsTrailer = MovieDetailsTrailer()
     
-    public private(set) lazy var movieDetailsCast: MovieDetailsCast = {
-        MovieDetailsCast()
-    }()
+    let movieDetailsCast = MovieDetailsCast()
     
-    public private(set) lazy var movieDetailsRecommendations: MovieDetailsRecommendations = {
-        MovieDetailsRecommendations()
-    }()
+    let movieDetailsRecommendations = MovieDetailsRecommendations()
     
-    public private(set) lazy var movieDetailsMoreInformation: MovieDetailsMoreInformation = {
-        MovieDetailsMoreInformation()
-    }()
+    let movieDetailsMoreInformation = MovieDetailsMoreInformation()
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {
